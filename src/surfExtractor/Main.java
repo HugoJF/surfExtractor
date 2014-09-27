@@ -88,7 +88,7 @@ public class Main {
 
 		// Write experimental arff
 		PrintWriter writer = new PrintWriter(Configuration.getConfiguration("arff.path") + Configuration.getConfiguration("arff.filename.prefix") + is.getRelation() + Configuration.getConfiguration("arff.filename.sufix"), "UTF-8");
-		writer.println("@relation surfExtractor");
+		writer.println("@relation " + Configuration.getConfiguration("arff.relation"));
 		writer.println();
 		for (int i = 0; i < bow.getClusterNum(); i++) {
 			writer.println("@attribute A" + i + " numeric");
