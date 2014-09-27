@@ -1,0 +1,218 @@
+2014-09-24 03:49:57 INFO  ImageSet:37 - Creating new ImageClass: acacia_plumosa
+2014-09-24 03:49:57 INFO  ImageSet:37 - Creating new ImageClass: anadenanthera_colubrina
+2014-09-24 03:49:57 INFO  ImageSet:37 - Creating new ImageClass: arecaceae
+2014-09-24 03:49:57 INFO  SurfExtractor:36 - Starting extraction for ImageSet located at: C:\Users\Hugo\Desktop\INOVISAO\Ferramentas\extractAttributes\data\polen23e_fewer_classes\images\training
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_1.jpg. Processing time: 146
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_10.jpg. Processing time: 25
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_11.jpg. Processing time: 24
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_12.jpg. Processing time: 21
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_13.jpg. Processing time: 22
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_14.jpg. Processing time: 24
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_15.jpg. Processing time: 23
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_16.jpg. Processing time: 22
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_17.jpg. Processing time: 25
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_18.jpg. Processing time: 20
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_19.jpg. Processing time: 22
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_2.jpg. Processing time: 24
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_20.jpg. Processing time: 19
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_21.jpg. Processing time: 18
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_22.jpg. Processing time: 19
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_23.jpg. Processing time: 21
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_24.jpg. Processing time: 19
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_25.jpg. Processing time: 21
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_26.jpg. Processing time: 20
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_27.jpg. Processing time: 20
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_28.jpg. Processing time: 20
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_29.jpg. Processing time: 19
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_3.jpg. Processing time: 25
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_30.jpg. Processing time: 16
+2014-09-24 03:49:57 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_4.jpg. Processing time: 21
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_5.jpg. Processing time: 21
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_6.jpg. Processing time: 22
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_7.jpg. Processing time: 19
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_8.jpg. Processing time: 23
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: acacia_9.jpg. Processing time: 19
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: t_acacia_1.jpg. Processing time: 19
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: t_acacia_2.jpg. Processing time: 16
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: t_acacia_3.jpg. Processing time: 18
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: t_acacia_4.jpg. Processing time: 18
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: t_acacia_5.jpg. Processing time: 19
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__10_.jpg. Processing time: 14
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__11_.jpg. Processing time: 21
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__12_.jpg. Processing time: 20
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__13_.jpg. Processing time: 24
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__14_.jpg. Processing time: 20
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__15_.jpg. Processing time: 21
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__16_.jpg. Processing time: 19
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__17_.jpg. Processing time: 23
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__18_.jpg. Processing time: 19
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__19_.jpg. Processing time: 17
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__1_.jpg. Processing time: 19
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__20_.jpg. Processing time: 20
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__21_.jpg. Processing time: 13
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__22_.jpg. Processing time: 17
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__23_.jpg. Processing time: 20
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__24_.jpg. Processing time: 17
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__25_.jpg. Processing time: 20
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__26_.jpg. Processing time: 20
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__27_.jpg. Processing time: 16
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__28_.jpg. Processing time: 18
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__29_.jpg. Processing time: 21
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__2_.jpg. Processing time: 22
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__30_.jpg. Processing time: 25
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__3_.jpg. Processing time: 21
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__4_.jpg. Processing time: 17
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__5_.jpg. Processing time: 19
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__6_.jpg. Processing time: 16
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__7_.jpg. Processing time: 20
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__8_.jpg. Processing time: 15
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: fabaceae__9_.jpg. Processing time: 21
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: t_anadenanthera_1.jpg. Processing time: 11
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: t_anadenanthera_2.jpg. Processing time: 13
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: t_anadenanthera_3.jpg. Processing time: 14
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: t_anadenanthera_4.jpg. Processing time: 16
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: t_anadenanthera_5.jpg. Processing time: 14
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__10_.jpg. Processing time: 38
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__11_.jpg. Processing time: 37
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__12_.jpg. Processing time: 38
+2014-09-24 03:49:58 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__13_.jpg. Processing time: 34
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__14_.jpg. Processing time: 36
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__15_.jpg. Processing time: 37
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__16_.jpg. Processing time: 33
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__17_.jpg. Processing time: 32
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__18_.jpg. Processing time: 38
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__19_.jpg. Processing time: 35
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__1_.jpg. Processing time: 23
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__20_.jpg. Processing time: 35
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__21_.jpg. Processing time: 37
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__22_.jpg. Processing time: 37
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__23_.jpg. Processing time: 38
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__24_.jpg. Processing time: 36
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__25_.jpg. Processing time: 34
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__26_.jpg. Processing time: 39
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__27_.jpg. Processing time: 39
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__28_.jpg. Processing time: 40
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__29_.jpg. Processing time: 41
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__2_.jpg. Processing time: 37
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__30_.jpg. Processing time: 36
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__3_.jpg. Processing time: 29
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__4_.jpg. Processing time: 35
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__5_.jpg. Processing time: 39
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__6_.jpg. Processing time: 33
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__7_.jpg. Processing time: 34
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__8_.jpg. Processing time: 37
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: arecaceaetipo2__9_.jpg. Processing time: 35
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: t_arecaceae_1.jpg. Processing time: 34
+2014-09-24 03:49:59 INFO  SurfExtractor:43 - Extracted SURF features from: t_arecaceae_2.jpg. Processing time: 32
+2014-09-24 03:50:00 INFO  SurfExtractor:43 - Extracted SURF features from: t_arecaceae_3.jpg. Processing time: 26
+2014-09-24 03:50:00 INFO  SurfExtractor:43 - Extracted SURF features from: t_arecaceae_4.jpg. Processing time: 27
+2014-09-24 03:50:00 INFO  SurfExtractor:43 - Extracted SURF features from: t_arecaceae_5.jpg. Processing time: 20
+2014-09-24 03:50:00 INFO  Main:28 - 256 SURF features detected for: acacia_1.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 273 SURF features detected for: acacia_10.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 254 SURF features detected for: acacia_11.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 214 SURF features detected for: acacia_12.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 239 SURF features detected for: acacia_13.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 259 SURF features detected for: acacia_14.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 247 SURF features detected for: acacia_15.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 231 SURF features detected for: acacia_16.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 289 SURF features detected for: acacia_17.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 225 SURF features detected for: acacia_18.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 252 SURF features detected for: acacia_19.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 275 SURF features detected for: acacia_2.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 208 SURF features detected for: acacia_20.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 207 SURF features detected for: acacia_21.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 232 SURF features detected for: acacia_22.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 236 SURF features detected for: acacia_23.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 216 SURF features detected for: acacia_24.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 237 SURF features detected for: acacia_25.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 216 SURF features detected for: acacia_26.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 233 SURF features detected for: acacia_27.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 226 SURF features detected for: acacia_28.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 227 SURF features detected for: acacia_29.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 285 SURF features detected for: acacia_3.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 187 SURF features detected for: acacia_30.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 249 SURF features detected for: acacia_4.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 236 SURF features detected for: acacia_5.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 245 SURF features detected for: acacia_6.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 215 SURF features detected for: acacia_7.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 270 SURF features detected for: acacia_8.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 181 SURF features detected for: acacia_9.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 234 SURF features detected for: t_acacia_1.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 190 SURF features detected for: t_acacia_2.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 217 SURF features detected for: t_acacia_3.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 200 SURF features detected for: t_acacia_4.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 225 SURF features detected for: t_acacia_5.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 143 SURF features detected for: fabaceae__10_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 232 SURF features detected for: fabaceae__11_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 219 SURF features detected for: fabaceae__12_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 257 SURF features detected for: fabaceae__13_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 204 SURF features detected for: fabaceae__14_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 210 SURF features detected for: fabaceae__15_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 218 SURF features detected for: fabaceae__16_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 258 SURF features detected for: fabaceae__17_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 205 SURF features detected for: fabaceae__18_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 170 SURF features detected for: fabaceae__19_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 204 SURF features detected for: fabaceae__1_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 241 SURF features detected for: fabaceae__20_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 142 SURF features detected for: fabaceae__21_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 202 SURF features detected for: fabaceae__22_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 213 SURF features detected for: fabaceae__23_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 197 SURF features detected for: fabaceae__24_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 235 SURF features detected for: fabaceae__25_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 218 SURF features detected for: fabaceae__26_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 181 SURF features detected for: fabaceae__27_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 201 SURF features detected for: fabaceae__28_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 242 SURF features detected for: fabaceae__29_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 246 SURF features detected for: fabaceae__2_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 263 SURF features detected for: fabaceae__30_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 230 SURF features detected for: fabaceae__3_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 178 SURF features detected for: fabaceae__4_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 232 SURF features detected for: fabaceae__5_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 190 SURF features detected for: fabaceae__6_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 244 SURF features detected for: fabaceae__7_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 152 SURF features detected for: fabaceae__8_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 227 SURF features detected for: fabaceae__9_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 124 SURF features detected for: t_anadenanthera_1.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 149 SURF features detected for: t_anadenanthera_2.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 184 SURF features detected for: t_anadenanthera_3.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 199 SURF features detected for: t_anadenanthera_4.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 171 SURF features detected for: t_anadenanthera_5.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 304 SURF features detected for: arecaceaetipo2__10_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 280 SURF features detected for: arecaceaetipo2__11_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 314 SURF features detected for: arecaceaetipo2__12_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 256 SURF features detected for: arecaceaetipo2__13_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 304 SURF features detected for: arecaceaetipo2__14_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 265 SURF features detected for: arecaceaetipo2__15_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 270 SURF features detected for: arecaceaetipo2__16_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 281 SURF features detected for: arecaceaetipo2__17_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 280 SURF features detected for: arecaceaetipo2__18_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 248 SURF features detected for: arecaceaetipo2__19_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 228 SURF features detected for: arecaceaetipo2__1_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 248 SURF features detected for: arecaceaetipo2__20_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 242 SURF features detected for: arecaceaetipo2__21_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 260 SURF features detected for: arecaceaetipo2__22_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 316 SURF features detected for: arecaceaetipo2__23_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 331 SURF features detected for: arecaceaetipo2__24_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 281 SURF features detected for: arecaceaetipo2__25_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 313 SURF features detected for: arecaceaetipo2__26_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 348 SURF features detected for: arecaceaetipo2__27_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 324 SURF features detected for: arecaceaetipo2__28_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 327 SURF features detected for: arecaceaetipo2__29_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 295 SURF features detected for: arecaceaetipo2__2_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 267 SURF features detected for: arecaceaetipo2__30_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 257 SURF features detected for: arecaceaetipo2__3_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 298 SURF features detected for: arecaceaetipo2__4_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 322 SURF features detected for: arecaceaetipo2__5_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 304 SURF features detected for: arecaceaetipo2__6_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 257 SURF features detected for: arecaceaetipo2__7_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 315 SURF features detected for: arecaceaetipo2__8_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 274 SURF features detected for: arecaceaetipo2__9_.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 344 SURF features detected for: t_arecaceae_1.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 354 SURF features detected for: t_arecaceae_2.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 297 SURF features detected for: t_arecaceae_3.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 314 SURF features detected for: t_arecaceae_4.jpg
+2014-09-24 03:50:00 INFO  Main:28 - 225 SURF features detected for: t_arecaceae_5.jpg
+2014-09-24 03:50:00 INFO  Clustering:36 - Filling feature pool
+2014-09-24 03:50:00 INFO  Clustering:44 - Feature pool filled with 25510 features
+2014-09-24 03:50:00 INFO  Clustering:45 - Generating random initial clusters
+2014-09-24 03:50:00 INFO  Clustering:47 - Assigning first children
