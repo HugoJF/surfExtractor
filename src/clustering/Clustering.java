@@ -8,10 +8,11 @@ import misc.Utils;
 
 import org.apache.log4j.Logger;
 
-import surfExtractor.Image;
-import surfExtractor.ImageClass;
-import surfExtractor.ImageSet;
-import surfExtractor.TaggedSurfFeature;
+import surf_extractor.Image;
+import surf_extractor.ImageClass;
+import surf_extractor.ImageSet;
+import surf_extractor.TaggedSurfFeature;
+import user_interface.UserInterface;
 
 /**
  * @author Hugo
@@ -30,7 +31,7 @@ public class Clustering {
 	private int iterations;
 
 	private final static Logger LOGGER = Logger.getLogger(Clustering.class);
-
+	
 	/**
 	 * @param is
 	 *            - ImageSet's features being clustered
@@ -70,6 +71,7 @@ public class Clustering {
 		LOGGER.info("Iterations started");
 		//debugClusters();
 		for (int i = 0; i < iterations - 1; i++) {
+			UserInterface.featureClusteringProgress.setValue(i+1);
 			recalculateCentroids();
 			assignChildren();
 			//debugClusters();

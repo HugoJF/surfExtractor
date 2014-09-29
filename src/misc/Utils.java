@@ -12,15 +12,15 @@ public class Utils {
 		if (a.length != b.length)
 			throw new RuntimeException("Vectors must have the same dimensional space");
 		double sum = 0;
-		for (int i = 0; i < a.length; i++) {
-			//sum += Math.pow(a[i] - b[i], 2);
-			sum+= ((a[i] - b[i]) * (a[i] - b[i]));
-		}
+		double x, y;
+		 for (int i = 0; i < a.length; i++) {
+		//for (int i = a.length - 1; i >= 0; i--) {
+			// sum += Math.pow(a[i] - b[i], 2);
+			sum += ((a[i] - b[i]) * (a[i] - b[i]));
 
+		}
 		return Math.sqrt(sum);
-		//return sum;
 	}
-	
 
 	/**
 	 * @param f
@@ -35,7 +35,6 @@ public class Utils {
 
 		return Utils.getVectorDistance(a, b);
 	}
-	
 
 	/**
 	 * @return sum two multidimensional double vectors
@@ -59,7 +58,7 @@ public class Utils {
 		}
 		return c;
 	}
-	
+
 	/**
 	 * @return divide multidimensional double vector by scalar b
 	 */
@@ -70,6 +69,5 @@ public class Utils {
 		}
 		return c;
 	}
-
 
 }

@@ -11,6 +11,7 @@ import clustering.Cluster;
 public class Configuration {
 	private static HashMap<String, String> config = new HashMap<String, String>();
 	private static ArrayList<String> validParameters = new ArrayList<String>();
+	public static int validParametersSet = 0;
 
 	private final static Logger LOGGER = Logger.getLogger(Configuration.class);
 
@@ -19,8 +20,6 @@ public class Configuration {
 		config.put("kmeans.iteration", "5");
 		config.put("imageset.path", "C:\\training");
 		config.put("arff.path", "c:\\");
-		config.put("arff.filename.prefix", "surfExtractor-");
-		config.put("arff.filename.sufix", ".arff");
 		config.put("arff.relation", "results");
 		config.put("random.seed", "1");
 		
@@ -29,8 +28,7 @@ public class Configuration {
 		validParameters.add("kmeans.iteration");
 		validParameters.add("imageset.path");
 		validParameters.add("arff.path");
-		validParameters.add("arff.filename.prefix");
-		validParameters.add("arff.filename.sufix");
+		validParameters.add("random.seed");
 	}
 
 	public static void addConfiguration(String key, String value) {
@@ -47,6 +45,7 @@ public class Configuration {
 				String key = args[i].substring(1);
 				String value = args[i + 1];
 				Configuration.addConfiguration(key, value);
+				Configuration.validParametersSet++;
 			}
 		}
 	}

@@ -7,7 +7,7 @@ import misc.Utils;
 
 import org.apache.log4j.Logger;
 
-import surfExtractor.TaggedSurfFeature;
+import surf_extractor.TaggedSurfFeature;
 
 public class Cluster {
 	private double[] centroid;
