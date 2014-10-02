@@ -34,5 +34,6 @@
 	<classpathentry kind="lib" path="C:/apache-log4j-2.0.2-bin/log4j-api-2.0.2.jar"/>
 	<classpathentry kind="lib" path="C:/apache-log4j-2.0.2-bin/log4j-1.2-api-2.0.2.jar"/>
 	<classpathentry kind="lib" path="miglayout15-swing.jar" sourcepath="miglayout-src.zip"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Configuration"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

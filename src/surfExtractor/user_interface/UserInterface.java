@@ -28,7 +28,7 @@ import javax.swing.JProgressBar;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 
-import surfExtractor.misc.Configuration;
+import configuration.*;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -305,10 +305,10 @@ public class UserInterface {
 		}
 		return true;
 	}
-	
+
 	public static void done() {
-		//FIXME
-		//JOptionPane.showMessageDialog(null, "Extraction completed");
-		//UserInterface.extractButton.setText("Done!");
+		// FIXME
+		// JOptionPane.showMessageDialog(null, "Extraction completed");
+		// UserInterface.extractButton.setText("Done!");
 	}
 }

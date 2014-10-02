@@ -13,7 +13,7 @@ import java.util.Random;
 import surfExtractor.image_set.Image;
 import surfExtractor.image_set.ImageClass;
 import surfExtractor.image_set.ImageSet;
-import surfExtractor.misc.Configuration;
+import configuration.*;
 import surfExtractor.misc.Utils;
 
 import org.apache.log4j.Logger;

@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 import surfExtractor.bow_classifier.Bow;
 import surfExtractor.bow_classifier.Histogram;
 import surfExtractor.image_set.ImageSet;
-import surfExtractor.misc.Configuration;
+import configuration.*;
 
 public class Exporter {
 	private ImageSet imageSet;
