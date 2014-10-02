@@ -1,10 +1,11 @@
-package surfExtractor.surf_extractor;
+package surfExtractor.image_set;
 
 import java.io.File;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
+import surfExtractor.surf_extractor.TaggedSurfFeature;
 import boofcv.abst.feature.detdesc.DetectDescribePoint;
 import boofcv.struct.feature.SurfFeature;
 import boofcv.struct.image.ImageFloat32;

@@ -1,4 +1,4 @@
-package surfExtractor.surf_extractor;
+package surfExtractor.image_set;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

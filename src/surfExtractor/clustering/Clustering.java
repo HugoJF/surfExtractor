@@ -3,14 +3,14 @@ package surfExtractor.clustering;
 import java.util.ArrayList;
 import java.util.Random;
 
+import surfExtractor.image_set.Image;
+import surfExtractor.image_set.ImageClass;
+import surfExtractor.image_set.ImageSet;
 import surfExtractor.misc.Configuration;
 import surfExtractor.misc.Utils;
 
 import org.apache.log4j.Logger;
 
-import surfExtractor.surf_extractor.Image;
-import surfExtractor.surf_extractor.ImageClass;
-import surfExtractor.surf_extractor.ImageSet;
 import surfExtractor.surf_extractor.TaggedSurfFeature;
 import surfExtractor.user_interface.UserInterface;
 

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import surfExtractor.image_set.ImageSet;
 import surfExtractor.misc.Configuration;
 
 import org.apache.log4j.Logger;
