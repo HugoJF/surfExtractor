@@ -35,6 +35,7 @@ public class Main {
 	 * @throws UnsupportedEncodingException
 	 */
 	public static void main(String[] args) {
+		Configuration.setConfiguration("random.seed", "1");
 		Configuration.readFromRunArgs(args);
 
 		if (Configuration.validParametersSet == 0) {
