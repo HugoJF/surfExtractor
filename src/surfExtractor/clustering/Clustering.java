@@ -1,5 +1,12 @@
 package surfExtractor.clustering;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -31,7 +38,8 @@ public class Clustering {
 	private int iterations;
 
 	private final static Logger LOGGER = Logger.getLogger(Clustering.class);
-	
+
+
 	/**
 	 * @param is
 	 *            - ImageSet's features being clustered
@@ -45,7 +53,7 @@ public class Clustering {
 		this.imageSet = is;
 		this.clusterNum = clusterNum;
 		this.iterations = iterations;
-		
+
 		LOGGER.info("Clustering ImageSet: " + is.getRelation() + " with " + clusterNum + " and " + iterations + " iterations");
 
 	}
@@ -69,12 +77,12 @@ public class Clustering {
 		LOGGER.info("Assigning first children");
 		assignChildren();
 		LOGGER.info("Iterations started");
-		//debugClusters();
+		// debugClusters();
 		for (int i = 0; i < iterations - 1; i++) {
-			//UserInterface.featureClusteringProgress.setValue(i+1);
+			// UserInterface.featureClusteringProgress.setValue(i+1);
 			recalculateCentroids();
 			assignChildren();
-			//debugClusters();
+			// debugClusters();
 		}
 	}
 
@@ -88,13 +96,14 @@ public class Clustering {
 		LOGGER.info("Clusters debugged");
 	}
 
-	@SuppressWarnings("unused")
 	private String centroidToString(double[] centroid) {
-		String s = "[";
+		String s = "";
 		for (int i = 0; i < centroid.length; i++) {
-			s += centroid[i] + ", ";
+			s += centroid[i];
+			if (i != centroid.length - 1) {
+				s += ", ";
+			}
 		}
-		s += "]";
 		return s;
 	}
 
@@ -124,7 +133,7 @@ public class Clustering {
 			sum += d;
 		}
 		sum /= deltas.size();
-		
+
 		LOGGER.info("The minimum delta centroid was: " + min);
 		LOGGER.info("The maximum delta centroid was: " + max);
 		LOGGER.info("The average delta centroid was: " + sum);
@@ -138,6 +147,10 @@ public class Clustering {
 		Random rand = new Random(Integer.valueOf(Configuration.getConfiguration("random.seed")));
 		for (int i = 0; i < this.clusterNum; i++) {
 			this.clusters.add(new Cluster(this.featurePool.get(Math.round(rand.nextFloat() * this.featurePool.size())).getFeature().value));
+		}
+		int i = 1;
+		for (Cluster c : this.clusters) {
+			c.setId(i++);
 		}
 	}
 
@@ -177,7 +190,46 @@ public class Clustering {
 		return closestCluster;
 	}
 
+	/**
+	 * @return //TODO
+	 */
 	public int getClusterAmount() {
 		return this.clusterNum;
+	}
+
+	public void saveClustersToFile(File path) throws FileNotFoundException, UnsupportedEncodingException {
+		PrintWriter writer = new PrintWriter(path, "UTF-8");
+		for (Cluster c : this.clusters) {
+			writer.println(c.getId() + ":" + centroidToString(c.getCentroid()));
+		}
+
+		writer.close();
+	}
+
+	public static ArrayList<Cluster> loadClustersFromFile(File path) throws IOException {
+		ArrayList<Cluster> loadedClusters = new ArrayList<Cluster>();
+		BufferedReader reader = new BufferedReader(new FileReader(path.getAbsolutePath()));
+		String line = null;
+		String[] parts;
+		while((line = reader.readLine()) != null){
+			if(line.equals("")) continue;
+			parts = line.split(":");
+			Cluster cluster = new Cluster(getCentroidFromString(parts[1]));
+			cluster.setId(Integer.valueOf(parts[0]));
+			loadedClusters.add(cluster);
+		}
+			
+			
+		return loadedClusters;
+	}
+
+	private static double[] getCentroidFromString(String string) {
+		double[] centroid;
+		String[] parts = string.split(", ");
+		centroid = new double[parts.length];
+		for(int i = 0; i < centroid.length; i++) {
+			centroid[i] = Double.valueOf(parts[i]);
+		}
+		return centroid;
 	}
 }

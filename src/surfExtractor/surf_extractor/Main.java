@@ -1,5 +1,6 @@
 package surfExtractor.surf_extractor;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -48,7 +49,8 @@ public class Main {
 		Configuration.debugParameters();
 		long start = System.currentTimeMillis();
 		try {
-			new Main();
+			Main m = new Main();
+			m.run();
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Error while extracting imageset, execute application via command line to see stack trace");
 			e.printStackTrace();
@@ -101,6 +103,10 @@ public class Main {
 		// Cluster all features
 		clustering.cluster();
 
+		//Export clusters
+		LOGGER.info("Saving clusters to file");
+		clustering.saveClustersToFile(new File("C:\\clusters"));
+		
 		// Return final clusters
 		ArrayList<Cluster> featureCluster = clustering.getClusters();
 

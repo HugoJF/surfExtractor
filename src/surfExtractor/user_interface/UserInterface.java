@@ -307,7 +307,8 @@ public class UserInterface {
 	}
 	
 	public static void done() {
-		JOptionPane.showMessageDialog(null, "Extraction completed");
-		UserInterface.extractButton.setText("Done!");
+		//FIXME
+		//JOptionPane.showMessageDialog(null, "Extraction completed");
+		//UserInterface.extractButton.setText("Done!");
 	}
 }
