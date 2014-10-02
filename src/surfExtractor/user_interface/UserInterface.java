@@ -279,11 +279,11 @@ public class UserInterface {
 	 * 
 	 */
 	public static void setConfiguration() {
-		Configuration.addConfiguration("kmeans.kvalue", String.valueOf(UserInterface.kmeanskSpinner.getValue()));
-		Configuration.addConfiguration("kmeans.iteration", String.valueOf(UserInterface.kmeansIterSpinner.getValue()));
+		Configuration.setConfiguration("kmeans.kvalue", String.valueOf(UserInterface.kmeanskSpinner.getValue()));
+		Configuration.setConfiguration("kmeans.iteration", String.valueOf(UserInterface.kmeansIterSpinner.getValue()));
 
-		Configuration.addConfiguration("imageset.path", UserInterface.imagesetPath.getAbsolutePath());
-		Configuration.addConfiguration("arff.path", UserInterface.arffDestinationPath.getAbsolutePath());
+		Configuration.setConfiguration("imageset.path", UserInterface.imagesetPath.getAbsolutePath());
+		Configuration.setConfiguration("arff.path", UserInterface.arffDestinationPath.getAbsolutePath());
 	}
 
 	public static boolean extract() {
