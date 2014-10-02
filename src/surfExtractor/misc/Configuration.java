@@ -77,4 +77,8 @@ public class Configuration {
 			e.printStackTrace();
 		}*/
 	}
+	
+	public static void addNewValidParameter(String s) {
+		Configuration.validParameters.add(s);
+	}
 }
