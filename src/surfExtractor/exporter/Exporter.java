@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
+import org.apache.log4j.Logger;
+
 import surfExtractor.bow_classifier.Bow;
 import surfExtractor.bow_classifier.Histogram;
 import surfExtractor.misc.Configuration;
@@ -13,13 +15,17 @@ public class Exporter {
 	private ImageSet imageSet;
 	private Bow bow;
 
+	private final static Logger LOGGER = Logger.getLogger(Exporter.class);
+	
 	public Exporter(ImageSet is, Bow bow) {
 		this.imageSet = is;
 		this.bow = bow;
 	}
 
-	public String generateArffFile() throws FileNotFoundException, UnsupportedEncodingException {
-		PrintWriter writer = new PrintWriter(Configuration.getConfiguration("arff.path"), "UTF-8");
+	public String generateArffFile(String path) throws FileNotFoundException, UnsupportedEncodingException {
+		LOGGER.info("Generating arff file at:" + path);
+		//FIXME - 'hardcoded' path, method should have path parameter
+		PrintWriter writer = new PrintWriter(path, "UTF-8");
 		writer.println("@relation " + Configuration.getConfiguration("arff.relation"));
 		writer.println();
 		for (int i = 0; i < bow.getClusterNum(); i++) {

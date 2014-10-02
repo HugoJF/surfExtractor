@@ -19,7 +19,7 @@ public class Configuration {
 		config.put("kmeans.kvalue", "768");
 		config.put("kmeans.iteration", "5");
 		config.put("imageset.path", "C:\\training");
-		config.put("arff.path", "c:\\");
+		config.put("arff.path", "D:\\Usuarios\\Usuário\\Desktop");
 		config.put("arff.relation", "results");
 		config.put("random.seed", "1");
 		

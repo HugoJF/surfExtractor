@@ -58,6 +58,10 @@ public class Main {
 		UserInterface.done();
 		LOGGER.info("Duration of the process: " + (duration / 1000) + " seconds.");
 	}
+	
+	public Main() {
+		
+	}
 
 	/**
 	 * Main class object
@@ -65,7 +69,8 @@ public class Main {
 	 * @throws FileNotFoundException
 	 * @throws UnsupportedEncodingException
 	 */
-	public Main() throws FileNotFoundException, UnsupportedEncodingException {
+	
+	public void run() throws FileNotFoundException, UnsupportedEncodingException {
 
 		// Load images from ImageSet
 		ImageSet is = new ImageSet(Configuration.getConfiguration("imageset.path"));
@@ -115,6 +120,59 @@ public class Main {
 
 		// Write experimental arff
 		Exporter exporter = new Exporter(is, bow);
-		exporter.generateArffFile();
+		exporter.generateArffFile(Configuration.getConfiguration("arff.path"));
+	}
+	
+	public void generateArff(String imagesetPath, int kmeansK, int kmeansIterations, String arffRelation, String arffPath) throws FileNotFoundException, UnsupportedEncodingException {
+
+		// Load images from ImageSet
+		ImageSet is = new ImageSet(imagesetPath);
+
+		// Create clustering object
+		Clustering clustering = new Clustering(is, kmeansK, kmeansIterations);
+
+		// Set Dataset 'name'
+		is.setRelation(arffRelation);
+
+		// Create SURF Feature extractor objects
+		SurfExtractor surfExtractor = new SurfExtractor();
+
+		// Load images from ImageSet
+		is.getImageClasses();
+
+		// Use surfExtractor to extract SURF features
+		surfExtractor.extractImageSet(is);
+
+		// Debug feature number for each image
+		/*
+		 * for (ImageClass ic : is.getImageClasses()) { for (Image i :
+		 * ic.getImages()) { LOGGER.info(i.getFeatures().size() +
+		 * " SURF features detected for: " + i.getFile().getName()); } }
+		 */
+
+		// Cluster all features
+		clustering.cluster();
+
+		// Return final clusters
+		ArrayList<Cluster> featureCluster = clustering.getClusters();
+
+		// Load Bag Of Words classifier
+		Bow bow = new Bow(is, featureCluster);
+
+		// Compute frequency histograms
+		bow.computeHistograms();
+
+		// Return frequency histograms
+		ArrayList<Histogram> h = bow.getHistograms();
+
+		// Debug histograms
+		/*
+		 * LOGGER.info("Debugging image histograms"); for (Histogram hh : h) {
+		 * LOGGER.info("Histogram: " + histogramToString(hh)); }
+		 */
+
+		// Write experimental arff
+		Exporter exporter = new Exporter(is, bow);
+		exporter.generateArffFile(arffPath);
 	}
 }

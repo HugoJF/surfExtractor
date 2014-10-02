@@ -71,7 +71,7 @@ public class Clustering {
 		LOGGER.info("Iterations started");
 		//debugClusters();
 		for (int i = 0; i < iterations - 1; i++) {
-			UserInterface.featureClusteringProgress.setValue(i+1);
+			//UserInterface.featureClusteringProgress.setValue(i+1);
 			recalculateCentroids();
 			assignChildren();
 			//debugClusters();
