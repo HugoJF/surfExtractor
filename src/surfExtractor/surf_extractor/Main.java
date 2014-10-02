@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import surfExtractor.user_interface.UserInterface;
 import surfExtractor.clustering.Cluster;
 import surfExtractor.clustering.Clustering;
+import surfExtractor.exporter.Exporter;
 import surfExtractor.bow_classifier.Bow;
 import surfExtractor.bow_classifier.Histogram;
 
@@ -48,18 +49,14 @@ public class Main {
 		try {
 			new Main();
 		} catch (Exception e) {
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Error while extracting imageset, execute application via command line to see stack trace");
+			JOptionPane.showMessageDialog(null, "Error while extracting imageset, execute application via command line to see stack trace");
 			e.printStackTrace();
 		}
 		long duration = System.currentTimeMillis() - start;
 
 		// Goes through the process of ending extraction
 		UserInterface.done();
-		LOGGER.info("Duration of the process: " + (duration / 1000)
-				+ " seconds.");
+		LOGGER.info("Duration of the process: " + (duration / 1000) + " seconds.");
 	}
 
 	/**
@@ -71,15 +68,10 @@ public class Main {
 	public Main() throws FileNotFoundException, UnsupportedEncodingException {
 
 		// Load images from ImageSet
-		ImageSet is = new ImageSet(
-				Configuration.getConfiguration("imageset.path"));
+		ImageSet is = new ImageSet(Configuration.getConfiguration("imageset.path"));
 
 		// Create clustering object
-		Clustering clustering = new Clustering(
-				is,
-				Integer.valueOf(Configuration.getConfiguration("kmeans.kvalue")),
-				Integer.valueOf(Configuration
-						.getConfiguration("kmeans.iteration")));
+		Clustering clustering = new Clustering(is, Integer.valueOf(Configuration.getConfiguration("kmeans.kvalue")), Integer.valueOf(Configuration.getConfiguration("kmeans.iteration")));
 
 		// Set Dataset 'name'
 		is.setRelation(Configuration.getConfiguration("arff.relation"));
@@ -122,28 +114,7 @@ public class Main {
 		 */
 
 		// Write experimental arff
-		PrintWriter writer = new PrintWriter(
-				Configuration.getConfiguration("arff.path"), "UTF-8");
-		writer.println("@relation "
-				+ Configuration.getConfiguration("arff.relation"));
-		writer.println();
-		for (int i = 0; i < bow.getClusterNum(); i++) {
-			writer.println("@attribute A" + i + " numeric");
-		}
-		writer.print("@attribute class {");
-		for (int i = 0; i < is.getImageClasses().size(); i++) {
-			writer.print(is.getImageClasses().get(i).getFile().getName());
-			if (i != is.getImageClasses().size() - 1) {
-				writer.print(", ");
-			}
-		}
-		writer.print("}");
-		writer.println();
-		writer.println("@data");
-		for (Histogram hh : h) {
-			hh.normalize();
-			writer.println(hh.toString());
-		}
-		writer.close();
+		Exporter exporter = new Exporter(is, bow);
+		exporter.generateArffFile();
 	}
 }
