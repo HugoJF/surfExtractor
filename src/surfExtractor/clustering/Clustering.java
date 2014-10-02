@@ -1,18 +1,18 @@
-package clustering;
+package surfExtractor.clustering;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import misc.Configuration;
-import misc.Utils;
+import surfExtractor.misc.Configuration;
+import surfExtractor.misc.Utils;
 
 import org.apache.log4j.Logger;
 
-import surf_extractor.Image;
-import surf_extractor.ImageClass;
-import surf_extractor.ImageSet;
-import surf_extractor.TaggedSurfFeature;
-import user_interface.UserInterface;
+import surfExtractor.surf_extractor.Image;
+import surfExtractor.surf_extractor.ImageClass;
+import surfExtractor.surf_extractor.ImageSet;
+import surfExtractor.surf_extractor.TaggedSurfFeature;
+import surfExtractor.user_interface.UserInterface;
 
 /**
  * @author Hugo

@@ -1,4 +1,4 @@
-package misc;
+package surfExtractor.misc;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import org.apache.log4j.Logger;
 
-import clustering.Cluster;
+import surfExtractor.clustering.Cluster;
 
 public class Configuration {
 	private static HashMap<String, String> config = new HashMap<String, String>();

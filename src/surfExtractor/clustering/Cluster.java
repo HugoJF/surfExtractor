@@ -1,13 +1,13 @@
-package clustering;
+package surfExtractor.clustering;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import misc.Utils;
+import surfExtractor.misc.Utils;
 
 import org.apache.log4j.Logger;
 
-import surf_extractor.TaggedSurfFeature;
+import surfExtractor.surf_extractor.TaggedSurfFeature;
 
 public class Cluster {
 	private double[] centroid;

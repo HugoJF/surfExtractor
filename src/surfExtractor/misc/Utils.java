@@ -1,7 +1,7 @@
-package misc;
+package surfExtractor.misc;
 
 import boofcv.struct.feature.SurfFeature;
-import clustering.Cluster;
+import surfExtractor.clustering.Cluster;
 
 public class Utils {
 	/**

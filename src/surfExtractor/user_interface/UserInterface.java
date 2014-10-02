@@ -1,4 +1,4 @@
-package user_interface;
+package surfExtractor.user_interface;
 
 import java.awt.EventQueue;
 
@@ -28,7 +28,7 @@ import javax.swing.JProgressBar;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 
-import misc.Configuration;
+import surfExtractor.misc.Configuration;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

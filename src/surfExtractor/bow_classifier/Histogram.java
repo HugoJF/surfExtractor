@@ -1,4 +1,4 @@
-package bow_classifier;
+package surfExtractor.bow_classifier;
 
 /**
  * @author Hugo

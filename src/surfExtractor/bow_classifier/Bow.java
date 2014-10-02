@@ -1,16 +1,16 @@
-package bow_classifier;
+package surfExtractor.bow_classifier;
 
 import java.util.ArrayList;
 
-import misc.Utils;
+import surfExtractor.misc.Utils;
 import boofcv.struct.feature.SurfFeature;
-import clustering.Cluster;
-import surf_extractor.Image;
-import surf_extractor.ImageClass;
-import surf_extractor.ImageSet;
+import surfExtractor.clustering.Cluster;
+import surfExtractor.surf_extractor.Image;
+import surfExtractor.surf_extractor.ImageClass;
+import surfExtractor.surf_extractor.ImageSet;
 
 public class Bow {
-	private ImageSet imageSet;
+	private surfExtractor.surf_extractor.ImageSet imageSet;
 	private ArrayList<Cluster> clusters = new ArrayList<Cluster>();
 	private ArrayList<Histogram> histogram = new ArrayList<Histogram>();
 
