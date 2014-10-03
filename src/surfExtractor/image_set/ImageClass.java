@@ -34,6 +34,17 @@ public class ImageClass {
 		this.className = f.getName();
 		getImagesFromPath();
 	}
+	
+	/**
+	 * Empty ImageClass
+	 */
+	public ImageClass() {
+		
+	}
+	
+	public void addImage(Image i) {
+		this.images.add(i);
+	}
 
 	/**
 	 * @return every Image in this ImageClass

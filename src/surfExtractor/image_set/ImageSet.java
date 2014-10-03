@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
 public class ImageSet {
 
 	private String path;
-	
+
 	private String relation;
 
 	private ArrayList<ImageClass> ic = new ArrayList<ImageClass>();
@@ -36,6 +36,21 @@ public class ImageSet {
 
 		// Get files
 		getFilesFromPath();
+	}
+
+	/**
+	 * Empty imageset
+	 */
+	public ImageSet() {
+
+	}
+
+	/**
+	 * @param ic imageclass to be added
+	 */
+	public void addImageClass(ImageClass ic) {
+		this.ic.add(ic);
+		LOGGER.info("Adding new ImageClass into ImageSet:" + ic.getFile().getAbsolutePath());
 	}
 
 	/**
@@ -69,11 +84,11 @@ public class ImageSet {
 		return new File(this.path);
 	}
 
-	public void setRelation(String clusterAmount) {
-		this.relation = clusterAmount;
-		
+	public void setRelation(String s) {
+		this.relation = s;
+
 	}
-	
+
 	public String getRelation() {
 		return this.relation;
 	}

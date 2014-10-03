@@ -35,7 +35,9 @@ public class Main {
 	 * @throws UnsupportedEncodingException
 	 */
 	public static void main(String[] args) {
+		//FIXME command line is not working currently
 		Configuration.setConfiguration("random.seed", "1");
+		Configuration.setConfiguration("clusters.path", "c:\\clusters.cluster");
 		Configuration.readFromRunArgs(args);
 
 		if (Configuration.validParametersSet == 0) {
@@ -106,7 +108,7 @@ public class Main {
 
 		//Export clusters
 		LOGGER.info("Saving clusters to file");
-		clustering.saveClustersToFile(new File("C:\\clusters"));
+		clustering.saveClustersToFile(new File(Configuration.getConfiguration("clusters.path")));
 		
 		// Return final clusters
 		ArrayList<Cluster> featureCluster = clustering.getClusters();
