@@ -13,3 +13,4 @@ Extracts SURF features from images and output them as .arff files for WEKA.
 - [ ] improve GUI
 - [ ] add some kind of framework for easily add new feature extractors (maybe a new side project working with surfExtractor as a library)
 - [ ] update current classes for external use (since they're being frequently used as a library now)
+- [ ] add support for context menu 
