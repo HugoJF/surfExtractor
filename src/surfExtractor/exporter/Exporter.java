@@ -43,6 +43,8 @@ public class Exporter {
 		writer.println("@data");
 		for (Histogram hh : this.bow.getHistograms()) {
 			hh.normalize();
+			//hh.normalize_as_vector();
+			//hh.rescale(-1, 1);
 			writer.println(hh.toString());
 		}
 		writer.close();

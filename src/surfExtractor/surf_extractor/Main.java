@@ -35,7 +35,7 @@ public class Main {
 	 * @throws UnsupportedEncodingException
 	 */
 	public static void main(String[] args) {
-		//FIXME command line is not working currently
+		// FIXME command line is not working currently
 		Configuration.setConfiguration("random.seed", "1");
 		Configuration.setConfiguration("clusters.path", "c:\\clusters.cluster");
 		Configuration.readFromRunArgs(args);
@@ -64,9 +64,9 @@ public class Main {
 		UserInterface.done();
 		LOGGER.info("Duration of the process: " + (duration / 1000) + " seconds.");
 	}
-	
+
 	public Main() {
-		
+
 	}
 
 	/**
@@ -75,11 +75,12 @@ public class Main {
 	 * @throws FileNotFoundException
 	 * @throws UnsupportedEncodingException
 	 */
-	
+
 	public void run() throws FileNotFoundException, UnsupportedEncodingException {
 
 		// Load images from ImageSet
 		ImageSet is = new ImageSet(Configuration.getConfiguration("imageset.path"));
+		is.setRelation(Configuration.getConfiguration("imageset.relation"));
 
 		// Create clustering object
 		Clustering clustering = new Clustering(is, Integer.valueOf(Configuration.getConfiguration("kmeans.kvalue")), Integer.valueOf(Configuration.getConfiguration("kmeans.iteration")));
@@ -106,10 +107,12 @@ public class Main {
 		// Cluster all features
 		clustering.cluster();
 
-		//Export clusters
-		LOGGER.info("Saving clusters to file");
-		clustering.saveClustersToFile(new File(Configuration.getConfiguration("clusters.path")));
-		
+		// Export clusters
+		if (Configuration.getConfiguration("cluster.path") != null) {
+			LOGGER.info("Saving clusters to file");
+			clustering.saveClustersToFile(new File(Configuration.getConfiguration("clusters.path")));
+		}
+
 		// Return final clusters
 		ArrayList<Cluster> featureCluster = clustering.getClusters();
 
@@ -132,7 +135,7 @@ public class Main {
 		Exporter exporter = new Exporter(is, bow);
 		exporter.generateArffFile(Configuration.getConfiguration("arff.path"));
 	}
-	
+
 	public void generateArff(String imagesetPath, int kmeansK, int kmeansIterations, String arffRelation, String arffPath) throws FileNotFoundException, UnsupportedEncodingException {
 
 		// Load images from ImageSet

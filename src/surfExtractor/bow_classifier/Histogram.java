@@ -76,7 +76,7 @@ public class Histogram {
 	}
 
 	/**
-	 * Normalize histogram
+	 * Normalize histogram so it's components sum equals 1
 	 */
 	public void normalize() {
 		int total = 0;
@@ -89,7 +89,25 @@ public class Histogram {
 	}
 
 	/**
-	 * @param folderName class name
+	 * Normalize histogram as if it were a vector (dividing each component by
+	 * the length of the vector)
+	 */
+	public void normalize_as_vector() {
+		double sum = 0;
+		for (int i = 0; i < this.histogram.length; i++) {
+			sum += this.histogram[i] * this.histogram[i];
+		}
+		sum = Math.sqrt(sum);
+		for (int i = 0; i < this.histogram.length; i++) {
+			this.histogram[i] /= sum;
+		}
+	}
+
+
+
+	/**
+	 * @param folderName
+	 *            class name
 	 */
 	public void setFolderName(String folderName) {
 		this.folderName = folderName;
