@@ -61,7 +61,7 @@ public class Main {
 		long duration = System.currentTimeMillis() - start;
 
 		// Goes through the process of ending extraction
-		UserInterface.done();
+		UserInterface.done();	
 		LOGGER.info("Duration of the process: " + (duration / 1000) + " seconds.");
 	}
 

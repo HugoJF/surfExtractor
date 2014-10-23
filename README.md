@@ -15,3 +15,4 @@ Extracts SURF features from images and output them as .arff files for WEKA.
 - [ ] update current classes for external use (since they're being frequently used as a library now)
 - [ ] image enhancement code
 - [ ] data normalization, data rescaling options
+- [ ] add support for context menu
