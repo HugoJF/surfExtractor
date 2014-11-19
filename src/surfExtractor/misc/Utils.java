@@ -12,9 +12,8 @@ public class Utils {
 		if (a.length != b.length)
 			throw new RuntimeException("Vectors must have the same dimensional space");
 		double sum = 0;
-		double x, y;
-		 for (int i = 0; i < a.length; i++) {
-		//for (int i = a.length - 1; i >= 0; i--) {
+		for (int i = 0; i < a.length; i++) {
+			// for (int i = a.length - 1; i >= 0; i--) {
 			// sum += Math.pow(a[i] - b[i], 2);
 			sum += ((a[i] - b[i]) * (a[i] - b[i]));
 

@@ -2,7 +2,6 @@ package surfExtractor.surf_extractor;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
@@ -18,7 +17,6 @@ import surfExtractor.clustering.Cluster;
 import surfExtractor.clustering.Clustering;
 import surfExtractor.exporter.Exporter;
 import surfExtractor.bow_classifier.Bow;
-import surfExtractor.bow_classifier.Histogram;
 
 /**
  * @author Hugo
@@ -61,7 +59,7 @@ public class Main {
 		long duration = System.currentTimeMillis() - start;
 
 		// Goes through the process of ending extraction
-		UserInterface.done();	
+		UserInterface.done();
 		LOGGER.info("Duration of the process: " + (duration / 1000) + " seconds.");
 	}
 
@@ -123,7 +121,7 @@ public class Main {
 		bow.computeHistograms();
 
 		// Return frequency histograms
-		ArrayList<Histogram> h = bow.getHistograms();
+		// ArrayList<Histogram> h = bow.getHistograms();
 
 		// Debug histograms
 		/*
@@ -136,6 +134,17 @@ public class Main {
 		exporter.generateArffFile(Configuration.getConfiguration("arff.path"));
 	}
 
+	/**
+	 * TODO currently for as library use
+	 * 
+	 * @param imagesetPath
+	 * @param kmeansK
+	 * @param kmeansIterations
+	 * @param arffRelation
+	 * @param arffPath
+	 * @throws FileNotFoundException
+	 * @throws UnsupportedEncodingException
+	 */
 	public void generateArff(String imagesetPath, int kmeansK, int kmeansIterations, String arffRelation, String arffPath) throws FileNotFoundException, UnsupportedEncodingException {
 
 		// Load images from ImageSet
@@ -176,7 +185,7 @@ public class Main {
 		bow.computeHistograms();
 
 		// Return frequency histograms
-		ArrayList<Histogram> h = bow.getHistograms();
+		// ArrayList<Histogram> h = bow.getHistograms();
 
 		// Debug histograms
 		/*

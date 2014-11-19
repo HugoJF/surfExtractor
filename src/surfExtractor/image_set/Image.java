@@ -42,7 +42,7 @@ public class Image {
 	 * @return - the image's class/folder
 	 */
 	public String getFolderName() {
-		if(this.folder == "") {
+		if (this.folder == "") {
 			LOGGER.info("Name is empty");
 		}
 		return this.folder;

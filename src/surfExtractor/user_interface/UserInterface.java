@@ -4,9 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-import java.awt.FileDialog;
 import java.io.File;
-import java.io.FilenameFilter;
 import java.util.Random;
 
 import javax.swing.JFileChooser;
@@ -26,12 +24,8 @@ import javax.swing.JSpinner;
 import javax.swing.SwingConstants;
 import javax.swing.JProgressBar;
 import javax.swing.filechooser.FileFilter;
-import javax.swing.plaf.basic.BasicScrollBarUI;
 
 import configuration.*;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class UserInterface {
 
@@ -98,6 +92,7 @@ public class UserInterface {
 	 * 
 	 * @wbp.parser.entryPoint
 	 */
+	@SuppressWarnings("static-access")
 	public static void initialize() {
 
 		jFileChooserLoad = new JFileChooser("C:");

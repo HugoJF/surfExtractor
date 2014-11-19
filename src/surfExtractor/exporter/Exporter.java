@@ -16,15 +16,23 @@ public class Exporter {
 	private Bow bow;
 
 	private final static Logger LOGGER = Logger.getLogger(Exporter.class);
-	
+
 	public Exporter(ImageSet is, Bow bow) {
 		this.imageSet = is;
 		this.bow = bow;
 	}
 
+	/**
+	 * Export BOW histogram to .arff file for Weka
+	 * 
+	 * @param path
+	 * @return
+	 * @throws FileNotFoundException
+	 * @throws UnsupportedEncodingException
+	 */
 	public String generateArffFile(String path) throws FileNotFoundException, UnsupportedEncodingException {
 		LOGGER.info("Generating arff file at:" + path);
-		//FIXME - 'hardcoded' path, method should have path parameter
+		// FIXME - 'hardcoded' path, method should have path parameter
 		PrintWriter writer = new PrintWriter(path, "UTF-8");
 		writer.println("@relation " + Configuration.getConfiguration("arff.relation"));
 		writer.println();
@@ -43,8 +51,8 @@ public class Exporter {
 		writer.println("@data");
 		for (Histogram hh : this.bow.getHistograms()) {
 			hh.normalize();
-			//hh.normalize_as_vector();
-			//hh.rescale(-1, 1);
+			// hh.normalize_as_vector();
+			// hh.rescale(-1, 1);
 			writer.println(hh.toString());
 		}
 		writer.close();

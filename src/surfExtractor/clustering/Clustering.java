@@ -19,7 +19,6 @@ import surfExtractor.misc.Utils;
 import org.apache.log4j.Logger;
 
 import surfExtractor.surf_extractor.TaggedSurfFeature;
-import surfExtractor.user_interface.UserInterface;
 
 /**
  * @author Hugo
@@ -38,7 +37,6 @@ public class Clustering {
 	private int iterations;
 
 	private final static Logger LOGGER = Logger.getLogger(Clustering.class);
-
 
 	/**
 	 * @param is
@@ -89,6 +87,7 @@ public class Clustering {
 	/**
 	 * Debug amount of childs(features) inside each cluster
 	 */
+	@SuppressWarnings("unused")
 	private void debugClusters() {
 		for (Cluster c : this.clusters) {
 			LOGGER.info("Cluster information: - " + c.getChildrenCount() + " childs inside. Centroid: ");
@@ -191,12 +190,19 @@ public class Clustering {
 	}
 
 	/**
-	 * @return //TODO
+	 * @return The K value for k-means
 	 */
 	public int getClusterAmount() {
 		return this.clusterNum;
 	}
 
+	/**
+	 * Export clusters to file containing centroid information
+	 * 
+	 * @param path
+	 * @throws FileNotFoundException
+	 * @throws UnsupportedEncodingException
+	 */
 	public void saveClustersToFile(File path) throws FileNotFoundException, UnsupportedEncodingException {
 		PrintWriter writer = new PrintWriter(path, "UTF-8");
 		for (Cluster c : this.clusters) {
@@ -206,28 +212,42 @@ public class Clustering {
 		writer.close();
 	}
 
+	/**
+	 * Load clusters information from exported file
+	 * 
+	 * @param path
+	 * @return
+	 * @throws IOException
+	 */
 	public static ArrayList<Cluster> loadClustersFromFile(File path) throws IOException {
 		ArrayList<Cluster> loadedClusters = new ArrayList<Cluster>();
 		BufferedReader reader = new BufferedReader(new FileReader(path.getAbsolutePath()));
 		String line = null;
 		String[] parts;
-		while((line = reader.readLine()) != null){
-			if(line.equals("")) continue;
+		while ((line = reader.readLine()) != null) {
+			if (line.equals(""))
+				continue;
 			parts = line.split(":");
 			Cluster cluster = new Cluster(getCentroidFromString(parts[1]));
 			cluster.setId(Integer.valueOf(parts[0]));
 			loadedClusters.add(cluster);
 		}
-			
-			
+
+		reader.close();
 		return loadedClusters;
 	}
 
+	/**
+	 * Parse a string to return double array(centroid)
+	 * 
+	 * @param string
+	 * @return
+	 */
 	private static double[] getCentroidFromString(String string) {
 		double[] centroid;
 		String[] parts = string.split(", ");
 		centroid = new double[parts.length];
-		for(int i = 0; i < centroid.length; i++) {
+		for (int i = 0; i < centroid.length; i++) {
 			centroid[i] = Double.valueOf(parts[i]);
 		}
 		return centroid;

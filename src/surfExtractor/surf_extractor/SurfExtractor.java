@@ -40,15 +40,19 @@ public class SurfExtractor {
 		LOGGER.info("Starting extraction for ImageSet located at: " + is.getFile().getAbsolutePath());
 		for (ImageClass ic : is.getImageClasses()) {
 			for (Image i : ic.getImages()) {
+				@SuppressWarnings("unused")
 				long start = System.currentTimeMillis();
 				ImageFloat32 image = UtilImageIO.loadImage(i.getFile().getAbsolutePath(), ImageFloat32.class);
-				//LOGGER.info("Extracting image in: " + i.getFile().getAbsolutePath());
+				// LOGGER.info("Extracting image in: " +
+				// i.getFile().getAbsolutePath());
 				if (image == null) {
 					LOGGER.info("NULL Image detected");
 				}
 				DetectDescribePoint<ImageFloat32, SurfFeature> attributes = easy(image);
 				i.addFeaturesFromDDP(attributes);
-				//LOGGER.info("Extracted SURF features from: " + i.getFile().getName() + ". Processing time: " + (System.currentTimeMillis() - start));
+				// LOGGER.info("Extracted SURF features from: " +
+				// i.getFile().getName() + ". Processing time: " +
+				// (System.currentTimeMillis() - start));
 			}
 		}
 	}

@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.activation.MimetypesFileTypeMap;
 import javax.imageio.ImageIO;
 
 import org.apache.log4j.Logger;
@@ -34,14 +33,14 @@ public class ImageClass {
 		this.className = f.getName();
 		getImagesFromPath();
 	}
-	
+
 	/**
 	 * Empty ImageClass
 	 */
 	public ImageClass() {
-		
+
 	}
-	
+
 	public void addImage(Image i) {
 		this.images.add(i);
 	}
@@ -77,7 +76,17 @@ public class ImageClass {
 		}
 	}
 
+	/**
+	 * @return return File object of class absolute path
+	 */
 	public File getFile() {
 		return new File(this.absolutePath);
+	}
+
+	/**
+	 * @return class name
+	 */
+	public String getClassName() {
+		return this.className;
 	}
 }

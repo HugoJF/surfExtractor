@@ -103,8 +103,6 @@ public class Histogram {
 		}
 	}
 
-
-
 	/**
 	 * @param folderName
 	 *            class name

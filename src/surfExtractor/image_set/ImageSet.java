@@ -40,13 +40,16 @@ public class ImageSet {
 
 	/**
 	 * Empty imageset
+	 * 
+	 * TODO Prepare methods to handle missing data
 	 */
 	public ImageSet() {
 
 	}
 
 	/**
-	 * @param ic imageclass to be added
+	 * @param ic
+	 *            imageclass to be added
 	 */
 	public void addImageClass(ImageClass ic) {
 		this.ic.add(ic);
@@ -84,11 +87,17 @@ public class ImageSet {
 		return new File(this.path);
 	}
 
+	/**
+	 * @param s relation name
+	 */
 	public void setRelation(String s) {
 		this.relation = s;
 
 	}
 
+	/**
+	 * @return relation name
+	 */
 	public String getRelation() {
 		return this.relation;
 	}
