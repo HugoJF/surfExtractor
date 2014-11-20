@@ -39,15 +39,6 @@ public class ImageSet {
 	}
 
 	/**
-	 * Empty imageset
-	 * 
-	 * TODO Prepare methods to handle missing data
-	 */
-	public ImageSet() {
-
-	}
-
-	/**
 	 * @param ic
 	 *            imageclass to be added
 	 */

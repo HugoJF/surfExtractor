@@ -34,13 +34,6 @@ public class ImageClass {
 		getImagesFromPath();
 	}
 
-	/**
-	 * Empty ImageClass
-	 */
-	public ImageClass() {
-
-	}
-
 	public void addImage(Image i) {
 		this.images.add(i);
 	}
@@ -63,13 +56,8 @@ public class ImageClass {
 				LOGGER.info("Folders are not supposed to exist inside a image class (" + f.getName() + ").");
 			} else {
 				try {
-					BufferedImage image = ImageIO.read(f);
-					if (image == null) {
-						LOGGER.info("Detected file that is not an image: " + f.getAbsolutePath());
-					} else {
-						this.images.add(new Image(f.getAbsolutePath(), folder.getName()));
-					}
-				} catch (IOException ex) {
+					this.images.add(new Image(f.getAbsolutePath(), folder.getName()));
+				} catch (Exception ex) {
 					LOGGER.info("Detected file that is not an image: " + f.getAbsolutePath());
 				}
 			}

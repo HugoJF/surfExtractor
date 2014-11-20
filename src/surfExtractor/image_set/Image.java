@@ -1,7 +1,11 @@
 package surfExtractor.image_set;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 import org.apache.log4j.Logger;
 
@@ -25,9 +29,18 @@ public class Image {
 	 *            - path of the Image
 	 * @param folder
 	 *            - the image's class/folder
+	 * @throws Exception 
 	 */
-	public Image(String absolutePath, String folder) {
+	public Image(String absolutePath, String folder) throws Exception {
 		this.absolutePath = absolutePath;
+		try {
+			BufferedImage image = ImageIO.read(new File(absolutePath));
+			if(image == null) {
+				throw new Exception("Supplied file is not an supported image: " + absolutePath);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.folder = folder;
 	}
 
