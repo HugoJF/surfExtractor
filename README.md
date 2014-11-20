@@ -15,16 +15,16 @@ Parameters
 Extracts SURF features from images and output them as .arff files for WEKA.
 
 - [ ] documentate how to use, and usable parameters
-- [ ] add verification to ImageSet.java ImageClass.java methods if created via empty constructor
+- [ ] ~~add verification to ImageSet.java ImageClass.java methods if created via empty constructor~~
 - [ ] add configuration for cluster exportation
 - [ ] add configuration for cluster importation, ignoring the feature clustering step
-- [x] ~~create project for batch extration (work around is using .bat files)~~
-- [x] ~~create project for batch Weka experimentation~~
+- [ ] ~~create project for batch extration (work around is using .bat files)~~
+- [ ] ~~create project for batch Weka experimentation~~
 - [ ] use Weka as file exporter
-- [x] ~~force GUI command~~
-- [x] ~~improve GUI~~
+- [ ] ~~force GUI command~~
+- [ ] ~~improve GUI~~
 - [ ] add some kind of framework for easily add new feature extractors (maybe a new side project working with surfExtractor as a library)
 - [ ] update current classes for external use (since they're being frequently used as a library now)
 - [ ] image enhancement code
 - [ ] data normalization, data rescaling options
-- [x] ~~add support for context menu~~
+- [ ] ~~add support for context menu~~
