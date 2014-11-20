@@ -12,7 +12,6 @@ import configuration.*;
 
 import org.apache.log4j.Logger;
 
-import surfExtractor.user_interface.UserInterface;
 import surfExtractor.clustering.Cluster;
 import surfExtractor.clustering.Clustering;
 import surfExtractor.exporter.Exporter;
@@ -38,17 +37,21 @@ public class Main {
 		Configuration.setConfiguration("clusters.path", "c:\\clusters.cluster");
 		Configuration.readFromRunArgs(args);
 
-		if (Configuration.validParametersSet == 0) {
+		/* Moved gui to another project
+		 * if (Configuration.getCommand("gui") == true) {
 			// Open UserInterface, and wait input from user
 			UserInterface.initialize();
 			UserInterface.start();
 			UserInterface.hold();
 			UserInterface.setConfiguration();
-		}
+		}*/
 
 		// Print loaded configuration
 		Configuration.debugParameters();
+		
+		//Time extraction process started
 		long start = System.currentTimeMillis();
+		
 		try {
 			Main m = new Main();
 			m.run();
@@ -59,7 +62,8 @@ public class Main {
 		long duration = System.currentTimeMillis() - start;
 
 		// Goes through the process of ending extraction
-		UserInterface.done();
+		//Moved interface to another project
+		//UserInterface.done();
 		LOGGER.info("Duration of the process: " + (duration / 1000) + " seconds.");
 	}
 
