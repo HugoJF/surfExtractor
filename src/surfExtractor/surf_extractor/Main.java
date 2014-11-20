@@ -2,6 +2,7 @@ package surfExtractor.surf_extractor;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
@@ -107,10 +108,18 @@ public class Main {
 		 */
 
 		// Cluster all features
-		clustering.cluster();
+		if(Configuration.getConfiguration("cluster.load_path") != null) {
+			try {
+				clustering.loadClustersFromFile(new File(Configuration.getConfiguration("cluster.load_path")));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			clustering.cluster();
+		}
 
 		// Export clusters
-		if (Configuration.getConfiguration("cluster.path") != null) {
+		if (Configuration.getConfiguration("cluster.save_path") != null) {
 			LOGGER.info("Saving clusters to file");
 			clustering.saveClustersToFile(new File(Configuration.getConfiguration("clusters.path")));
 		}

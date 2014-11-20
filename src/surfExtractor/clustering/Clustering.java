@@ -219,7 +219,7 @@ public class Clustering {
 	 * @return
 	 * @throws IOException
 	 */
-	public static ArrayList<Cluster> loadClustersFromFile(File path) throws IOException {
+	public void loadClustersFromFile(File path) throws IOException {
 		ArrayList<Cluster> loadedClusters = new ArrayList<Cluster>();
 		BufferedReader reader = new BufferedReader(new FileReader(path.getAbsolutePath()));
 		String line = null;
@@ -234,7 +234,7 @@ public class Clustering {
 		}
 
 		reader.close();
-		return loadedClusters;
+		this.clusters = loadedClusters;
 	}
 
 	/**
