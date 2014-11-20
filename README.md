@@ -14,11 +14,12 @@ Parameters
 
 Extracts SURF features from images and output them as .arff files for WEKA.
 
+- [ ] documentate how to use, and usable parameters
 - [ ] add verification to ImageSet.java ImageClass.java methods if created via empty constructor
 - [ ] add configuration for cluster exportation
 - [ ] add configuration for cluster importation, ignoring the feature clustering step
-- [ ] create project for batch extration (work around is using .bat files)
-- [ ] create project for batch Weka experimentation
+- [x] ~~create project for batch extration (work around is using .bat files)~~
+- [x] ~~create project for batch Weka experimentation~~
 - [ ] use Weka as file exporter
 - [ ] force GUI command
 - [ ] improve GUI
