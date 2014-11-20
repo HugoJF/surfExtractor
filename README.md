@@ -1,6 +1,17 @@
 surfExtractor
 =============
 
+Parameters
+ - imageset.path         -> Path to Imageset being extracted
+ - imageset.to_classify  -> ?
+ - imageset.relation     -> Name of the Imageset being extracted
+ - random.seed           -> Random seed
+ - arff.relation         -> Arff relation(name)
+ - arff.path             -> Where the final .arff file should be saved
+ - kmeans.iteration      -> How many times the clustering algorithm will recalculate the centroids
+ - kmeans.kvalue         -> The value of K for k-means algorithm
+ - cluster.path          -> Where to save clusters information
+
 Extracts SURF features from images and output them as .arff files for WEKA.
 
 - [ ] add verification to ImageSet.java ImageClass.java methods if created via empty constructor
