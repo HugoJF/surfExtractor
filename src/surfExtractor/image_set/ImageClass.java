@@ -1,11 +1,7 @@
 package surfExtractor.image_set;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
 
 import org.apache.log4j.Logger;
 
