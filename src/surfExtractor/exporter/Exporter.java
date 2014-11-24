@@ -32,7 +32,6 @@ public class Exporter {
 	 */
 	public String generateArffFile(String path) throws FileNotFoundException, UnsupportedEncodingException {
 		LOGGER.info("Generating arff file at:" + path);
-		// FIXME - 'hardcoded' path, method should have path parameter
 		PrintWriter writer = new PrintWriter(path, "UTF-8");
 		writer.println("@relation " + Configuration.getConfiguration("arff.relation"));
 		writer.println();

@@ -33,7 +33,6 @@ public class Main {
 	 * @throws UnsupportedEncodingException
 	 */
 	public static void main(String[] args) {
-		// FIXME command line is not working currently
 		Configuration.setConfiguration("random.seed", "1");
 		Configuration.readFromRunArgs(args);
 
@@ -147,7 +146,6 @@ public class Main {
 	}
 
 	/**
-	 * TODO currently for as library use
 	 * 
 	 * @param imagesetPath
 	 * @param kmeansK
