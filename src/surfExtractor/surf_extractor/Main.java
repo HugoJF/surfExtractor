@@ -35,7 +35,6 @@ public class Main {
 	public static void main(String[] args) {
 		// FIXME command line is not working currently
 		Configuration.setConfiguration("random.seed", "1");
-		Configuration.setConfiguration("clusters.path", "c:\\clusters.cluster");
 		Configuration.readFromRunArgs(args);
 
 		/* Moved gui to another project
