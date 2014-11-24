@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 import surfExtractor.image_set.ImageSet;
 import configuration.*;
 
@@ -35,7 +33,7 @@ public class Main {
 	public static void main(String[] args) {
 		Configuration.setConfiguration("random.seed", "1");
 		Configuration.readFromRunArgs(args);
-
+		
 		/* Moved gui to another project
 		 * if (Configuration.getCommand("gui") == true) {
 			// Open UserInterface, and wait input from user
@@ -55,7 +53,6 @@ public class Main {
 			Main m = new Main();
 			m.run();
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Error while extracting imageset, execute application via command line to see stack trace");
 			e.printStackTrace();
 		}
 		long duration = System.currentTimeMillis() - start;
