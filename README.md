@@ -5,7 +5,6 @@ Parameters
 <table>
 <tbody>
 <tr><td><b>imageset.path</b></td><td>Path to Imageset being extracted</td></tr>
-<tr><td><b>imageset.to_classify</b></td><td>?</td></tr>
 <tr><td><b>imageset.relation</b></td><td>Name of the Imageset being extracted</td></tr>
 <tr><td><b>random.seed</b></td><td>Random seed</td></tr>
 <tr><td><b>arff.relation</b></td><td>Arff relation(name)</td></tr>
