@@ -31,7 +31,19 @@ public class Main {
 	 * @throws UnsupportedEncodingException
 	 */
 	public static void main(String[] args) {
+		Configuration.addNewValidParameter("imageset.path");
+		Configuration.addNewValidParameter("imageset.relation");
+		Configuration.addNewValidParameter("random.seed");
+		Configuration.addNewValidParameter("arff.relation");
+		Configuration.addNewValidParameter("arff.path");
+		Configuration.addNewValidParameter("kmeans.iteration");
+		Configuration.addNewValidParameter("kmeans.kvalue");
+		Configuration.addNewValidParameter("cluster.save_path");
+		Configuration.addNewValidParameter("cluster.load_path");
+		
+		//FIXME
 		Configuration.setConfiguration("random.seed", "1");
+		
 		Configuration.readFromRunArgs(args);
 		
 		/* Moved gui to another project
