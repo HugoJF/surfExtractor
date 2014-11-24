@@ -220,21 +220,7 @@ public class Clustering {
 	 * @throws IOException
 	 */
 	public void loadClustersFromFile(File path) throws IOException {
-		ArrayList<Cluster> loadedClusters = new ArrayList<Cluster>();
-		BufferedReader reader = new BufferedReader(new FileReader(path.getAbsolutePath()));
-		String line = null;
-		String[] parts;
-		while ((line = reader.readLine()) != null) {
-			if (line.equals(""))
-				continue;
-			parts = line.split(":");
-			Cluster cluster = new Cluster(getCentroidFromString(parts[1]));
-			cluster.setId(Integer.valueOf(parts[0]));
-			loadedClusters.add(cluster);
-		}
-
-		reader.close();
-		this.clusters = loadedClusters;
+		this.clusters = Clustering.getClustersFromFile(path);
 	}
 
 	/**
@@ -251,5 +237,23 @@ public class Clustering {
 			centroid[i] = Double.valueOf(parts[i]);
 		}
 		return centroid;
+	}
+
+	public static ArrayList<Cluster> getClustersFromFile(File pathToClusters) throws NumberFormatException, IOException {
+		ArrayList<Cluster> loadedClusters = new ArrayList<Cluster>();
+		BufferedReader reader = new BufferedReader(new FileReader(pathToClusters.getAbsolutePath()));
+		String line = null;
+		String[] parts;
+		while ((line = reader.readLine()) != null) {
+			if (line.equals(""))
+				continue;
+			parts = line.split(":");
+			Cluster cluster = new Cluster(getCentroidFromString(parts[1]));
+			cluster.setId(Integer.valueOf(parts[0]));
+			loadedClusters.add(cluster);
+		}
+
+		reader.close();
+		return loadedClusters;
 	}
 }
