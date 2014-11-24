@@ -120,7 +120,7 @@ public class Main {
 		// Export clusters
 		if (Configuration.getConfiguration("cluster.save_path") != null) {
 			LOGGER.info("Saving clusters to file");
-			clustering.saveClustersToFile(new File(Configuration.getConfiguration("clusters.path")));
+			clustering.saveClustersToFile(new File(Configuration.getConfiguration("clusters.save_path")));
 		}
 
 		// Return final clusters
