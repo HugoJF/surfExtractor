@@ -38,8 +38,8 @@ public class Bow {
 	 */
 	public Bow(ImageSet is, File pathToClusters) {
 		this.imageSet = is;
-		try {
-			this.clusters = Clustering.loadClustersFromFile(pathToClusters);
+		try {	
+			this.clusters = Clustering.getClustersFromFile(pathToClusters);
 		} catch (IOException e) {
 			LOGGER.info("Error loading clusters file");
 			e.printStackTrace();
