@@ -17,7 +17,7 @@ import surfExtractor.clustering.Clustering;
 public class Bow {
 	private surfExtractor.image_set.ImageSet imageSet;
 	private ArrayList<Cluster> clusters = new ArrayList<Cluster>();
-	private ArrayList<Histogram> histogram = new ArrayList<Histogram>();
+	private ArrayList<Histogram> histogram = new A rrayList<Histogram>();
 
 
 	private final static Logger LOGGER = Logger.getLogger(Bow.class);
