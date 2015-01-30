@@ -1,5 +1,6 @@
 package surfExtractor.surf_extractor;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -31,47 +32,53 @@ public class Main {
 	 * @throws UnsupportedEncodingException
 	 */
 	public static void main(String[] args) {
-		Configuration.addNewValidParameter("imageset.path");
-		Configuration.addNewValidParameter("imageset.relation");
-		Configuration.addNewValidParameter("random.seed");
-		Configuration.addNewValidParameter("arff.relation");
-		Configuration.addNewValidParameter("arff.path");
-		Configuration.addNewValidParameter("kmeans.iteration");
-		Configuration.addNewValidParameter("kmeans.kvalue");
-		Configuration.addNewValidParameter("cluster.save_path");
-		Configuration.addNewValidParameter("cluster.load_path");
-		
-		//FIXME
+		Configuration.addNewValidParameter("imageset.path", true);
+		Configuration.addNewValidParameter("imageset.relation", true);
+		Configuration.addNewValidParameter("random.seed", false);
+		Configuration.addNewValidParameter("arff.relation", false);
+		Configuration.addNewValidParameter("arff.path", true);
+		Configuration.addNewValidParameter("kmeans.iteration", true);
+		Configuration.addNewValidParameter("kmeans.kvalue", true);
+		Configuration.addNewValidParameter("cluster.save_path", false);
+		Configuration.addNewValidParameter("cluster.load_path", false);
+
 		Configuration.setConfiguration("random.seed", "1");
-		
+
 		Configuration.readFromRunArgs(args);
-		
-		/* Moved gui to another project
-		 * if (Configuration.getCommand("gui") == true) {
-			// Open UserInterface, and wait input from user
-			UserInterface.initialize();
-			UserInterface.start();
-			UserInterface.hold();
-			UserInterface.setConfiguration();
-		}*/
+
+		try {
+			// Check if we have enought parameters to start
+			Configuration.verifyArgs();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+			return;
+		}
+
+		/*
+		 * Moved gui to another project if (Configuration.getCommand("gui") ==
+		 * true) { // Open UserInterface, and wait input from user
+		 * UserInterface.initialize(); UserInterface.start();
+		 * UserInterface.hold(); UserInterface.setConfiguration(); }
+		 */
 
 		// Print loaded configuration
 		Configuration.debugParameters();
-		
-		//Time extraction process started
+
+		// Time extraction process started
 		long start = System.currentTimeMillis();
-		
+
 		try {
 			Main m = new Main();
 			m.run();
 		} catch (Exception e) {
 			e.printStackTrace();
+			return;
 		}
 		long duration = System.currentTimeMillis() - start;
 
 		// Goes through the process of ending extraction
-		//Moved interface to another project
-		//UserInterface.done();
+		// Moved interface to another project
+		// UserInterface.done();
 		LOGGER.info("Duration of the process: " + (duration / 1000) + " seconds.");
 	}
 
@@ -86,10 +93,16 @@ public class Main {
 	 * @throws UnsupportedEncodingException
 	 */
 
-	public void run() throws FileNotFoundException, UnsupportedEncodingException {
+	public void run() {
 
 		// Load images from ImageSet
-		ImageSet is = new ImageSet(Configuration.getConfiguration("imageset.path"));
+		ImageSet is;
+		try {
+			is = new ImageSet(Configuration.getConfiguration("imageset.path"));
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+			return;
+		}
 		is.setRelation(Configuration.getConfiguration("imageset.relation"));
 
 		// Create clustering object
@@ -115,11 +128,12 @@ public class Main {
 		 */
 
 		// Cluster all features
-		if(Configuration.getConfiguration("cluster.load_path") != null) {
+		if (Configuration.getConfiguration("cluster.load_path") != null) {
 			try {
 				clustering.loadClustersFromFile(new File(Configuration.getConfiguration("cluster.load_path")));
 			} catch (IOException e) {
 				e.printStackTrace();
+				return;
 			}
 		} else {
 			clustering.cluster();
@@ -128,7 +142,12 @@ public class Main {
 		// Export clusters
 		if (Configuration.getConfiguration("cluster.save_path") != null) {
 			LOGGER.info("Saving clusters to file");
-			clustering.saveClustersToFile(new File(Configuration.getConfiguration("clusters.save_path")));
+			try {
+				clustering.saveClustersToFile(new File(Configuration.getConfiguration("clusters.save_path")));
+			} catch (FileNotFoundException | UnsupportedEncodingException e) {
+				e.printStackTrace();
+				return;
+			}
 		}
 
 		// Return final clusters
@@ -151,7 +170,12 @@ public class Main {
 
 		// Write experimental arff
 		Exporter exporter = new Exporter(is, bow);
-		exporter.generateArffFile(Configuration.getConfiguration("arff.path"));
+		try {
+			exporter.generateArffFile(Configuration.getConfiguration("arff.path"));
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return;
+		}
 	}
 
 	/**
@@ -161,13 +185,17 @@ public class Main {
 	 * @param kmeansIterations
 	 * @param arffRelation
 	 * @param arffPath
-	 * @throws FileNotFoundException
-	 * @throws UnsupportedEncodingException
 	 */
-	public void generateArff(String imagesetPath, int kmeansK, int kmeansIterations, String arffRelation, String arffPath) throws FileNotFoundException, UnsupportedEncodingException {
+	public void generateArff(String imagesetPath, int kmeansK, int kmeansIterations, String arffRelation, String arffPath) {
 
 		// Load images from ImageSet
-		ImageSet is = new ImageSet(imagesetPath);
+		ImageSet is = null;
+		try {
+			is = new ImageSet(imagesetPath);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return;
+		}
 
 		// Create clustering object
 		Clustering clustering = new Clustering(is, kmeansK, kmeansIterations);
@@ -214,6 +242,11 @@ public class Main {
 
 		// Write experimental arff
 		Exporter exporter = new Exporter(is, bow);
-		exporter.generateArffFile(arffPath);
+		try {
+			exporter.generateArffFile(arffPath);
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return;
+		}
 	}
 }
