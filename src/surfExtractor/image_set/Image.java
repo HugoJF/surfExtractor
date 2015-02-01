@@ -1,6 +1,7 @@
 package surfExtractor.image_set;
 
 import ij.IJ;
+import ij.ImagePlus;
 import ij.io.Opener;
 
 import java.awt.image.BufferedImage;
@@ -14,6 +15,7 @@ import org.apache.log4j.Logger;
 
 import surfExtractor.surf_extractor.TaggedSurfFeature;
 import boofcv.abst.feature.detdesc.DetectDescribePoint;
+import boofcv.io.image.UtilImageIO;
 import boofcv.struct.feature.SurfFeature;
 import boofcv.struct.image.ImageFloat32;
 
@@ -38,12 +40,13 @@ public class Image {
 		this.absolutePath = absolutePath;
 		try {
 			BufferedImage image = ImageIO.read(new File(absolutePath));
+			ImagePlus imagej = null;
 			if(image == null) {
 				LOGGER.info("Could not open image: " + absolutePath + " using ImageIO library. Trying again with ImageJ library");
-				image = IJ.openImage(absolutePath).getBufferedImage();
-			}
-			if(image == null) {
-				throw new Exception("Supplied file is not an supported image: " + absolutePath);
+				image = UtilImageIO.loadImage(absolutePath);
+				if(imagej == null) {
+					throw new Exception("Supplied file is not an supported image: " + absolutePath);
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

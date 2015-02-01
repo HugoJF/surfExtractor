@@ -46,7 +46,7 @@ public class SurfExtractor {
 				// LOGGER.info("Extracting image in: " +
 				// i.getFile().getAbsolutePath());
 				if (image == null) {
-					LOGGER.info("NULL Image detected");
+					LOGGER.info("NULL Image detected: " + i.getFile().getAbsolutePath());
 				}
 				DetectDescribePoint<ImageFloat32, SurfFeature> attributes = easy(image);
 				i.addFeaturesFromDDP(attributes);
