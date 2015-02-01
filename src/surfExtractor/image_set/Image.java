@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 
 import org.apache.log4j.Logger;
 
+import surfExtractor.exceptions.UnsuportedImageException;
 import surfExtractor.surf_extractor.TaggedSurfFeature;
 import boofcv.abst.feature.detdesc.DetectDescribePoint;
 import boofcv.io.image.UtilImageIO;
@@ -34,18 +35,18 @@ public class Image {
 	 *            - path of the Image
 	 * @param folder
 	 *            - the image's class/folder
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public Image(String absolutePath, String folder) throws Exception {
 		this.absolutePath = absolutePath;
 		try {
 			BufferedImage image = ImageIO.read(new File(absolutePath));
 			ImagePlus imagej = null;
-			if(image == null) {
+			if (image == null) {
 				LOGGER.info("Could not open image: " + absolutePath + " using ImageIO library. Trying again with ImageJ library");
 				image = UtilImageIO.loadImage(absolutePath);
-				if(imagej == null) {
-					throw new Exception("Supplied file is not an supported image: " + absolutePath);
+				if (imagej == null) {
+					throw new UnsuportedImageException("Supplied file is not an supported image: " + absolutePath);
 				}
 			}
 		} catch (IOException e) {

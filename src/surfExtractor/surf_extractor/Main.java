@@ -49,7 +49,7 @@ public class Main {
 		try {
 			// Check if we have enought parameters to start
 			Configuration.verifyArgs();
-		} catch (Exception e1) {
+		} catch (MissingArgumentsException e1) {
 			e1.printStackTrace();
 			return;
 		}
