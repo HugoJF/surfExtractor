@@ -35,6 +35,8 @@ public class Clustering {
 	private int clusterNum;
 
 	private int iterations;
+	
+	private int seed = 1;
 
 	private final static Logger LOGGER = Logger.getLogger(Clustering.class);
 
@@ -143,7 +145,7 @@ public class Clustering {
 	 * Generates the initial random clusters
 	 */
 	private void generateRandomClusters() {
-		Random rand = new Random(Integer.valueOf(Configuration.getConfiguration("random.seed")));
+		Random rand = new Random(this.seed);
 		for (int i = 0; i < this.clusterNum; i++) {
 			this.clusters.add(new Cluster(this.featurePool.get(Math.round(rand.nextFloat() * this.featurePool.size())).getFeature().value));
 		}
@@ -256,4 +258,14 @@ public class Clustering {
 		reader.close();
 		return loadedClusters;
 	}
+
+	public int getSeed() {
+		return seed;
+	}
+
+	public void setSeed(int seed) {
+		this.seed = seed;
+	}
+	
+	
 }

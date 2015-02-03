@@ -107,6 +107,7 @@ public class Main {
 
 		// Create clustering object
 		Clustering clustering = new Clustering(is, Integer.valueOf(Configuration.getConfiguration("kmeans.kvalue")), Integer.valueOf(Configuration.getConfiguration("kmeans.iteration")));
+		clustering.setSeed(Integer.parseInt(Configuration.getConfiguration("random.seed")));
 
 		// Set Dataset 'name'
 		is.setRelation(Configuration.getConfiguration("arff.relation"));
