@@ -1,9 +1,5 @@
 package surfExtractor.image_set;
 
-import ij.IJ;
-import ij.ImagePlus;
-import ij.io.Opener;
-
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -41,11 +37,10 @@ public class Image {
 		this.absolutePath = absolutePath;
 		try {
 			BufferedImage image = ImageIO.read(new File(absolutePath));
-			ImagePlus imagej = null;
 			if (image == null) {
 				LOGGER.info("Could not open image: " + absolutePath + " using ImageIO library. Trying again with ImageJ library");
 				image = UtilImageIO.loadImage(absolutePath);
-				if (imagej == null) {
+				if (image == null) {
 					throw new UnsuportedImageException("Supplied file is not an supported image: " + absolutePath);
 				}
 			}
