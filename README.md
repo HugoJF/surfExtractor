@@ -1,7 +1,12 @@
 surfExtractor
 =============
+HOW TO USE
+==========
+
+TODO
 
 Parameters
+==========
 <table>
 <tbody>
 <tr><td><b>imageset.path</b></td><td>Path to Imageset being extracted</td></tr>
@@ -24,6 +29,9 @@ Parameters
 <tr><td><b>surf.numberofoctaves</b></td><td>SURF algorithm parameter</td></tr>
 </tbody>
 </table>
+
+POSSIBLE TODO LIST
+==================
 
 Extracts SURF features from images and output them as .arff files for WEKA.
 
