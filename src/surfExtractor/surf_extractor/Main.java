@@ -124,7 +124,7 @@ public class Main {
 
 		// Create SURF Feature extractor objects
 		SurfExtractor surfExtractor = new SurfExtractor();
-		
+
 		Configuration.addNewValidParameter("surf.radius", false);
 		Configuration.addNewValidParameter("surf.threshold", false);
 		Configuration.addNewValidParameter("surf.ignoreborder", false);
@@ -134,15 +134,32 @@ public class Main {
 		Configuration.addNewValidParameter("surf.initialsize", false);
 		Configuration.addNewValidParameter("surf.numberscalesperoctave", false);
 		Configuration.addNewValidParameter("surf.numberofoctaves", false);
+
+		if (Configuration.getConfiguration("surf.radius") != null)
+			surfExtractor.setRadius(Integer.valueOf(Configuration.getConfiguration("surf.radius")));
 		
-		surfExtractor.setRadius(Integer.valueOf(Configuration.getConfiguration("surf.radius")));
+		if (Configuration.getConfiguration("surf.threshold") != null)
 		surfExtractor.setThreshold(Float.valueOf(Configuration.getConfiguration("surf.threshold")));
+		
+		if (Configuration.getConfiguration("surf.ignoreborder") != null)
 		surfExtractor.setIgnoreBorder(Integer.valueOf(Configuration.getConfiguration("surf.ignoreborder")));
+		
+		if (Configuration.getConfiguration("surf.strictrule") != null)
 		surfExtractor.setStrictRule(Boolean.valueOf(Configuration.getConfiguration("surf.strictrule")));
+		
+		if (Configuration.getConfiguration("surf.maxfeaturesperscale") != null)
 		surfExtractor.setMaxFeaturesPerScale(Integer.valueOf(Configuration.getConfiguration("surf.maxfeaturesperscale")));
+		
+		if (Configuration.getConfiguration("surf.initialsamplerate") != null)
 		surfExtractor.setInitialSampleRate(Integer.valueOf(Configuration.getConfiguration("surf.initialsamplerate")));
+		
+		if (Configuration.getConfiguration("surf.initialsize") != null)
 		surfExtractor.setInitialSize(Integer.valueOf(Configuration.getConfiguration("surf.initialsize")));
+		
+		if (Configuration.getConfiguration("surf.numberscalesperoctave") != null)
 		surfExtractor.setNumberScalesPerOctave(Integer.valueOf(Configuration.getConfiguration("surf.numberscalesperoctave")));
+		
+		if (Configuration.getConfiguration("surf.numberofoctaves") != null)
 		surfExtractor.setNumberOfOctaves(Integer.valueOf(Configuration.getConfiguration("surf.numberofoctaves")));
 		
 

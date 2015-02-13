@@ -25,14 +25,6 @@
 	<classpathentry kind="lib" path="C:/apache-log4j-2.0.2-bin/log4j-1.2-api-2.0.2.jar"/>
 	<classpathentry kind="lib" path="C:/apache-log4j-2.0.2-bin/log4j-api-2.0.2.jar"/>
 	<classpathentry kind="lib" path="C:/apache-log4j-2.0.2-bin/log4j-core-2.0.2.jar"/>
-	<classpathentry kind="lib" path="C:/apache-log4j-2.0.2-bin/log4j-flume-ng-2.0.2.jar"/>
-	<classpathentry kind="lib" path="C:/apache-log4j-2.0.2-bin/log4j-jcl-2.0.2.jar"/>
-	<classpathentry kind="lib" path="C:/apache-log4j-2.0.2-bin/log4j-jmx-gui-2.0.2.jar"/>
-	<classpathentry kind="lib" path="C:/apache-log4j-2.0.2-bin/log4j-nosql-2.0.2.jar"/>
-	<classpathentry kind="lib" path="C:/apache-log4j-2.0.2-bin/log4j-slf4j-impl-2.0.2.jar"/>
-	<classpathentry kind="lib" path="C:/apache-log4j-2.0.2-bin/log4j-taglib-2.0.2.jar"/>
-	<classpathentry kind="lib" path="C:/apache-log4j-2.0.2-bin/log4j-to-slf4j-2.0.2.jar"/>
-	<classpathentry kind="lib" path="C:/apache-log4j-2.0.2-bin/log4j-web-2.0.2.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files (x86)/ImageJ/ij.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
