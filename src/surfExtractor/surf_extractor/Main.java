@@ -42,6 +42,16 @@ public class Main {
 		Configuration.addNewValidParameter("cluster.save_path", false);
 		Configuration.addNewValidParameter("cluster.load_path", false);
 
+		Configuration.addNewValidParameter("surf.radius", false);
+		Configuration.addNewValidParameter("surf.threshold", false);
+		Configuration.addNewValidParameter("surf.ignoreborder", false);
+		Configuration.addNewValidParameter("surf.strictrule", false);
+		Configuration.addNewValidParameter("surf.maxfeaturesperscale", false);
+		Configuration.addNewValidParameter("surf.initialsamplerate", false);
+		Configuration.addNewValidParameter("surf.initialsize", false);
+		Configuration.addNewValidParameter("surf.numberscalesperoctave", false);
+		Configuration.addNewValidParameter("surf.numberofoctaves", false);
+
 		Configuration.setConfiguration("random.seed", "1");
 
 		Configuration.readFromRunArgs(args);
@@ -114,6 +124,27 @@ public class Main {
 
 		// Create SURF Feature extractor objects
 		SurfExtractor surfExtractor = new SurfExtractor();
+		
+		Configuration.addNewValidParameter("surf.radius", false);
+		Configuration.addNewValidParameter("surf.threshold", false);
+		Configuration.addNewValidParameter("surf.ignoreborder", false);
+		Configuration.addNewValidParameter("surf.strictrule", false);
+		Configuration.addNewValidParameter("surf.maxfeaturesperscale", false);
+		Configuration.addNewValidParameter("surf.initialsamplerate", false);
+		Configuration.addNewValidParameter("surf.initialsize", false);
+		Configuration.addNewValidParameter("surf.numberscalesperoctave", false);
+		Configuration.addNewValidParameter("surf.numberofoctaves", false);
+		
+		surfExtractor.setRadius(Integer.valueOf(Configuration.getConfiguration("surf.radius")));
+		surfExtractor.setThreshold(Float.valueOf(Configuration.getConfiguration("surf.threshold")));
+		surfExtractor.setIgnoreBorder(Integer.valueOf(Configuration.getConfiguration("surf.ignoreborder")));
+		surfExtractor.setStrictRule(Boolean.valueOf(Configuration.getConfiguration("surf.strictrule")));
+		surfExtractor.setMaxFeaturesPerScale(Integer.valueOf(Configuration.getConfiguration("surf.maxfeaturesperscale")));
+		surfExtractor.setInitialSampleRate(Integer.valueOf(Configuration.getConfiguration("surf.initialsamplerate")));
+		surfExtractor.setInitialSize(Integer.valueOf(Configuration.getConfiguration("surf.initialsize")));
+		surfExtractor.setNumberScalesPerOctave(Integer.valueOf(Configuration.getConfiguration("surf.numberscalesperoctave")));
+		surfExtractor.setNumberOfOctaves(Integer.valueOf(Configuration.getConfiguration("surf.numberofoctaves")));
+		
 
 		// Load images from ImageSet
 		is.getImageClasses();

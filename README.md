@@ -13,6 +13,15 @@ Parameters
 <tr><td><b>kmeans.kvalue</b></td><td>The value of K for k-means algorithm</td></tr>
 <tr><td><b>cluster.save_path</b></td><td>Where to save clusters information</td></tr>
 <tr><td><b>cluster.load_path</b></td><td>From where to load cluster information</td></tr>
+<tr><td><b>surf.radius</b></td><td>SURF algorithm parameter</td></tr>
+<tr><td><b>surf.threshold</b></td><td>SURF algorithm parameter</td></tr>
+<tr><td><b>surf.ignoreborder</b></td><td>SURF algorithm parameter</td></tr>
+<tr><td><b>surf.strictrule</b></td><td>SURF algorithm parameter</td></tr>
+<tr><td><b>surf.maxfeaturesperscale</b></td><td>SURF algorithm parameter</td></tr>
+<tr><td><b>surf.initialsamplerate</b></td><td>SURF algorithm parameter</td></tr>
+<tr><td><b>surf.initialsize</b></td><td>SURF algorithm parameter</td></tr>
+<tr><td><b>surf.numberscalesperoctave</b></td><td>SURF algorithm parameter</td></tr>
+<tr><td><b>surf.numberofoctaves</b></td><td>SURF algorithm parameter</td></tr>
 </tbody>
 </table>
 

@@ -34,12 +34,40 @@ import boofcv.struct.image.ImageSingleBand;
 public class SurfExtractor {
 	private final static Logger LOGGER = Logger.getLogger(SurfExtractor.class);
 
+
+	private int radius = 2;
+	private float threshold = 0;
+	private int ignoreBorder = 5;
+	private boolean strictRule = true;
+	
+	private int maxFeaturesPerScale = 500;
+	private int initialSampleRate = 2;
+	private int initialSize = 9;
+	private int numberScalesPerOctave = 4;
+	private int numberOfOctaves = 4;
 	/**
 	 * Extract features for the entire ImageSet
 	 * 
 	 * @param is
 	 *            - ImageSet to be extracted
 	 */
+	
+	public SurfExtractor(int radius, float threshold, int ignoreBorder, boolean strictRule, int maxFeaturesPerScale, int initialSampleRate, int initialSize, int numberOfScalesPerOctave, int numberOfOctaves) {
+		this.radius = radius;
+		this.threshold = threshold;
+		this.ignoreBorder = ignoreBorder;
+		this.strictRule = strictRule;
+		this.maxFeaturesPerScale = maxFeaturesPerScale;
+		this.initialSampleRate = initialSampleRate;
+		this.initialSize = initialSize;
+		this.numberScalesPerOctave = numberOfScalesPerOctave;
+		this.numberOfOctaves = numberOfOctaves;
+	}
+	
+	public SurfExtractor() {
+		
+	}
+	
 	public void extractImageSet(ImageSet is) {
 		LOGGER.info("Starting extraction for ImageSet located at: " + is.getFile().getAbsolutePath());
 		for (ImageClass ic : is.getImageClasses()) {
@@ -88,8 +116,9 @@ public class SurfExtractor {
 		Class<II> integralType = GIntegralImageOps.getIntegralType(ImageFloat32.class);
 
 		// define the feature detection algorithm
-		NonMaxSuppression extractor = FactoryFeatureExtractor.nonmax(new ConfigExtract(2, 0, 5, true));
-		FastHessianFeatureDetector<II> detector = new FastHessianFeatureDetector<II>(extractor, 500, 2, 9, 4, 4);
+		
+		NonMaxSuppression extractor = FactoryFeatureExtractor.nonmax(new ConfigExtract(radius, threshold, ignoreBorder, strictRule));
+		FastHessianFeatureDetector<II> detector = new FastHessianFeatureDetector<II>(extractor, maxFeaturesPerScale, initialSampleRate, initialSize, numberScalesPerOctave, numberOfOctaves);
 
 		// estimate orientation
 		OrientationIntegral<II> orientation = FactoryOrientationAlgs.sliding_ii(null, integralType);
@@ -124,5 +153,77 @@ public class SurfExtractor {
 
 		}
 		return descriptions;
+	}
+
+	public int getRadius() {
+		return radius;
+	}
+
+	public void setRadius(int radius) {
+		this.radius = radius;
+	}
+
+	public float getThreshold() {
+		return threshold;
+	}
+
+	public void setThreshold(float threshold) {
+		this.threshold = threshold;
+	}
+
+	public int getIgnoreBorder() {
+		return ignoreBorder;
+	}
+
+	public void setIgnoreBorder(int ignoreBorder) {
+		this.ignoreBorder = ignoreBorder;
+	}
+
+	public boolean isStrictRule() {
+		return strictRule;
+	}
+
+	public void setStrictRule(boolean strictRule) {
+		this.strictRule = strictRule;
+	}
+
+	public int getMaxFeaturesPerScale() {
+		return maxFeaturesPerScale;
+	}
+
+	public void setMaxFeaturesPerScale(int maxFeaturesPerScale) {
+		this.maxFeaturesPerScale = maxFeaturesPerScale;
+	}
+
+	public int getInitialSampleRate() {
+		return initialSampleRate;
+	}
+
+	public void setInitialSampleRate(int initialSampleRate) {
+		this.initialSampleRate = initialSampleRate;
+	}
+
+	public int getInitialSize() {
+		return initialSize;
+	}
+
+	public void setInitialSize(int initialSize) {
+		this.initialSize = initialSize;
+	}
+
+	public int getNumberScalesPerOctave() {
+		return numberScalesPerOctave;
+	}
+
+	public void setNumberScalesPerOctave(int numberScalesPerOctave) {
+		this.numberScalesPerOctave = numberScalesPerOctave;
+	}
+
+	public int getNumberOfOctaves() {
+		return numberOfOctaves;
+	}
+
+	public void setNumberOfOctaves(int numberOfOctaves) {
+		this.numberOfOctaves = numberOfOctaves;
 	}
 }
