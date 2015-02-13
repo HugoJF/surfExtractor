@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
+import surfExtractor.exceptions.UnsuportedImageException;
+
 /**
  * @author Hugo
  * 
@@ -53,8 +55,10 @@ public class ImageClass {
 			} else {
 				try {
 					this.images.add(new Image(f.getAbsolutePath(), folder.getName()));
-				} catch (Exception ex) {
-					LOGGER.info("Detected file that is not an image: " + f.getAbsolutePath());
+				} catch (UnsuportedImageException ex) {
+					LOGGER.info("Could not load image UnsuportedImageException: " + ex.getMessage() + " " + f.getAbsolutePath());
+				} catch (Exception ex1) {
+					ex1.printStackTrace();
 				}
 			}
 		}

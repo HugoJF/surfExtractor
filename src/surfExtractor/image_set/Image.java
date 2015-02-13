@@ -1,5 +1,7 @@
 package surfExtractor.image_set;
 
+import ij.IJ;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -35,17 +37,18 @@ public class Image {
 	 */
 	public Image(String absolutePath, String folder) throws Exception {
 		this.absolutePath = absolutePath;
-		try {
-			BufferedImage image = ImageIO.read(new File(absolutePath));
-			if (image == null) {
-				LOGGER.info("Could not open image: " + absolutePath + " using ImageIO library. Trying again with ImageJ library");
-				image = UtilImageIO.loadImage(absolutePath);
-				if (image == null) {
-					throw new UnsuportedImageException("Supplied file is not an supported image: " + absolutePath);
-				}
+		BufferedImage image = ImageIO.read(new File(absolutePath));
+		if (image == null) {
+			LOGGER.info("Could not open image: " + absolutePath + " using ImageIO library. Trying again with BoofCV library");
+			// image = UtilImageIO.loadImage(absolutePath);
+			try {
+				image = IJ.openImage(absolutePath).getBufferedImage();
+			} catch (Exception e) {
+				throw new UnsuportedImageException("Supplied file is not an supported image: " + absolutePath);
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
+			if (image == null) {
+				throw new UnsuportedImageException("Supplied file is not an supported image: " + absolutePath);
+			}
 		}
 		this.folder = folder;
 	}

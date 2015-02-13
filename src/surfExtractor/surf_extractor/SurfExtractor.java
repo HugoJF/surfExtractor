@@ -1,5 +1,8 @@
 package surfExtractor.surf_extractor;
 
+import ij.IJ;
+
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +19,7 @@ import boofcv.abst.feature.orientation.OrientationIntegral;
 import boofcv.alg.feature.describe.DescribePointSurf;
 import boofcv.alg.feature.detect.interest.FastHessianFeatureDetector;
 import boofcv.alg.transform.ii.GIntegralImageOps;
+import boofcv.core.image.ConvertBufferedImage;
 import boofcv.core.image.GeneralizedImageOps;
 import boofcv.factory.feature.describe.FactoryDescribePointAlgs;
 import boofcv.factory.feature.detdesc.FactoryDetectDescribe;
@@ -47,6 +51,10 @@ public class SurfExtractor {
 				// i.getFile().getAbsolutePath());
 				if (image == null) {
 					LOGGER.info("NULL Image detected: " + i.getFile().getAbsolutePath());
+					LOGGER.info("Reloading image using ImageJ library");
+					BufferedImage imageBuf;
+					imageBuf = IJ.openImage(i.getFile().getAbsolutePath()).getBufferedImage();
+					image = ConvertBufferedImage.convertFrom(imageBuf, image);
 				}
 				DetectDescribePoint<ImageFloat32, SurfFeature> attributes = easy(image);
 				i.addFeaturesFromDDP(attributes);
