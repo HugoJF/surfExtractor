@@ -3,6 +3,7 @@ package surfExtractor.exporter;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
@@ -14,6 +15,7 @@ import configuration.*;
 public class Exporter {
 	private ImageSet imageSet;
 	private Bow bow;
+	private ArrayList<String> comments = new ArrayList<String>();
 
 	private final static Logger LOGGER = Logger.getLogger(Exporter.class);
 
@@ -34,6 +36,12 @@ public class Exporter {
 		LOGGER.info("Generating arff file at:" + path);
 		PrintWriter writer = new PrintWriter(path, "UTF-8");
 		writer.println("@relation " + Configuration.getConfiguration("arff.relation"));
+		writer.println();
+		//comments
+		LOGGER.info(comments.size() + " comments to be added");
+		for(String s : comments) {
+			writer.println("% " + s);
+		}
 		writer.println();
 		for (int i = 0; i < bow.getClusterNum(); i++) {
 			writer.println("@attribute A" + i + " numeric");
@@ -58,5 +66,10 @@ public class Exporter {
 
 		// FIXME
 		return null;
+	}
+	
+	public void addCommentLine(String c) {
+		this.comments.add(c);
+		LOGGER.info("Adding comment. " + this.comments.size() + " comments currently");
 	}
 }

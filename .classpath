@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/miglayout/miglayout15-swing.jar"/>
 	<classpathentry kind="lib" path="C:/boofcv-libs/BoofCV-android-0.18.jar"/>
 	<classpathentry kind="lib" path="C:/boofcv-libs/BoofCV-calibration-0.18.jar"/>
 	<classpathentry kind="lib" path="C:/boofcv-libs/BoofCV-feature-0.18.jar"/>
@@ -26,5 +25,6 @@
 	<classpathentry kind="lib" path="C:/apache-log4j-2.0.2-bin/log4j-api-2.0.2.jar"/>
 	<classpathentry kind="lib" path="C:/apache-log4j-2.0.2-bin/log4j-core-2.0.2.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files (x86)/ImageJ/ij.jar"/>
+	<classpathentry kind="lib" path="C:/miglayout/miglayout15-swing.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

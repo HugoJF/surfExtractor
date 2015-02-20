@@ -40,7 +40,7 @@ public class SurfExtractor {
 	private int ignoreBorder = 5;
 	private boolean strictRule = true;
 	
-	private int maxFeaturesPerScale = 500;
+	private int maxFeaturesPerScale = 200;
 	private int initialSampleRate = 2;
 	private int initialSize = 9;
 	private int numberScalesPerOctave = 4;
@@ -99,7 +99,9 @@ public class SurfExtractor {
 	 */
 	public DetectDescribePoint<ImageFloat32, SurfFeature> easy(ImageFloat32 image) {
 		// create the detector and descriptors
-		DetectDescribePoint<ImageFloat32, SurfFeature> surf = FactoryDetectDescribe.surfStable(new ConfigFastHessian(0, 2, 200, 2, 9, 4, 4), null, null, ImageFloat32.class);
+		//DetectDescribePoint<ImageFloat32, SurfFeature> surf = FactoryDetectDescribe.surfStable(new ConfigFastHessian(0, 2, 200, 2, 9, 4, 4), null, null, ImageFloat32.class);
+		DetectDescribePoint<ImageFloat32, SurfFeature> surf = FactoryDetectDescribe.surfStable(new ConfigFastHessian(threshold, radius, maxFeaturesPerScale, initialSampleRate, initialSize, numberScalesPerOctave, numberOfOctaves), null, null, ImageFloat32.class);
+
 
 		// specify the image to process
 		surf.detect(image);
@@ -226,4 +228,5 @@ public class SurfExtractor {
 	public void setNumberOfOctaves(int numberOfOctaves) {
 		this.numberOfOctaves = numberOfOctaves;
 	}
+	
 }
