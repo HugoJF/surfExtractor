@@ -38,8 +38,9 @@ public class Exporter {
 		writer.println("@relation " + Configuration.getConfiguration("arff.relation"));
 		writer.println();
 		//comments
+		LOGGER.info(comments.size() + " comments to be added");
 		for(String s : comments) {
-			writer.print("% " + s);
+			writer.println("% " + s);
 		}
 		writer.println();
 		for (int i = 0; i < bow.getClusterNum(); i++) {
@@ -69,5 +70,6 @@ public class Exporter {
 	
 	public void addCommentLine(String c) {
 		this.comments.add(c);
+		LOGGER.info("Adding comment. " + this.comments.size() + " comments currently");
 	}
 }
