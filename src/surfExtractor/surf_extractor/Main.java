@@ -120,7 +120,7 @@ public class Main {
 			e1.printStackTrace();
 			return;
 		}
-		if (Configuration.getCommand("auto.imageset.relation")) {
+		if (Configuration.isCommandSet("auto.imageset.relation")) {
 			is.setRelation(Configuration.getConfiguration("imageset.relation") + "-" + Configuration.getConfiguration("surf.radius") + "-" + Configuration.getConfiguration("surf.threshold") + "-" + Configuration.getConfiguration("surf.maxfeaturesperscale") + "-" + Configuration.getConfiguration("surf.initialsamplerate") + "-" + Configuration.getConfiguration("surf.initialsize") + "-" + Configuration.getConfiguration("surf.numberscalesperoctave") + "-" + Configuration.getConfiguration("surf.numberofoctaves"));
 			LOGGER.info("Setting imageset.relation automatically");
 		} else {
@@ -133,7 +133,7 @@ public class Main {
 		clustering.setSeed(Integer.parseInt(Configuration.getConfiguration("random.seed")));
 
 		// Set Dataset 'name'
-		if (Configuration.getCommand("auto.arff.relation")) {
+		if (Configuration.isCommandSet("auto.arff.relation")) {
 			LOGGER.info("Setting arff.relation automatically");
 			Configuration.setConfiguration("arff.relation", Configuration.getConfiguration("imageset.relation") + "-" + Configuration.getConfiguration("surf.radius") + "-" + Configuration.getConfiguration("surf.threshold") + "-" + Configuration.getConfiguration("surf.maxfeaturesperscale") + "-" + Configuration.getConfiguration("surf.initialsamplerate") + "-" + Configuration.getConfiguration("surf.initialsize") + "-" + Configuration.getConfiguration("surf.numberscalesperoctave") + "-" + Configuration.getConfiguration("surf.numberofoctaves"));
 		} else {
@@ -245,7 +245,7 @@ public class Main {
 			exporter.addCommentLine(pair.getKey() + " -> " + pair.getValue());
 		}
 		try {
-			if (Configuration.getCommand("auto.file.name")) {
+			if (Configuration.isCommandSet("auto.file.name")) {
 				LOGGER.info("Automatically setting file name");
 				exporter.generateArffFile(Configuration.getConfiguration("arff.path") + Configuration.getConfiguration("imageset.relation") + "-" + Configuration.getConfiguration("surf.radius") + "-" + Configuration.getConfiguration("surf.threshold") + "-" + Configuration.getConfiguration("surf.maxfeaturesperscale") + "-" + Configuration.getConfiguration("surf.initialsamplerate") + "-" + Configuration.getConfiguration("surf.initialsize") + "-" + Configuration.getConfiguration("surf.numberscalesperoctave") + "-" + Configuration.getConfiguration("surf.numberofoctaves") + ".arff");
 			} else {
@@ -328,7 +328,7 @@ public class Main {
 			exporter.addCommentLine(s);
 		}
 		try {
-			if (Configuration.getCommand("auto.file.name")) {
+			if (Configuration.isCommandSet("auto.file.name")) {
 				LOGGER.info("Automatically setting file name");
 				exporter.generateArffFile(arffPath + Configuration.getConfiguration("imageset.relation") + "-" + Configuration.getConfiguration("surf.radius") + "-" + Configuration.getConfiguration("surf.threshold") + "-" + Configuration.getConfiguration("surf.maxfeaturesperscale") + "-" + Configuration.getConfiguration("surf.initialsamplerate") + "-" + Configuration.getConfiguration("surf.initialsize") + "-" + Configuration.getConfiguration("surf.numberscalesperoctave") + "-" + Configuration.getConfiguration("surf.numberofoctaves"));
 			} else {
