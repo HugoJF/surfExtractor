@@ -3,7 +3,7 @@ surfExtractor
 HOW TO USE
 ==========
 
-TODO
+<strong> `java -jar "surfExtractor.jar"` </strong> *`[—imageset.path <path>]` `[—imageset.relation <relation>]` `[—random.seed <seed>]` `[—arff.relation <relation>]` `[—arff.path <path>]` `[—kmeans.iteration <iterations>]` `[—kmeans.kvalue <kvalue>]` `[—cluster.save_path <path>]` `[—cluster.load_path <path>]` `[—surf.radius <radius>]` `[—surf.threshold <threshold>]` `[—surf.ignoreborder <ignoreborder>]` `[—surf.strictrule <strictrule>]` `[—surf.maxfeaturesperscale <mfps>]` `[—surf.numberscalesperoctave <nspo>]` `[—surf.numberofoctaves <octaves>]`*
 
 Parameters
 ==========
@@ -29,23 +29,3 @@ Parameters
 <tr><td><b>surf.numberofoctaves</b></td><td>SURF algorithm parameter</td></tr>
 </tbody>
 </table>
-
-POSSIBLE TODO LIST
-==================
-
-Extracts SURF features from images and output them as .arff files for WEKA.
-
-- [ ] documentate how to use, and usable parameters
-- [ ] ~~add verification to ImageSet.java ImageClass.java methods if created via empty constructor~~
-- [x] add configuration for cluster exportation
-- [ ] add configuration for cluster importation, ignoring the feature clustering step
-- [ ] ~~create project for batch extration (work around is using .bat files)~~
-- [ ] ~~create project for batch Weka experimentation~~
-- [ ] use Weka as file exporter
-- [ ] ~~force GUI command~~
-- [ ] ~~improve GUI~~
-- [ ] add some kind of framework for easily add new feature extractors (maybe a new side project working with surfExtractor as a library)
-- [ ] update current classes for external use (since they're being frequently used as a library now)
-- [ ] image enhancement code
-- [ ] data normalization, data rescaling options
-- [ ] ~~add support for context menu~~
