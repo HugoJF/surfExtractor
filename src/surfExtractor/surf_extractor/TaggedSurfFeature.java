@@ -9,17 +9,23 @@ import boofcv.struct.feature.SurfFeature;
  * 
  */
 public class TaggedSurfFeature {
+	/**
+	 * Where the image that this Feature
+	 */
 	private String imageAbsPath;
+	/**
+	 * What folder the image is(class name)
+	 */
 	private String folder;
+	/**
+	 * The feature we are encapsulating with this class
+	 */
 	private SurfFeature theFeature;
 
 	/**
-	 * @param imageAbsPath
-	 *            - linked image absolute path
-	 * @param folder
-	 *            - image folder/class name
-	 * @param theFeature
-	 *            - SurfFeature object to be tagged
+	 * @param imageAbsPath - linked image absolute path
+	 * @param folder - image folder/class name
+	 * @param theFeature - SurfFeature object to be tagged
 	 */
 	public TaggedSurfFeature(String imageAbsPath, String folder, SurfFeature theFeature) {
 		this.imageAbsPath = imageAbsPath;

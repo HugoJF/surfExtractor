@@ -9,8 +9,7 @@ public class Utils {
 	 * @throws Exception
 	 */
 	public static double getVectorDistance(double[] a, double[] b) throws RuntimeException {
-		if (a.length != b.length)
-			throw new RuntimeException("Vectors must have the same dimensional space");
+		if (a.length != b.length) throw new RuntimeException("Vectors must have the same dimensional space");
 		double sum = 0;
 		for (int i = 0; i < a.length; i++) {
 			// for (int i = a.length - 1; i >= 0; i--) {
@@ -22,10 +21,8 @@ public class Utils {
 	}
 
 	/**
-	 * @param f
-	 *            - the feature to calculate the distance
-	 * @param c
-	 *            - the cluster to calculate the distance
+	 * @param f - the feature to calculate the distance
+	 * @param c - the cluster to calculate the distance
 	 * @return the 'distance' between TaggedSurfFeature f and Cluster c centroid
 	 */
 	public static double getFeatureDistanceFromCluster(SurfFeature f, Cluster c) {

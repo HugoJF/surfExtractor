@@ -5,15 +5,19 @@ package surfExtractor.bow_classifier;
  * 
  */
 public class Histogram {
+	/**
+	 * Array storing the frequency of clusters inside the n-th cluster
+	 */
 	private double[] histogram;
+	/**
+	 * This acts as the class name inside the final file
+	 */
 	private String folderName;
 
 	/**
-	 * @param size
-	 *            - Simple fixed size double vector
+	 * @param size - Simple fixed size double vector
 	 */
 	public Histogram(int size) {
-		this.histogram = new double[size];
 		this.histogram = new double[size];
 	}
 
@@ -25,16 +29,14 @@ public class Histogram {
 	}
 
 	/**
-	 * @param h
-	 *            - replaces the histogram's double vector
+	 * @param h - replaces the histogram's double vector
 	 */
 	public void setHistogram(double[] h) {
 		this.histogram = h;
 	}
 
 	/**
-	 * @param pos
-	 *            - return histogram's value at position pos
+	 * @param pos - return histogram's value at position pos
 	 * @return
 	 */
 	public double getValue(int pos) {
@@ -59,8 +61,7 @@ public class Histogram {
 	}
 
 	/**
-	 * @param b
-	 *            - normalized or not
+	 * @param b - normalized or not
 	 * @return
 	 */
 	public String toString() {
@@ -104,8 +105,7 @@ public class Histogram {
 	}
 
 	/**
-	 * @param folderName
-	 *            class name
+	 * @param folderName class name
 	 */
 	public void setFolderName(String folderName) {
 		this.folderName = folderName;

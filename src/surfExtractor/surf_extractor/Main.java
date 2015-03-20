@@ -1,6 +1,5 @@
 package surfExtractor.surf_extractor;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -29,8 +28,7 @@ public class Main {
 	private final static Logger LOGGER = Logger.getLogger(Main.class);
 
 	/**
-	 * @param args
-	 *            - Run configuration parameters
+	 * @param args - Run configuration parameters
 	 * @throws FileNotFoundException
 	 * @throws UnsupportedEncodingException
 	 */
@@ -153,32 +151,23 @@ public class Main {
 		Configuration.addNewValidParameter("surf.numberscalesperoctave", false);
 		Configuration.addNewValidParameter("surf.numberofoctaves", false);
 
-		if (Configuration.getConfiguration("surf.radius") != null)
-		surfExtractor.setRadius(Integer.valueOf(Configuration.getConfiguration("surf.radius")));
-		
-		if (Configuration.getConfiguration("surf.threshold") != null)
-		surfExtractor.setThreshold(Float.valueOf(Configuration.getConfiguration("surf.threshold")));
-		
-		if (Configuration.getConfiguration("surf.ignoreborder") != null)
-		surfExtractor.setIgnoreBorder(Integer.valueOf(Configuration.getConfiguration("surf.ignoreborder")));
-		
-		if (Configuration.getConfiguration("surf.strictrule") != null)
-		surfExtractor.setStrictRule(Boolean.valueOf(Configuration.getConfiguration("surf.strictrule")));
-		
-		if (Configuration.getConfiguration("surf.maxfeaturesperscale") != null)
-		surfExtractor.setMaxFeaturesPerScale(Integer.valueOf(Configuration.getConfiguration("surf.maxfeaturesperscale")));
-		
-		if (Configuration.getConfiguration("surf.initialsamplerate") != null)
-		surfExtractor.setInitialSampleRate(Integer.valueOf(Configuration.getConfiguration("surf.initialsamplerate")));
-		
-		if (Configuration.getConfiguration("surf.initialsize") != null)
-		surfExtractor.setInitialSize(Integer.valueOf(Configuration.getConfiguration("surf.initialsize")));
-		
-		if (Configuration.getConfiguration("surf.numberscalesperoctave") != null)
-		surfExtractor.setNumberScalesPerOctave(Integer.valueOf(Configuration.getConfiguration("surf.numberscalesperoctave")));
-		
-		if (Configuration.getConfiguration("surf.numberofoctaves") != null)
-		surfExtractor.setNumberOfOctaves(Integer.valueOf(Configuration.getConfiguration("surf.numberofoctaves")));
+		if (Configuration.getConfiguration("surf.radius") != null) surfExtractor.setRadius(Integer.valueOf(Configuration.getConfiguration("surf.radius")));
+
+		if (Configuration.getConfiguration("surf.threshold") != null) surfExtractor.setThreshold(Float.valueOf(Configuration.getConfiguration("surf.threshold")));
+
+		if (Configuration.getConfiguration("surf.ignoreborder") != null) surfExtractor.setIgnoreBorder(Integer.valueOf(Configuration.getConfiguration("surf.ignoreborder")));
+
+		if (Configuration.getConfiguration("surf.strictrule") != null) surfExtractor.setStrictRule(Boolean.valueOf(Configuration.getConfiguration("surf.strictrule")));
+
+		if (Configuration.getConfiguration("surf.maxfeaturesperscale") != null) surfExtractor.setMaxFeaturesPerScale(Integer.valueOf(Configuration.getConfiguration("surf.maxfeaturesperscale")));
+
+		if (Configuration.getConfiguration("surf.initialsamplerate") != null) surfExtractor.setInitialSampleRate(Integer.valueOf(Configuration.getConfiguration("surf.initialsamplerate")));
+
+		if (Configuration.getConfiguration("surf.initialsize") != null) surfExtractor.setInitialSize(Integer.valueOf(Configuration.getConfiguration("surf.initialsize")));
+
+		if (Configuration.getConfiguration("surf.numberscalesperoctave") != null) surfExtractor.setNumberScalesPerOctave(Integer.valueOf(Configuration.getConfiguration("surf.numberscalesperoctave")));
+
+		if (Configuration.getConfiguration("surf.numberofoctaves") != null) surfExtractor.setNumberOfOctaves(Integer.valueOf(Configuration.getConfiguration("surf.numberofoctaves")));
 
 		// Load images from ImageSet
 		is.getImageClasses();
@@ -239,9 +228,9 @@ public class Main {
 		exporter.addCommentLine("Starting parameter debugging");
 
 		HashMap<String, String> config = Configuration.getConfig();
-		Iterator it = config.entrySet().iterator();
+		Iterator<Map.Entry<String, String>> it = config.entrySet().iterator();
 		while (it.hasNext()) {
-			Map.Entry pair = (Map.Entry) it.next();
+			Map.Entry<String, String> pair =  it.next();
 			exporter.addCommentLine(pair.getKey() + " -> " + pair.getValue());
 		}
 		try {

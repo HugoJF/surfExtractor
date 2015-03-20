@@ -15,30 +15,40 @@ import surfExtractor.clustering.Cluster;
 import surfExtractor.clustering.Clustering;
 
 public class Bow {
+	/**
+	 * The image set being BOW'ed
+	 */
 	private surfExtractor.image_set.ImageSet imageSet;
+	/**
+	 * Array of final clusters
+	 */
 	private ArrayList<Cluster> clusters = new ArrayList<Cluster>();
+	/**
+	 * List of histograms being generated
+	 */
 	private ArrayList<Histogram> histogram = new ArrayList<Histogram>();
 
-
-	private final static Logger LOGGER = Logger.getLogger(Bow.class);
 	/**
-	 * @param is
-	 *            ImageSet being classified
-	 * @param clusters
-	 *            - clusters array after clustering
+	 * The log4j object
+	 */
+	private final static Logger LOGGER = Logger.getLogger(Bow.class);
+
+	/**
+	 * @param is ImageSet being classified
+	 * @param clusters - clusters array after clustering
 	 */
 	public Bow(ImageSet is, ArrayList<Cluster> clusters) {
 		this.imageSet = is;
 		this.clusters = clusters;
 	}
-	
+
 	/**
 	 * @param is - ImageSet being classified
 	 * @param clusters - File object of exported clusters
 	 */
 	public Bow(ImageSet is, File pathToClusters) {
 		this.imageSet = is;
-		try {	
+		try {
 			this.clusters = Clustering.getClustersFromFile(pathToClusters);
 		} catch (IOException e) {
 			LOGGER.info("Error loading clusters file");
@@ -89,6 +99,7 @@ public class Bow {
 
 		return closestCluster;
 	}
+
 	/**
 	 * @return Amount of clusters created
 	 */

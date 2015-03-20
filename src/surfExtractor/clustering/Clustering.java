@@ -13,7 +13,6 @@ import java.util.Random;
 import surfExtractor.image_set.Image;
 import surfExtractor.image_set.ImageClass;
 import surfExtractor.image_set.ImageSet;
-import configuration.*;
 import surfExtractor.misc.Utils;
 
 import org.apache.log4j.Logger;
@@ -26,28 +25,46 @@ import surfExtractor.surf_extractor.TaggedSurfFeature;
  */
 public class Clustering {
 
+	/**
+	 * What imageSet we are clustering
+	 */
 	private ImageSet imageSet;
 
+	/**
+	 * List of every feature detected of images inside the ImageSet
+	 */
 	private ArrayList<TaggedSurfFeature> featurePool = new ArrayList<TaggedSurfFeature>();
 
+	/**
+	 * Holder for clusters being computed
+	 */
 	private ArrayList<Cluster> clusters = new ArrayList<Cluster>();
 
+	/**
+	 * The k-value for k-means
+	 */
 	private int clusterNum;
 
+	/**
+	 * How many time we will recalculate the cluster
+	 */
 	private int iterations;
-	
+
+	/**
+	 * The initial Random object seed
+	 */
 	private int seed = 1;
 
+	/**
+	 * log4j object
+	 */
 	private final static Logger LOGGER = Logger.getLogger(Clustering.class);
 
 	/**
-	 * @param is
-	 *            - ImageSet's features being clustered
-	 * @param clusterNum
-	 *            - k-means algorithm cluster number
-	 * @param iterations
-	 *            - Number of time the algorithm will recalculate clusters'
-	 *            centroids
+	 * @param is - ImageSet's features being clustered
+	 * @param clusterNum - k-means algorithm cluster number
+	 * @param iterations - Number of time the algorithm will recalculate
+	 *        clusters' centroids
 	 */
 	public Clustering(ImageSet is, int clusterNum, int iterations) {
 		this.imageSet = is;
@@ -97,6 +114,10 @@ public class Clustering {
 		LOGGER.info("Clusters debugged");
 	}
 
+	/**
+	 * @param centroid - centroid position
+	 * @return String - encoded centroid values
+	 */
 	private String centroidToString(double[] centroid) {
 		String s = "";
 		for (int i = 0; i < centroid.length; i++) {
@@ -127,10 +148,8 @@ public class Clustering {
 		double max = deltas.get(0);
 		double sum = 0;
 		for (Double d : deltas) {
-			if (d < min)
-				min = d;
-			if (d > max)
-				max = d;
+			if (d < min) min = d;
+			if (d > max) max = d;
 			sum += d;
 		}
 		sum /= deltas.size();
@@ -168,8 +187,7 @@ public class Clustering {
 	}
 
 	/**
-	 * @param f
-	 *            - the feature to seek closest cluster
+	 * @param f - the feature to seek closest cluster
 	 * @return the closest cluster
 	 */
 	private Cluster getClosestCluster(TaggedSurfFeature f) {
@@ -241,14 +259,21 @@ public class Clustering {
 		return centroid;
 	}
 
+	/**
+	 * Reads the clusters from a file
+	 * 
+	 * @param pathToClusters - file containing cluster information
+	 * @return - array of clusters
+	 * @throws NumberFormatException caused by string parsing
+	 * @throws IOException caused by IO streams
+	 */
 	public static ArrayList<Cluster> getClustersFromFile(File pathToClusters) throws NumberFormatException, IOException {
 		ArrayList<Cluster> loadedClusters = new ArrayList<Cluster>();
 		BufferedReader reader = new BufferedReader(new FileReader(pathToClusters.getAbsolutePath()));
 		String line = null;
 		String[] parts;
 		while ((line = reader.readLine()) != null) {
-			if (line.equals(""))
-				continue;
+			if (line.equals("")) continue;
 			parts = line.split(":");
 			Cluster cluster = new Cluster(getCentroidFromString(parts[1]));
 			cluster.setId(Integer.valueOf(parts[0]));
@@ -259,13 +284,18 @@ public class Clustering {
 		return loadedClusters;
 	}
 
+	/**
+	 * @return return seed
+	 */
 	public int getSeed() {
 		return seed;
 	}
 
+	/**
+	 * @param seed set seed
+	 */
 	public void setSeed(int seed) {
 		this.seed = seed;
 	}
-	
-	
+
 }

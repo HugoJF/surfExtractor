@@ -31,27 +31,32 @@ import boofcv.struct.feature.SurfFeature;
 import boofcv.struct.image.ImageFloat32;
 import boofcv.struct.image.ImageSingleBand;
 
+/**
+ * @author Hugo
+ * 
+ */
 public class SurfExtractor {
 	private final static Logger LOGGER = Logger.getLogger(SurfExtractor.class);
 
-
+	/**
+	 * SURF parameters
+	 */
 	private int radius = 2;
 	private float threshold = 0;
 	private int ignoreBorder = 5;
 	private boolean strictRule = true;
-	
 	private int maxFeaturesPerScale = 200;
 	private int initialSampleRate = 2;
 	private int initialSize = 9;
 	private int numberScalesPerOctave = 4;
 	private int numberOfOctaves = 4;
+
 	/**
 	 * Extract features for the entire ImageSet
 	 * 
-	 * @param is
-	 *            - ImageSet to be extracted
+	 * @param is - ImageSet to be extracted
 	 */
-	
+
 	public SurfExtractor(int radius, float threshold, int ignoreBorder, boolean strictRule, int maxFeaturesPerScale, int initialSampleRate, int initialSize, int numberOfScalesPerOctave, int numberOfOctaves) {
 		this.radius = radius;
 		this.threshold = threshold;
@@ -63,11 +68,18 @@ public class SurfExtractor {
 		this.numberScalesPerOctave = numberOfScalesPerOctave;
 		this.numberOfOctaves = numberOfOctaves;
 	}
-	
+
+	/**
+	 * This should be use only when changing some parameters and lefting the
+	 * rest default
+	 */
 	public SurfExtractor() {
-		
+
 	}
-	
+
+	/**
+	 * @param is start extraction process for given ImageSet
+	 */
 	public void extractImageSet(ImageSet is) {
 		LOGGER.info("Starting extraction for ImageSet located at: " + is.getFile().getAbsolutePath());
 		for (ImageClass ic : is.getImageClasses()) {
@@ -78,8 +90,7 @@ public class SurfExtractor {
 				// LOGGER.info("Extracting image in: " +
 				// i.getFile().getAbsolutePath());
 				if (image == null) {
-					LOGGER.info("NULL Image detected: " + i.getFile().getAbsolutePath());
-					LOGGER.info("Reloading image using ImageJ library");
+					LOGGER.info("Reloading image using ImageJ library" + i.getFile().getAbsolutePath());
 					BufferedImage imageBuf;
 					imageBuf = IJ.openImage(i.getFile().getAbsolutePath()).getBufferedImage();
 					image = ConvertBufferedImage.convertFrom(imageBuf, image);
@@ -99,9 +110,10 @@ public class SurfExtractor {
 	 */
 	public DetectDescribePoint<ImageFloat32, SurfFeature> easy(ImageFloat32 image) {
 		// create the detector and descriptors
-		//DetectDescribePoint<ImageFloat32, SurfFeature> surf = FactoryDetectDescribe.surfStable(new ConfigFastHessian(0, 2, 200, 2, 9, 4, 4), null, null, ImageFloat32.class);
+		// DetectDescribePoint<ImageFloat32, SurfFeature> surf =
+		// FactoryDetectDescribe.surfStable(new ConfigFastHessian(0, 2, 200, 2,
+		// 9, 4, 4), null, null, ImageFloat32.class);
 		DetectDescribePoint<ImageFloat32, SurfFeature> surf = FactoryDetectDescribe.surfStable(new ConfigFastHessian(threshold, radius, maxFeaturesPerScale, initialSampleRate, initialSize, numberScalesPerOctave, numberOfOctaves), null, null, ImageFloat32.class);
-
 
 		// specify the image to process
 		surf.detect(image);
@@ -118,7 +130,7 @@ public class SurfExtractor {
 		Class<II> integralType = GIntegralImageOps.getIntegralType(ImageFloat32.class);
 
 		// define the feature detection algorithm
-		
+
 		NonMaxSuppression extractor = FactoryFeatureExtractor.nonmax(new ConfigExtract(radius, threshold, ignoreBorder, strictRule));
 		FastHessianFeatureDetector<II> detector = new FastHessianFeatureDetector<II>(extractor, maxFeaturesPerScale, initialSampleRate, initialSize, numberScalesPerOctave, numberOfOctaves);
 
@@ -228,5 +240,5 @@ public class SurfExtractor {
 	public void setNumberOfOctaves(int numberOfOctaves) {
 		this.numberOfOctaves = numberOfOctaves;
 	}
-	
+
 }

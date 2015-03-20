@@ -13,10 +13,22 @@ import surfExtractor.image_set.ImageSet;
 import configuration.*;
 
 public class Exporter {
+	/**
+	 * What ImageSet we are exporting
+	 */
 	private ImageSet imageSet;
+	/**
+	 * BOW information
+	 */
 	private Bow bow;
+	/**
+	 * Addition information to add to the final arff file
+	 */
 	private ArrayList<String> comments = new ArrayList<String>();
 
+	/**
+	 * log4j object
+	 */
 	private final static Logger LOGGER = Logger.getLogger(Exporter.class);
 
 	public Exporter(ImageSet is, Bow bow) {
@@ -37,9 +49,9 @@ public class Exporter {
 		PrintWriter writer = new PrintWriter(path, "UTF-8");
 		writer.println("@relation " + Configuration.getConfiguration("arff.relation"));
 		writer.println();
-		//comments
+		// comments
 		LOGGER.info(comments.size() + " comments to be added");
-		for(String s : comments) {
+		for (String s : comments) {
 			writer.println("% " + s);
 		}
 		writer.println();
@@ -67,7 +79,7 @@ public class Exporter {
 		// FIXME
 		return null;
 	}
-	
+
 	public void addCommentLine(String c) {
 		this.comments.add(c);
 		LOGGER.info("Adding comment. " + this.comments.size() + " comments currently");

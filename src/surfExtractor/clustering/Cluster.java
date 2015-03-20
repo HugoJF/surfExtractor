@@ -10,18 +10,29 @@ import org.apache.log4j.Logger;
 import surfExtractor.surf_extractor.TaggedSurfFeature;
 
 public class Cluster {
+	/**
+	 * The array holding a 64 dimension position
+	 */
 	private double[] centroid;
 
+	/**
+	 * This array stores SurfFeatures that are the closest to this cluster
+	 */
 	private ArrayList<TaggedSurfFeature> children = new ArrayList<TaggedSurfFeature>();
 
+	/**
+	 * The log4j object
+	 */
 	@SuppressWarnings("unused")
 	private final static Logger LOGGER = Logger.getLogger(Cluster.class);
 
+	/**
+	 * The local id for the cluster
+	 */
 	private int id;
 
 	/**
-	 * @param centroid
-	 *            Cluster object with supplied centroid
+	 * @param centroid Cluster object with supplied centroid
 	 */
 	public Cluster(double[] centroid) {
 		this.centroid = centroid;
@@ -40,8 +51,7 @@ public class Cluster {
 	}
 
 	/**
-	 * @param i
-	 *            - Unique identification number
+	 * @param i - Unique identification number
 	 */
 	public void setId(int i) {
 		this.id = i;
@@ -62,8 +72,7 @@ public class Cluster {
 	}
 
 	/**
-	 * @param f
-	 *            - TaggedSurfFeature to add inside cluster
+	 * @param f - TaggedSurfFeature to add inside cluster
 	 */
 	public void addChild(TaggedSurfFeature f) {
 		this.children.add(f);
@@ -87,6 +96,7 @@ public class Cluster {
 
 	/**
 	 * Recalculates centroid based on the feature's average value
+	 * 
 	 * @return the difference in position from old to new position
 	 */
 	public double recalculateCentroidWithDifference() {
@@ -102,7 +112,7 @@ public class Cluster {
 			this.centroid = newCentroid;
 		}
 		this.children.clear();
-		
+
 		return delta;
 	}
 

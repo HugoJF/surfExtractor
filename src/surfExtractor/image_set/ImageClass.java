@@ -13,17 +13,28 @@ import surfExtractor.exceptions.UnsuportedImageException;
  */
 public class ImageClass {
 
+	/**
+	 * ImageClass' folder path
+	 */
 	private String absolutePath;
 
+	/**
+	 * Array of it's images
+	 */
 	private ArrayList<Image> images = new ArrayList<Image>();
 
+	/**
+	 * The folder name
+	 */
 	private String className;
 
+	/**
+	 * log4j object
+	 */
 	private final static Logger LOGGER = Logger.getLogger(ImageClass.class);
 
 	/**
-	 * @param absolutePath
-	 *            - path of the ImageClass
+	 * @param absolutePath - path of the ImageClass
 	 */
 	public ImageClass(String absolutePath) {
 		this.absolutePath = absolutePath;
@@ -32,6 +43,9 @@ public class ImageClass {
 		getImagesFromPath();
 	}
 
+	/**
+	 * @param i Manually add new Image to the ImageClass
+	 */
 	public void addImage(Image i) {
 		this.images.add(i);
 	}

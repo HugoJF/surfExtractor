@@ -12,17 +12,28 @@ import org.apache.log4j.Logger;
  */
 public class ImageSet {
 
+	/**
+	 * The ImageSet's name
+	 */
 	private String path;
 
+	/**
+	 * The ImageSet's relation
+	 */
 	private String relation;
 
+	/**
+	 * Array containing ImageClasses(folders) inside ImageSet
+	 */
 	private ArrayList<ImageClass> ic = new ArrayList<ImageClass>();
 
+	/**
+	 * Log4j object
+	 */
 	private final static Logger LOGGER = Logger.getLogger(ImageSet.class);
 
 	/**
-	 * @param path
-	 *            - path containing the ImageSet
+	 * @param path - path containing the ImageSet
 	 * @throws FileNotFoundException
 	 */
 	public ImageSet(String path) throws FileNotFoundException {
@@ -31,16 +42,14 @@ public class ImageSet {
 
 		// Validate path
 		File basePath = new File(path);
-		if (!basePath.exists())
-			throw new FileNotFoundException("Invalid path to ImageSet");
+		if (!basePath.exists()) throw new FileNotFoundException("Invalid path to ImageSet");
 
 		// Get files
 		getFilesFromPath();
 	}
 
 	/**
-	 * @param ic
-	 *            imageclass to be added
+	 * @param ic imageclass to be added
 	 */
 	public void addImageClass(ImageClass ic) {
 		this.ic.add(ic);

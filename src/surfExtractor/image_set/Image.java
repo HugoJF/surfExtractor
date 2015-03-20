@@ -4,7 +4,6 @@ import ij.IJ;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -14,7 +13,6 @@ import org.apache.log4j.Logger;
 import surfExtractor.exceptions.UnsuportedImageException;
 import surfExtractor.surf_extractor.TaggedSurfFeature;
 import boofcv.abst.feature.detdesc.DetectDescribePoint;
-import boofcv.io.image.UtilImageIO;
 import boofcv.struct.feature.SurfFeature;
 import boofcv.struct.image.ImageFloat32;
 
@@ -23,16 +21,26 @@ import boofcv.struct.image.ImageFloat32;
  * 
  */
 public class Image {
+	/**
+	 * Absolute Image path
+	 */
 	private String absolutePath;
+	/**
+	 * What class it`s inside
+	 */
 	private String folder;
+	/**
+	 * Every feature detected in the Image
+	 */
 	private ArrayList<SurfFeature> fl = new ArrayList<SurfFeature>();
+	/**
+	 * log4j object
+	 */
 	private final static Logger LOGGER = Logger.getLogger(Image.class);
 
 	/**
-	 * @param absolutePath
-	 *            - path of the Image
-	 * @param folder
-	 *            - the image's class/folder
+	 * @param absolutePath - path of the Image
+	 * @param folder - the image's class/folder
 	 * @throws Exception
 	 */
 	public Image(String absolutePath, String folder) throws Exception {
@@ -71,16 +79,14 @@ public class Image {
 	}
 
 	/**
-	 * @param fl
-	 *            - replace the SurfFeature list inside this object
+	 * @param fl - replace the SurfFeature list inside this object
 	 */
 	public void addFeaturesFromList(ArrayList<SurfFeature> fl) {
 		this.fl.addAll(fl);
 	}
 
 	/**
-	 * @param ddp
-	 *            - add feature from BoofCV SurfFeature list
+	 * @param ddp - add feature from BoofCV SurfFeature list
 	 */
 	public void addFeaturesFromDDP(DetectDescribePoint<ImageFloat32, SurfFeature> ddp) {
 		for (int i = 0; i < ddp.getNumberOfFeatures(); i++) {
@@ -89,8 +95,7 @@ public class Image {
 	}
 
 	/**
-	 * @param f
-	 *            - Add single SurfFeature to the list
+	 * @param f - Add single SurfFeature to the list
 	 */
 	public void addFeature(SurfFeature f) {
 		this.fl.add(f);
