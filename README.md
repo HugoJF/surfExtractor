@@ -7,25 +7,22 @@ HOW TO USE
 
 Parameters
 ==========
-<table>
-<tbody>
-<tr><td><b>imageset.path</b></td><td>Path to Imageset being extracted</td></tr>
-<tr><td><b>imageset.relation</b></td><td>Name of the Imageset being extracted</td></tr>
-<tr><td><b>random.seed</b></td><td>Random seed</td></tr>
-<tr><td><b>arff.relation</b></td><td>Arff relation(name)</td></tr>
-<tr><td><b>arff.path</b></td><td>Where the final .arff file should be saved</td></tr>
-<tr><td><b>kmeans.iteration</b></td><td>How many times the clustering algorithm will recalculate the centroids</td></tr>
-<tr><td><b>kmeans.kvalue</b></td><td>The value of K for k-means algorithm</td></tr>
-<tr><td><b>cluster.save_path</b></td><td>Where to save clusters information</td></tr>
-<tr><td><b>cluster.load_path</b></td><td>From where to load cluster information</td></tr>
-<tr><td><b>surf.radius</b></td><td>SURF algorithm parameter</td></tr>
-<tr><td><b>surf.threshold</b></td><td>SURF algorithm parameter</td></tr>
-<tr><td><b>surf.ignoreborder</b></td><td>SURF algorithm parameter</td></tr>
-<tr><td><b>surf.strictrule</b></td><td>SURF algorithm parameter</td></tr>
-<tr><td><b>surf.maxfeaturesperscale</b></td><td>SURF algorithm parameter</td></tr>
-<tr><td><b>surf.initialsamplerate</b></td><td>SURF algorithm parameter</td></tr>
-<tr><td><b>surf.initialsize</b></td><td>SURF algorithm parameter</td></tr>
-<tr><td><b>surf.numberscalesperoctave</b></td><td>SURF algorithm parameter</td></tr>
-<tr><td><b>surf.numberofoctaves</b></td><td>SURF algorithm parameter</td></tr>
-</tbody>
-</table>
+|Parameters | Description |
+|**imageset.path**|Path to Imageset being extracted|
+|**imageset.relation**|Name of the Imageset being extracted|
+|**random.seed**|Random seed|
+|**arff.relation**|Arff relation(name)|
+|**arff.path**|Where the final .arff file should be saved|
+|**kmeans.iteration**|How many times the clustering algorithm will recalculate the centroids|
+|**kmeans.kvalue**|The value of K for k-means algorithm|
+|**cluster.save_path**|Where to save clusters information|
+|**cluster.load_path**|From where to load cluster information|
+|**surf.radius**|SURF algorithm parameter|
+|**surf.threshold**|SURF algorithm parameter|
+|**surf.ignoreborder**|SURF algorithm parameter|
+|**surf.strictrule**|SURF algorithm parameter|
+|**surf.maxfeaturesperscale**|SURF algorithm parameter|
+|**surf.initialsamplerate**|SURF algorithm parameter|
+|**surf.initialsize**|SURF algorithm parameter|
+|**surf.numberscalesperoctave**|SURF algorithm parameter|
+|**surf.numberofoctaves**|SURF algorithm parameter|
