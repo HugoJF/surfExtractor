@@ -111,4 +111,8 @@ public class Histogram {
 		this.folderName = folderName;
 
 	}
+
+	public String getFolderName() {
+		return folderName;
+	}
 }

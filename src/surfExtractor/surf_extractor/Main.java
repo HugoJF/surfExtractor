@@ -17,6 +17,8 @@ import org.apache.log4j.Logger;
 import surfExtractor.clustering.Cluster;
 import surfExtractor.clustering.Clustering;
 import surfExtractor.exporter.Exporter;
+import surfExtractor.exporter.RawExporter;
+import surfExtractor.exporter.WekaExporter;
 import surfExtractor.bow_classifier.Bow;
 
 /**
@@ -224,26 +226,27 @@ public class Main {
 		 */
 
 		// Write experimental arff
-		Exporter exporter = new Exporter(is, bow);
-		exporter.addCommentLine("Starting parameter debugging");
+		Exporter exporter = new WekaExporter();
+		exporter.setBow(bow);
+		exporter.setImageSet(is);
+		
+		/*exporter.addCommentLine("Starting parameter debugging");
 
 		HashMap<String, String> config = Configuration.getConfig();
 		Iterator<Map.Entry<String, String>> it = config.entrySet().iterator();
 		while (it.hasNext()) {
 			Map.Entry<String, String> pair =  it.next();
 			exporter.addCommentLine(pair.getKey() + " -> " + pair.getValue());
-		}
-		try {
-			if (Configuration.isCommandSet("auto.file.name")) {
-				LOGGER.info("Automatically setting file name");
-				exporter.generateArffFile(Configuration.getConfiguration("arff.path") + Configuration.getConfiguration("imageset.relation") + "-" + Configuration.getConfiguration("surf.radius") + "-" + Configuration.getConfiguration("surf.threshold") + "-" + Configuration.getConfiguration("surf.maxfeaturesperscale") + "-" + Configuration.getConfiguration("surf.initialsamplerate") + "-" + Configuration.getConfiguration("surf.initialsize") + "-" + Configuration.getConfiguration("surf.numberscalesperoctave") + "-" + Configuration.getConfiguration("surf.numberofoctaves") + ".arff");
-			} else {
-				LOGGER.info("Using manual file name");
-				exporter.generateArffFile(Configuration.getConfiguration("arff.path"));
-			}
-		} catch (FileNotFoundException | UnsupportedEncodingException e) {
-			e.printStackTrace();
-			return;
+		}*/
+		
+		if (Configuration.isCommandSet("auto.file.name")) {
+			LOGGER.info("Automatically setting file name");
+			exporter.setPath(Configuration.getConfiguration("arff.path") + Configuration.getConfiguration("imageset.relation") + "-" + Configuration.getConfiguration("surf.radius") + "-" + Configuration.getConfiguration("surf.threshold") + "-" + Configuration.getConfiguration("surf.maxfeaturesperscale") + "-" + Configuration.getConfiguration("surf.initialsamplerate") + "-" + Configuration.getConfiguration("surf.initialsize") + "-" + Configuration.getConfiguration("surf.numberscalesperoctave") + "-" + Configuration.getConfiguration("surf.numberofoctaves") + ".arff");
+			exporter.export();
+		} else {
+			LOGGER.info("Using manual file name");
+			exporter.setPath(Configuration.getConfiguration("arff.path"));
+			exporter.export();
 		}
 	}
 
@@ -255,7 +258,7 @@ public class Main {
 	 * @param arffRelation
 	 * @param arffPath
 	 */
-	public void generateArff(String imagesetPath, int kmeansK, int kmeansIterations, String arffRelation, String arffPath) {
+	public void generateArff(String imagesetPath, int kmeansK, int kmeansIterations, String arffRelation, String arffPath) throws FileNotFoundException, UnsupportedEncodingException {
 
 		// Load images from ImageSet
 		ImageSet is = null;
@@ -310,24 +313,20 @@ public class Main {
 		 */
 
 		// Write experimental arff
-		Exporter exporter = new Exporter(is, bow);
+		RawExporter exporter = new RawExporter(is, bow);
 		exporter.addCommentLine("Starting parameter debugging");
 		while (Configuration.getConfig().values().iterator().hasNext()) {
 			String s = Configuration.getConfig().values().iterator().next();
 			exporter.addCommentLine(s);
 		}
-		try {
-			if (Configuration.isCommandSet("auto.file.name")) {
-				LOGGER.info("Automatically setting file name");
-				exporter.generateArffFile(arffPath + Configuration.getConfiguration("imageset.relation") + "-" + Configuration.getConfiguration("surf.radius") + "-" + Configuration.getConfiguration("surf.threshold") + "-" + Configuration.getConfiguration("surf.maxfeaturesperscale") + "-" + Configuration.getConfiguration("surf.initialsamplerate") + "-" + Configuration.getConfiguration("surf.initialsize") + "-" + Configuration.getConfiguration("surf.numberscalesperoctave") + "-" + Configuration.getConfiguration("surf.numberofoctaves"));
-			} else {
-				LOGGER.info("Using manual file name");
-				exporter.generateArffFile(arffPath);
-			}
-
-		} catch (FileNotFoundException | UnsupportedEncodingException e) {
-			e.printStackTrace();
-			return;
+		if (Configuration.isCommandSet("auto.file.name")) {
+			LOGGER.info("Automatically setting file name");
+			exporter.setPath(arffPath + Configuration.getConfiguration("imageset.relation") + "-" + Configuration.getConfiguration("surf.radius") + "-" + Configuration.getConfiguration("surf.threshold") + "-" + Configuration.getConfiguration("surf.maxfeaturesperscale") + "-" + Configuration.getConfiguration("surf.initialsamplerate") + "-" + Configuration.getConfiguration("surf.initialsize") + "-" + Configuration.getConfiguration("surf.numberscalesperoctave") + "-" + Configuration.getConfiguration("surf.numberofoctaves"));
+			exporter.export();
+		} else {
+			LOGGER.info("Using manual file name");
+			exporter.setPath(arffPath);
+			exporter.export();
 		}
 	}
 }
