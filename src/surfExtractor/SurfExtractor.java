@@ -1,4 +1,4 @@
-package surfExtractor.surf_extractor;
+package surfExtractor;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -20,14 +20,15 @@ import surfExtractor.exporter.Exporter;
 import surfExtractor.exporter.RawExporter;
 import surfExtractor.exporter.WekaExporter;
 import surfExtractor.bow_classifier.Bow;
+import weka.core.Instances;
 
 /**
  * @author Hugo
  * 
  *         Main class
  */
-public class Main {
-	private final static Logger LOGGER = Logger.getLogger(Main.class);
+public class SurfExtractor {
+	private final static Logger LOGGER = Logger.getLogger(SurfExtractor.class);
 
 	/**
 	 * @param args - Run configuration parameters
@@ -85,8 +86,8 @@ public class Main {
 		long start = System.currentTimeMillis();
 
 		try {
-			Main m = new Main();
-			m.run();
+			SurfExtractor m = new SurfExtractor();
+			m.runFromCLI();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return;
@@ -99,7 +100,7 @@ public class Main {
 		LOGGER.info("Duration of the process: " + (duration / 1000) + " seconds.");
 	}
 
-	public Main() {
+	public SurfExtractor() {
 
 	}
 
@@ -110,7 +111,7 @@ public class Main {
 	 * @throws UnsupportedEncodingException
 	 */
 
-	public void run() {
+	public void runFromCLI() {
 
 		// Load images from ImageSet
 		ImageSet is;
@@ -141,7 +142,7 @@ public class Main {
 		}
 
 		// Create SURF Feature extractor objects
-		SurfExtractor surfExtractor = new SurfExtractor();
+		SurfDescriptor surfExtractor = new SurfDescriptor();
 
 		Configuration.addNewValidParameter("surf.radius", false);
 		Configuration.addNewValidParameter("surf.threshold", false);
@@ -226,9 +227,7 @@ public class Main {
 		 */
 
 		// Write experimental arff
-		Exporter exporter = new WekaExporter();
-		exporter.setBow(bow);
-		exporter.setImageSet(is);
+		Exporter exporter = new WekaExporter(is, bow);
 		
 		/*exporter.addCommentLine("Starting parameter debugging");
 
@@ -251,6 +250,7 @@ public class Main {
 	}
 
 	/**
+	 * Old method to create arff as a library(used in the surfExtractorGUI)
 	 * 
 	 * @param imagesetPath
 	 * @param kmeansK
@@ -276,7 +276,7 @@ public class Main {
 		is.setRelation(arffRelation);
 
 		// Create SURF Feature extractor objects
-		SurfExtractor surfExtractor = new SurfExtractor();
+		SurfDescriptor surfExtractor = new SurfDescriptor();
 
 		// Load images from ImageSet
 		is.getImageClasses();
@@ -328,5 +328,66 @@ public class Main {
 			exporter.setPath(arffPath);
 			exporter.export();
 		}
+	}
+	
+	public Instances generateInstances(String imagesetPath, int kmeansK, int kmeansIterations, String arffRelation) {
+
+		// Load images from ImageSet
+		ImageSet is = null;
+		try {
+			is = new ImageSet(imagesetPath);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+		// Create clustering object
+		Clustering clustering = new Clustering(is, kmeansK, kmeansIterations);
+
+		// Set Dataset 'name'
+		is.setRelation(arffRelation);
+
+		// Create SURF Feature extractor objects
+		SurfDescriptor surfExtractor = new SurfDescriptor();
+
+		// Load images from ImageSet
+		is.getImageClasses();
+
+		// Use surfExtractor to extract SURF features
+		surfExtractor.extractImageSet(is);
+
+		// Debug feature number for each image
+		/*
+		 * for (ImageClass ic : is.getImageClasses()) { for (Image i :
+		 * ic.getImages()) { LOGGER.info(i.getFeatures().size() +
+		 * " SURF features detected for: " + i.getFile().getName()); } }
+		 */
+
+		// Cluster all features
+		clustering.cluster();
+
+		// Return final clusters
+		ArrayList<Cluster> featureCluster = clustering.getClusters();
+
+		// Load Bag Of Words classifier
+		Bow bow = new Bow(is, featureCluster);
+
+		// Compute frequency histograms
+		bow.computeHistograms();
+
+		// Return frequency histograms
+		// ArrayList<Histogram> h = bow.getHistograms();
+
+		// Debug histograms
+		/*
+		 * LOGGER.info("Debugging image histograms"); for (Histogram hh : h) {
+		 * LOGGER.info("Histogram: " + histogramToString(hh)); }
+		 */
+
+		// Write experimental arff
+		WekaExporter exporter = new WekaExporter(is, bow);
+		exporter.setPath("");
+		exporter.export();
+		return exporter.getInstances();
 	}
 }

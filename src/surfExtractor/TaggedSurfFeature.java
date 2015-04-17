@@ -1,4 +1,4 @@
-package surfExtractor.surf_extractor;
+package surfExtractor;
 
 import java.io.File;
 

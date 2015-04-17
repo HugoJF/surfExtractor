@@ -10,14 +10,13 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import surfExtractor.TaggedSurfFeature;
 import surfExtractor.image_set.Image;
 import surfExtractor.image_set.ImageClass;
 import surfExtractor.image_set.ImageSet;
 import surfExtractor.misc.Utils;
 
 import org.apache.log4j.Logger;
-
-import surfExtractor.surf_extractor.TaggedSurfFeature;
 
 /**
  * @author Hugo

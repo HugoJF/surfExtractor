@@ -1,4 +1,4 @@
-package surfExtractor.surf_extractor;
+package surfExtractor;
 
 import ij.IJ;
 
@@ -35,8 +35,8 @@ import boofcv.struct.image.ImageSingleBand;
  * @author Hugo
  * 
  */
-public class SurfExtractor {
-	private final static Logger LOGGER = Logger.getLogger(SurfExtractor.class);
+public class SurfDescriptor {
+	private final static Logger LOGGER = Logger.getLogger(SurfDescriptor.class);
 
 	/**
 	 * SURF parameters
@@ -57,7 +57,7 @@ public class SurfExtractor {
 	 * @param is - ImageSet to be extracted
 	 */
 
-	public SurfExtractor(int radius, float threshold, int ignoreBorder, boolean strictRule, int maxFeaturesPerScale, int initialSampleRate, int initialSize, int numberOfScalesPerOctave, int numberOfOctaves) {
+	public SurfDescriptor(int radius, float threshold, int ignoreBorder, boolean strictRule, int maxFeaturesPerScale, int initialSampleRate, int initialSize, int numberOfScalesPerOctave, int numberOfOctaves) {
 		this.radius = radius;
 		this.threshold = threshold;
 		this.ignoreBorder = ignoreBorder;
@@ -73,7 +73,7 @@ public class SurfExtractor {
 	 * This should be use only when changing some parameters and lefting the
 	 * rest default
 	 */
-	public SurfExtractor() {
+	public SurfDescriptor() {
 
 	}
 

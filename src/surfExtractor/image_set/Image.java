@@ -10,8 +10,8 @@ import javax.imageio.ImageIO;
 
 import org.apache.log4j.Logger;
 
+import surfExtractor.TaggedSurfFeature;
 import surfExtractor.exceptions.UnsuportedImageException;
-import surfExtractor.surf_extractor.TaggedSurfFeature;
 import boofcv.abst.feature.detdesc.DetectDescribePoint;
 import boofcv.struct.feature.SurfFeature;
 import boofcv.struct.image.ImageFloat32;

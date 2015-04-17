@@ -3,11 +3,10 @@ package surfExtractor.clustering;
 import java.util.ArrayList;
 import java.util.Random;
 
+import surfExtractor.TaggedSurfFeature;
 import surfExtractor.misc.Utils;
 
 import org.apache.log4j.Logger;
-
-import surfExtractor.surf_extractor.TaggedSurfFeature;
 
 public class Cluster {
 	/**
