@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
 import surfExtractor.clustering.Cluster;
 import surfExtractor.clustering.Clustering;
 import surfExtractor.exporter.Exporter;
-import surfExtractor.exporter.RawExporter;
+import surfExtractor.exporter.InstanceGenerator;
 import surfExtractor.exporter.WekaExporter;
 import surfExtractor.bow_classifier.Bow;
 import weka.core.Instances;
@@ -227,7 +227,11 @@ public class SurfExtractor {
 		 */
 
 		// Write experimental arff
-		Exporter exporter = new WekaExporter(is, bow);
+		InstanceGenerator instanceGenerator = new InstanceGenerator(is, bow);
+		instanceGenerator.export();
+		
+		WekaExporter wekaExporter = new WekaExporter(instanceGenerator.getInstances());
+		//Exporter exporter = new WekaExporter(is, bow);
 		
 		/*exporter.addCommentLine("Starting parameter debugging");
 
@@ -240,12 +244,12 @@ public class SurfExtractor {
 		
 		if (Configuration.isCommandSet("auto.file.name")) {
 			LOGGER.info("Automatically setting file name");
-			exporter.setPath(Configuration.getConfiguration("arff.path") + Configuration.getConfiguration("imageset.relation") + "-" + Configuration.getConfiguration("surf.radius") + "-" + Configuration.getConfiguration("surf.threshold") + "-" + Configuration.getConfiguration("surf.maxfeaturesperscale") + "-" + Configuration.getConfiguration("surf.initialsamplerate") + "-" + Configuration.getConfiguration("surf.initialsize") + "-" + Configuration.getConfiguration("surf.numberscalesperoctave") + "-" + Configuration.getConfiguration("surf.numberofoctaves") + ".arff");
-			exporter.export();
+			wekaExporter.setPath(Configuration.getConfiguration("arff.path") + Configuration.getConfiguration("imageset.relation") + "-" + Configuration.getConfiguration("surf.radius") + "-" + Configuration.getConfiguration("surf.threshold") + "-" + Configuration.getConfiguration("surf.maxfeaturesperscale") + "-" + Configuration.getConfiguration("surf.initialsamplerate") + "-" + Configuration.getConfiguration("surf.initialsize") + "-" + Configuration.getConfiguration("surf.numberscalesperoctave") + "-" + Configuration.getConfiguration("surf.numberofoctaves") + ".arff");
+			wekaExporter.export();
 		} else {
 			LOGGER.info("Using manual file name");
-			exporter.setPath(Configuration.getConfiguration("arff.path"));
-			exporter.export();
+			wekaExporter.setPath(Configuration.getConfiguration("arff.path"));
+			wekaExporter.export();
 		}
 	}
 
@@ -313,12 +317,11 @@ public class SurfExtractor {
 		 */
 
 		// Write experimental arff
-		RawExporter exporter = new RawExporter(is, bow);
-		exporter.addCommentLine("Starting parameter debugging");
-		while (Configuration.getConfig().values().iterator().hasNext()) {
-			String s = Configuration.getConfig().values().iterator().next();
-			exporter.addCommentLine(s);
-		}
+		InstanceGenerator instanceGenerator = new InstanceGenerator(is, bow);
+		instanceGenerator.export();
+		
+		
+		WekaExporter exporter = new WekaExporter(instanceGenerator.getInstances());
 		if (Configuration.isCommandSet("auto.file.name")) {
 			LOGGER.info("Automatically setting file name");
 			exporter.setPath(arffPath + Configuration.getConfiguration("imageset.relation") + "-" + Configuration.getConfiguration("surf.radius") + "-" + Configuration.getConfiguration("surf.threshold") + "-" + Configuration.getConfiguration("surf.maxfeaturesperscale") + "-" + Configuration.getConfiguration("surf.initialsamplerate") + "-" + Configuration.getConfiguration("surf.initialsize") + "-" + Configuration.getConfiguration("surf.numberscalesperoctave") + "-" + Configuration.getConfiguration("surf.numberofoctaves"));
@@ -385,9 +388,9 @@ public class SurfExtractor {
 		 */
 
 		// Write experimental arff
-		WekaExporter exporter = new WekaExporter(is, bow);
-		exporter.setPath("");
-		exporter.export();
-		return exporter.getInstances();
+		InstanceGenerator instanceGenerator = new InstanceGenerator(is, bow);
+		instanceGenerator.export();
+		
+		return instanceGenerator.getInstances();
 	}
 }

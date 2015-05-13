@@ -1,88 +1,43 @@
 package surfExtractor.exporter;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-import surfExtractor.bow_classifier.Bow;
-import surfExtractor.bow_classifier.Histogram;
-import surfExtractor.image_set.ImageClass;
-import surfExtractor.image_set.ImageSet;
-import weka.associations.gsp.Element;
-import weka.core.Attribute;
-import weka.core.FastVector;
-import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.converters.ArffSaver;
 import weka.core.converters.Saver;
 
-public class WekaExporter extends Exporter {
+public class WekaExporter extends FileExporter {
 
-	protected Saver saver;
-
-	protected Instances instances;
+	private Saver saver;
 	
-	public WekaExporter(ImageSet is, Bow bow) {
-		this.imageSet = is;
-		this.bow = bow;
+	private Instances instances;
+	
+	public WekaExporter(Instances instances, Saver saver) {
+		this.instances = instances;
+		this.saver = saver;
 	}
-
-	public void setSaver(Saver s) {
-		this.saver = s;
+	
+	public WekaExporter(Instances instances) {
+		this.instances = instances;
 	}
-
+	
 	@Override
 	public void export() {
-		FastVector attributes = new FastVector();
-		for (int i = 0; i < bow.getClusterNum(); i++) {
-			attributes.addElement(new Attribute("A" + i));
+		if(saver == null) {
+			saver = new ArffSaver();
 		}
-
-		FastVector classValues = new FastVector();
-		for (ImageClass ic : imageSet.getImageClasses()) {
-			classValues.addElement(ic.getClassName());
-		}
-		attributes.addElement(new Attribute("class", classValues));
-
-		instances = new Instances(imageSet.getRelation(), attributes, 1);
-
-		for (int i = 0; i < bow.getHistograms().size(); i++) {
-			Histogram hh = bow.getHistograms().get(i);
-			hh.normalize();
-			double[] attributeValues = new double[hh.getSize() + 1];
-			for (int j = 0; j < hh.getSize(); j++) {
-				attributeValues[j] = hh.getValue(j);
-			}
-			attributeValues[attributeValues.length - 1] = 0D;
-			Instance instance = new Instance(1, attributeValues);
-			instance.setValue((Attribute) attributes.elementAt(attributes.size() - 1), hh.getFolderName());
-			instances.add(instance);
-		}
-
-		if (this.saver == null) {
-			this.saver = new ArffSaver();
-		}
-
+		
 		this.saver.setInstances(instances);
-
-		if (path != "") {
-
+		
+		if(path != "") {
 			try {
-				// this.saver.setFile(new File(path));
-				this.saver.setFile(new File(path));
+				this.saver.setFile(this.getFile());
 				this.saver.writeBatch();
-				System.out.println(instances.toSummaryString());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-
-	}
-	
-	public Instances getInstances() {
-		return this.instances;
+		
 	}
 
 }
