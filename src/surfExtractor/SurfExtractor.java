@@ -230,7 +230,6 @@ public class SurfExtractor {
 		InstanceGenerator instanceGenerator = new InstanceGenerator(is, bow);
 		instanceGenerator.export();
 		
-		
 		WekaExporter wekaExporter = new WekaExporter(instanceGenerator.getInstances());
 		//Exporter exporter = new WekaExporter(is, bow);
 		
