@@ -30,6 +30,7 @@ import boofcv.struct.feature.ScalePoint;
 import boofcv.struct.feature.SurfFeature;
 import boofcv.struct.image.ImageFloat32;
 import boofcv.struct.image.ImageSingleBand;
+import boofcv.struct.image.MultiSpectral;
 
 /**
  * @author Hugo
