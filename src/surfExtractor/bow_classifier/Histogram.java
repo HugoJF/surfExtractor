@@ -93,7 +93,7 @@ public class Histogram {
 	 * Normalize histogram as if it were a vector (dividing each component by
 	 * the length of the vector)
 	 */
-	public void normalize_as_vector() {
+	public void normalizToSum1() {
 		double sum = 0;
 		for (int i = 0; i < this.histogram.length; i++) {
 			sum += this.histogram[i] * this.histogram[i];
