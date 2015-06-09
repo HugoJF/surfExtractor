@@ -81,6 +81,12 @@ public class Bow {
 		return this.histogram;
 	}
 
+	/**
+	 * Finds the closest clusters to a Feature
+	 * 
+	 * @param sf - The feature to find its closest clusters
+	 * @return The closest cluster to the feature
+	 */
 	private Cluster getClosestCluster(SurfFeature sf) {
 		double closestDistance = 0;
 		Cluster closestCluster = null;
@@ -107,6 +113,9 @@ public class Bow {
 		return this.clusters.size();
 	}
 
+	/**
+	 * @return Array of max values for each attribute
+	 */
 	public double[] getMaxValues() {
 		double[] maxVals = new double[this.histogram.get(0).getSize()];
 		

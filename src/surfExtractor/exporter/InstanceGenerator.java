@@ -15,16 +15,34 @@ import weka.core.Instances;
 
 public class InstanceGenerator extends Exporter {
 
+	/**
+	 * Instances being generated
+	 */
 	private Instances instances;
 
+	/**
+	 * Imageset used in the attribute extraction
+	 */
 	private ImageSet imageSet;
 
+	/**
+	 * Bow results
+	 */
 	private Bow bow;
 
+	/**
+	 * 0 - Sum of elements = 1 
+	 * 1 - Vector normalization 
+	 * 2 - Normalize in reference to max attribute value
+	 */
 	private int normalizationType = 0;
 
 	protected Logger LOGGER = Logger.getLogger(Exporter.class);
 
+	/**
+	 * @param is - Imageset used in the attribute extraction
+	 * @param bow - Bow results
+	 */
 	public InstanceGenerator(ImageSet is, Bow bow) {
 		this.imageSet = is;
 		this.bow = bow;
@@ -70,14 +88,17 @@ public class InstanceGenerator extends Exporter {
 
 			// Create an array to hold the attribute values
 			double[] attributeValues = new double[attributes.size()];
+
 			// For every histogram value add to the attribute
 			for (int j = 0; j < hh.getSize(); j++) {
 				attributeValues[j] = hh.getValue(j);
 			}
 			// Reset last value of the array (class)
 			attributeValues[attributeValues.length - 1] = 0D;
+
 			// Create the final instance
 			Instance instance = new Instance(1, attributeValues);
+
 			// Set class value using proper method to add nominal value
 			instance.setValue((Attribute) attributes.elementAt(attributes.size() - 1), hh.getFolderName());
 
@@ -86,11 +107,19 @@ public class InstanceGenerator extends Exporter {
 		}
 	}
 
+	/**
+	 * @return - Returns the instances generated
+	 */
 	public Instances getInstances() {
 
 		return this.instances;
 	}
 
+	/**
+	 * 0 - Sum of elements = 1 
+	 * 1 - Vector normalization 
+	 * 2 - Normalize in reference to max attribute value
+	 */
 	public void setNormalizationType(int i) {
 		this.normalizationType = i;
 	}

@@ -73,12 +73,6 @@ public class SurfExtractor {
 			return;
 		}
 
-		/*
-		 * Moved gui to another project if (Configuration.getCommand("gui") ==
-		 * true) { // Open UserInterface, and wait input from user
-		 * UserInterface.initialize(); UserInterface.start();
-		 * UserInterface.hold(); UserInterface.setConfiguration(); }
-		 */
 
 		// Print loaded configuration
 		Configuration.debugParameters();
@@ -95,9 +89,6 @@ public class SurfExtractor {
 		}
 		long duration = System.currentTimeMillis() - start;
 
-		// Goes through the process of ending extraction
-		// Moved interface to another project
-		// UserInterface.done();
 		LOGGER.info("Duration of the process: " + (duration / 1000) + " seconds.");
 	}
 
@@ -179,13 +170,6 @@ public class SurfExtractor {
 		// Use surfExtractor to extract SURF features
 		surfExtractor.extractImageSet(is);
 
-		// Debug feature number for each image
-		/*
-		 * for (ImageClass ic : is.getImageClasses()) { for (Image i :
-		 * ic.getImages()) { LOGGER.info(i.getFeatures().size() +
-		 * " SURF features detected for: " + i.getFile().getName()); } }
-		 */
-
 		// Cluster all features
 		if (Configuration.getConfiguration("cluster.load_path") != null) {
 			try {
@@ -218,15 +202,6 @@ public class SurfExtractor {
 		// Compute frequency histograms
 		bow.computeHistograms();
 
-		// Return frequency histograms
-		// ArrayList<Histogram> h = bow.getHistograms();
-
-		// Debug histograms
-		/*
-		 * LOGGER.info("Debugging image histograms"); for (Histogram hh : h) {
-		 * LOGGER.info("Histogram: " + histogramToString(hh)); }
-		 */
-
 		// Write experimental arff
 		InstanceGenerator instanceGenerator = new InstanceGenerator(is, bow);
 		if(Configuration.getConfiguration("normalization.type") != null) {
@@ -236,15 +211,6 @@ public class SurfExtractor {
 		
 		WekaExporter wekaExporter = new WekaExporter(instanceGenerator.getInstances());
 		//Exporter exporter = new WekaExporter(is, bow);
-		
-		/*exporter.addCommentLine("Starting parameter debugging");
-
-		HashMap<String, String> config = Configuration.getConfig();
-		Iterator<Map.Entry<String, String>> it = config.entrySet().iterator();
-		while (it.hasNext()) {
-			Map.Entry<String, String> pair =  it.next();
-			exporter.addCommentLine(pair.getKey() + " -> " + pair.getValue());
-		}*/
 		
 		if (Configuration.isCommandSet("auto.file.name")) {
 			LOGGER.info("Automatically setting file name");

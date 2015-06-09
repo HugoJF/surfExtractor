@@ -104,6 +104,11 @@ public class Histogram {
 		}
 	}
 	
+	/**
+	 * Normalizes in reference to the max value of an attribute
+	 * 
+	 * @param maxVal - Array with max values for each attribute
+	 */
 	public void normalizeFromMaxFeatureVal(double[] maxVal) {
 		for(int i = 0; i < this.histogram.length; i++) {
 			this.histogram[i] /= maxVal[i];
@@ -118,6 +123,9 @@ public class Histogram {
 
 	}
 
+	/**
+	 * @return Folder name String
+	 */
 	public String getFolderName() {
 		return folderName;
 	}
