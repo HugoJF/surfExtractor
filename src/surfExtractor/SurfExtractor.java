@@ -45,6 +45,7 @@ public class SurfExtractor {
 		Configuration.addNewValidParameter("kmeans.kvalue", true);
 		Configuration.addNewValidParameter("cluster.save_path", false);
 		Configuration.addNewValidParameter("cluster.load_path", false);
+		Configuration.addNewValidParameter("normalization.type", false);
 
 		Configuration.addNewValidParameter("surf.radius", false);
 		Configuration.addNewValidParameter("surf.threshold", false);
@@ -228,6 +229,9 @@ public class SurfExtractor {
 
 		// Write experimental arff
 		InstanceGenerator instanceGenerator = new InstanceGenerator(is, bow);
+		if(Configuration.getConfiguration("normalization.type") != null) {
+			instanceGenerator.setNormalizationType(Integer.valueOf(Configuration.getConfiguration("normalization.type")));
+		}
 		instanceGenerator.export();
 		
 		WekaExporter wekaExporter = new WekaExporter(instanceGenerator.getInstances());

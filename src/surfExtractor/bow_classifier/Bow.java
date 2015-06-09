@@ -107,4 +107,18 @@ public class Bow {
 		return this.clusters.size();
 	}
 
+	public double[] getMaxValues() {
+		double[] maxVals = new double[this.histogram.get(0).getSize()];
+		
+		for(int i = 0; i < this.histogram.size(); i++) {
+			for(int j = 0; j < this.histogram.get(0).getHistogram().length; j++) {
+				if(maxVals[j] < this.histogram.get(i).getValue(j)) {
+					maxVals[j] = this.histogram.get(i).getValue(j);
+				}
+			}
+		}
+		
+		return null;
+	}
+
 }

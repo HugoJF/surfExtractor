@@ -79,7 +79,7 @@ public class Histogram {
 	/**
 	 * Normalize histogram so it's components sum equals 1
 	 */
-	public void normalize() {
+	public void normalizeToSum1() {
 		int total = 0;
 		for (int i = 0; i < this.histogram.length; i++) {
 			total += this.histogram[i];
@@ -93,7 +93,7 @@ public class Histogram {
 	 * Normalize histogram as if it were a vector (dividing each component by
 	 * the length of the vector)
 	 */
-	public void normalizToSum1() {
+	public void normalizAsVectorMagnitude() {
 		double sum = 0;
 		for (int i = 0; i < this.histogram.length; i++) {
 			sum += this.histogram[i] * this.histogram[i];
@@ -101,6 +101,12 @@ public class Histogram {
 		sum = Math.sqrt(sum);
 		for (int i = 0; i < this.histogram.length; i++) {
 			this.histogram[i] /= sum;
+		}
+	}
+	
+	public void normalizeFromMaxFeatureVal(double[] maxVal) {
+		for(int i = 0; i < this.histogram.length; i++) {
+			this.histogram[i] /= maxVal[i];
 		}
 	}
 
