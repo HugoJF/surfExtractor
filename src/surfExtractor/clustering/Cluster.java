@@ -128,5 +128,9 @@ public class Cluster {
 	public int getChildrenCount() {
 		return this.children.size();
 	}
+	
+	public TaggedSurfFeature getChildren(int i) { 
+		return this.children.get(i);
+	}
 
 }

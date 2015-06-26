@@ -180,6 +180,7 @@ public class SurfExtractor {
 			}
 		} else {
 			clustering.cluster();
+			clustering.getWk();
 		}
 
 		// Export clusters

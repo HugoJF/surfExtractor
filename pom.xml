@@ -28,42 +28,42 @@
   	<dependency>
   		<groupId>org.boofcv</groupId>
   		<artifactId>calibration</artifactId>
-  		<version>0.18</version>
+  		<version>0.17</version>
   	</dependency>
   	<dependency>
   		<groupId>org.boofcv</groupId>
   		<artifactId>evaluation</artifactId>
-  		<version>0.18</version>
+  		<version>0.17</version>
   	</dependency>
   	<dependency>
   		<groupId>org.boofcv</groupId>
   		<artifactId>feature</artifactId>
-  		<version>0.18</version>
+  		<version>0.17</version>
   	</dependency>
   	<dependency>
   		<groupId>org.boofcv</groupId>
   		<artifactId>geo</artifactId>
-  		<version>0.18</version>
+  		<version>0.17</version>
   	</dependency>
   	<dependency>
   		<groupId>org.boofcv</groupId>
   		<artifactId>io</artifactId>
-  		<version>0.18</version>
+  		<version>0.17</version>
   	</dependency>
   	<dependency>
   		<groupId>org.boofcv</groupId>
   		<artifactId>ip</artifactId>
-  		<version>0.18</version>
+  		<version>0.17</version>
   	</dependency>
   	<dependency>
   		<groupId>org.boofcv</groupId>
   		<artifactId>recognition</artifactId>
-  		<version>0.18</version>
+  		<version>0.17</version>
   	</dependency>
   	<dependency>
   		<groupId>org.boofcv</groupId>
   		<artifactId>sfm</artifactId>
-  		<version>0.18</version>
+  		<version>0.17</version>
   	</dependency>
   	<dependency>
   		<groupId>org.boofcv</groupId>
@@ -73,7 +73,7 @@
   	<dependency>
   		<groupId>org.boofcv</groupId>
   		<artifactId>visualize</artifactId>
-  		<version>0.18</version>
+  		<version>0.17</version>
   	</dependency>
   	<dependency>
   		<groupId>nz.ac.waikato.cms.weka</groupId>
@@ -86,9 +86,20 @@
   		<version>1.47</version>
   	</dependency>
   	<dependency>
-  		<groupId>log4j</groupId>
-  		<artifactId>log4j</artifactId>
-  		<version>1.2.12</version>
-  	</dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-api</artifactId>
+    <version>2.0.2</version>
+  </dependency>
+  <dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-core</artifactId>
+    <version>2.0.2</version>
+  </dependency>
+  <dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-1.2-api</artifactId>
+    <version>2.3</version>
+  </dependency>
+
    </dependencies>
 </project>

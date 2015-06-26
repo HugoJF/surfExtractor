@@ -94,7 +94,8 @@ public class Clustering {
 		assignChildren();
 		LOGGER.info("Iterations started");
 		// debugClusters();
-		for (int i = 0; i < iterations - 1; i++) {
+		for (int i = 1; i < iterations; i++) {
+			LOGGER.info("Iteration " + i + " started.");
 			// UserInterface.featureClusteringProgress.setValue(i+1);
 			recalculateCentroids();
 			assignChildren();
@@ -295,6 +296,34 @@ public class Clustering {
 	 */
 	public void setSeed(int seed) {
 		this.seed = seed;
+	}
+	
+	private double getClusterDk(Cluster cluster) {	
+		double dk = 0D;
+		for(int i = 0; i < cluster.getChildrenCount(); i++) {
+			for(int j = 0; j < cluster.getChildrenCount(); j++) {
+				TaggedSurfFeature a = null, b = null;
+				a = cluster.getChildren(i);
+				b = cluster.getChildren(j);
+				dk += Utils.getVectorDistance(a.getFeature().getValue(), b.getFeature().getValue());
+			}
+		}
+		
+		return dk;
+	}
+	
+	public double getWk() {
+		LOGGER.info("Computing Wk value");
+		double wk = 0D;
+		Cluster c = null;
+		
+		for(int i = 0; i < this.clusters.size(); i++) {
+			c = this.clusters.get(i);
+			wk += (1D / (2D * (double)c.getChildrenCount())) * getClusterDk(c);
+		}
+		
+		LOGGER.info("Wk = " + wk);
+		return wk;
 	}
 
 }
