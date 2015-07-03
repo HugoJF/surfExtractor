@@ -5,20 +5,17 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 import surfExtractor.image_set.ImageSet;
-import configuration.*;
+import configuration.Configuration;
 
 import org.apache.log4j.Logger;
 
 import surfExtractor.clustering.Cluster;
 import surfExtractor.clustering.Clustering;
-import surfExtractor.exporter.Exporter;
 import surfExtractor.exporter.InstanceGenerator;
 import surfExtractor.exporter.WekaExporter;
+import surfExtractor.GUI.UserInterface;
 import surfExtractor.bow_classifier.Bow;
 import weka.core.Instances;
 
@@ -36,38 +33,42 @@ public class SurfExtractor {
 	 * @throws UnsupportedEncodingException
 	 */
 	public static void main(String[] args) {
-		Configuration.addNewValidParameter("imageset.path", true);
-		Configuration.addNewValidParameter("imageset.relation", true);
-		Configuration.addNewValidParameter("random.seed", false);
-		Configuration.addNewValidParameter("arff.relation", false);
-		Configuration.addNewValidParameter("arff.path", true);
-		Configuration.addNewValidParameter("kmeans.iteration", true);
-		Configuration.addNewValidParameter("kmeans.kvalue", true);
-		Configuration.addNewValidParameter("cluster.save_path", false);
-		Configuration.addNewValidParameter("cluster.load_path", false);
-		Configuration.addNewValidParameter("normalization.type", false);
+		//Manually prepare the Configuration
+		Configuration config = new Configuration();
+		
+		config.addNewValidParameter("imageset.path", true);
+		config.addNewValidParameter("imageset.relation", true);
+		config.addNewValidParameter("random.seed", false);
+		config.addNewValidParameter("arff.relation", false);
+		config.addNewValidParameter("arff.path", true);
+		config.addNewValidParameter("kmeans.iteration", true);
+		config.addNewValidParameter("kmeans.kvalue", true);
+		config.addNewValidParameter("cluster.save_path", false);
+		config.addNewValidParameter("cluster.load_path", false);
+		config.addNewValidParameter("normalization.type", false);
 
-		Configuration.addNewValidParameter("surf.radius", false);
-		Configuration.addNewValidParameter("surf.threshold", false);
-		Configuration.addNewValidParameter("surf.ignoreborder", false);
-		Configuration.addNewValidParameter("surf.strictrule", false);
-		Configuration.addNewValidParameter("surf.maxfeaturesperscale", false);
-		Configuration.addNewValidParameter("surf.initialsamplerate", false);
-		Configuration.addNewValidParameter("surf.initialsize", false);
-		Configuration.addNewValidParameter("surf.numberscalesperoctave", false);
-		Configuration.addNewValidParameter("surf.numberofoctaves", false);
+		config.addNewValidParameter("surf.radius", false);
+		config.addNewValidParameter("surf.threshold", false);
+		config.addNewValidParameter("surf.ignoreborder", false);
+		config.addNewValidParameter("surf.strictrule", false);
+		config.addNewValidParameter("surf.maxfeaturesperscale", false);
+		config.addNewValidParameter("surf.initialsamplerate", false);
+		config.addNewValidParameter("surf.initialsize", false);
+		config.addNewValidParameter("surf.numberscalesperoctave", false);
+		config.addNewValidParameter("surf.numberofoctaves", false);
 
-		Configuration.addNewValidCommand("auto.imageset.relation");
-		Configuration.addNewValidCommand("auto.arff.relation");
-		Configuration.addNewValidCommand("auto.file.name");
+		config.addNewValidCommand("auto.imageset.relation");
+		config.addNewValidCommand("auto.arff.relation");
+		config.addNewValidCommand("auto.file.name");
+		config.addNewValidCommand("use.gui");
 
-		Configuration.setConfiguration("random.seed", "1");
+		config.setConfiguration("random.seed", "1");
 
-		Configuration.readFromRunArgs(args);
+		config.readFromRunArgs(args);
 
 		try {
 			// Check if we have enought parameters to start
-			Configuration.verifyArgs();
+			config.verifyArgs();
 		} catch (Exception e1) {
 			e1.printStackTrace();
 			return;
@@ -75,14 +76,20 @@ public class SurfExtractor {
 
 
 		// Print loaded configuration
-		Configuration.debugParameters();
+		if(!config.isCommandSet("use.gui")) {
+			config.debugParameters();
+		}
 
 		// Time extraction process started
 		long start = System.currentTimeMillis();
 
 		try {
 			SurfExtractor m = new SurfExtractor();
-			m.runFromCLI();
+			if(config.isCommandSet("use.gui")) {
+				m.run(null);
+			} else  {
+				m.run(config);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return;
@@ -103,32 +110,35 @@ public class SurfExtractor {
 	 * @throws UnsupportedEncodingException
 	 */
 
-	public void runFromCLI() {
-
+	public void run(Configuration config) {
+		//Verify if config was passed
+		if(config == null) {
+			config = getConfigFromGUI();
+		}
 		// Load images from ImageSet
 		ImageSet is;
 		try {
-			is = new ImageSet(Configuration.getConfiguration("imageset.path"));
+			is = new ImageSet(config.getConfiguration("imageset.path"));
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 			return;
 		}
-		if (Configuration.isCommandSet("auto.imageset.relation")) {
-			is.setRelation(Configuration.getConfiguration("imageset.relation") + "-" + Configuration.getConfiguration("surf.radius") + "-" + Configuration.getConfiguration("surf.threshold") + "-" + Configuration.getConfiguration("surf.maxfeaturesperscale") + "-" + Configuration.getConfiguration("surf.initialsamplerate") + "-" + Configuration.getConfiguration("surf.initialsize") + "-" + Configuration.getConfiguration("surf.numberscalesperoctave") + "-" + Configuration.getConfiguration("surf.numberofoctaves"));
+		if (config.isCommandSet("auto.imageset.relation")) {
+			is.setRelation(config.getConfiguration("imageset.relation") + "-" + config.getConfiguration("surf.radius") + "-" + config.getConfiguration("surf.threshold") + "-" + config.getConfiguration("surf.maxfeaturesperscale") + "-" + config.getConfiguration("surf.initialsamplerate") + "-" + config.getConfiguration("surf.initialsize") + "-" + config.getConfiguration("surf.numberscalesperoctave") + "-" + config.getConfiguration("surf.numberofoctaves"));
 			LOGGER.info("Setting imageset.relation automatically");
 		} else {
 			LOGGER.info("Setting image.relation manually");
-			is.setRelation(Configuration.getConfiguration("imageset.relation"));
+			is.setRelation(config.getConfiguration("imageset.relation"));
 		}
 
 		// Create clustering object
-		Clustering clustering = new Clustering(is, Integer.valueOf(Configuration.getConfiguration("kmeans.kvalue")), Integer.valueOf(Configuration.getConfiguration("kmeans.iteration")));
-		clustering.setSeed(Integer.parseInt(Configuration.getConfiguration("random.seed")));
+		Clustering clustering = new Clustering(is, Integer.valueOf(config.getConfiguration("kmeans.kvalue")), Integer.valueOf(config.getConfiguration("kmeans.iteration")));
+		clustering.setSeed(Integer.parseInt(config.getConfiguration("random.seed")));
 
 		// Set Dataset 'name'
-		if (Configuration.isCommandSet("auto.arff.relation")) {
+		if (config.isCommandSet("auto.arff.relation")) {
 			LOGGER.info("Setting arff.relation automatically");
-			Configuration.setConfiguration("arff.relation", Configuration.getConfiguration("imageset.relation") + "-" + Configuration.getConfiguration("surf.radius") + "-" + Configuration.getConfiguration("surf.threshold") + "-" + Configuration.getConfiguration("surf.maxfeaturesperscale") + "-" + Configuration.getConfiguration("surf.initialsamplerate") + "-" + Configuration.getConfiguration("surf.initialsize") + "-" + Configuration.getConfiguration("surf.numberscalesperoctave") + "-" + Configuration.getConfiguration("surf.numberofoctaves"));
+			config.setConfiguration("arff.relation", config.getConfiguration("imageset.relation") + "-" + config.getConfiguration("surf.radius") + "-" + config.getConfiguration("surf.threshold") + "-" + config.getConfiguration("surf.maxfeaturesperscale") + "-" + config.getConfiguration("surf.initialsamplerate") + "-" + config.getConfiguration("surf.initialsize") + "-" + config.getConfiguration("surf.numberscalesperoctave") + "-" + config.getConfiguration("surf.numberofoctaves"));
 		} else {
 			LOGGER.info("arff.relation is set manually");
 		}
@@ -136,33 +146,33 @@ public class SurfExtractor {
 		// Create SURF Feature extractor objects
 		SurfDescriptor surfExtractor = new SurfDescriptor();
 
-		Configuration.addNewValidParameter("surf.radius", false);
-		Configuration.addNewValidParameter("surf.threshold", false);
-		Configuration.addNewValidParameter("surf.ignoreborder", false);
-		Configuration.addNewValidParameter("surf.strictrule", false);
-		Configuration.addNewValidParameter("surf.maxfeaturesperscale", false);
-		Configuration.addNewValidParameter("surf.initialsamplerate", false);
-		Configuration.addNewValidParameter("surf.initialsize", false);
-		Configuration.addNewValidParameter("surf.numberscalesperoctave", false);
-		Configuration.addNewValidParameter("surf.numberofoctaves", false);
+		config.addNewValidParameter("surf.radius", false);
+		config.addNewValidParameter("surf.threshold", false);
+		config.addNewValidParameter("surf.ignoreborder", false);
+		config.addNewValidParameter("surf.strictrule", false);
+		config.addNewValidParameter("surf.maxfeaturesperscale", false);
+		config.addNewValidParameter("surf.initialsamplerate", false);
+		config.addNewValidParameter("surf.initialsize", false);
+		config.addNewValidParameter("surf.numberscalesperoctave", false);
+		config.addNewValidParameter("surf.numberofoctaves", false);
 
-		if (Configuration.getConfiguration("surf.radius") != null) surfExtractor.setRadius(Integer.valueOf(Configuration.getConfiguration("surf.radius")));
+		if (config.isCommandSet("surf.radius")) surfExtractor.setRadius(Integer.valueOf(config.getConfiguration("surf.radius")));
 
-		if (Configuration.getConfiguration("surf.threshold") != null) surfExtractor.setThreshold(Float.valueOf(Configuration.getConfiguration("surf.threshold")));
+		if (config.isCommandSet("surf.threshold")) surfExtractor.setThreshold(Float.valueOf(config.getConfiguration("surf.threshold")));
 
-		if (Configuration.getConfiguration("surf.ignoreborder") != null) surfExtractor.setIgnoreBorder(Integer.valueOf(Configuration.getConfiguration("surf.ignoreborder")));
+		if (config.isCommandSet("surf.ignoreborder")) surfExtractor.setIgnoreBorder(Integer.valueOf(config.getConfiguration("surf.ignoreborder")));
 
-		if (Configuration.getConfiguration("surf.strictrule") != null) surfExtractor.setStrictRule(Boolean.valueOf(Configuration.getConfiguration("surf.strictrule")));
+		if (config.isCommandSet("surf.strictrule")) surfExtractor.setStrictRule(Boolean.valueOf(config.getConfiguration("surf.strictrule")));
 
-		if (Configuration.getConfiguration("surf.maxfeaturesperscale") != null) surfExtractor.setMaxFeaturesPerScale(Integer.valueOf(Configuration.getConfiguration("surf.maxfeaturesperscale")));
+		if (config.isCommandSet("surf.maxfeaturesperscale")) surfExtractor.setMaxFeaturesPerScale(Integer.valueOf(config.getConfiguration("surf.maxfeaturesperscale")));
 
-		if (Configuration.getConfiguration("surf.initialsamplerate") != null) surfExtractor.setInitialSampleRate(Integer.valueOf(Configuration.getConfiguration("surf.initialsamplerate")));
+		if (config.isCommandSet("surf.initialsamplerate")) surfExtractor.setInitialSampleRate(Integer.valueOf(config.getConfiguration("surf.initialsamplerate")));
 
-		if (Configuration.getConfiguration("surf.initialsize") != null) surfExtractor.setInitialSize(Integer.valueOf(Configuration.getConfiguration("surf.initialsize")));
+		if (config.isCommandSet("surf.initialsize")) surfExtractor.setInitialSize(Integer.valueOf(config.getConfiguration("surf.initialsize")));
 
-		if (Configuration.getConfiguration("surf.numberscalesperoctave") != null) surfExtractor.setNumberScalesPerOctave(Integer.valueOf(Configuration.getConfiguration("surf.numberscalesperoctave")));
+		if (config.isCommandSet("surf.numberscalesperoctave")) surfExtractor.setNumberScalesPerOctave(Integer.valueOf(config.getConfiguration("surf.numberscalesperoctave")));
 
-		if (Configuration.getConfiguration("surf.numberofoctaves") != null) surfExtractor.setNumberOfOctaves(Integer.valueOf(Configuration.getConfiguration("surf.numberofoctaves")));
+		if (config.isCommandSet("surf.numberofoctaves")) surfExtractor.setNumberOfOctaves(Integer.valueOf(config.getConfiguration("surf.numberofoctaves")));
 
 		// Load images from ImageSet
 		is.getImageClasses();
@@ -171,9 +181,9 @@ public class SurfExtractor {
 		surfExtractor.extractImageSet(is);
 
 		// Cluster all features
-		if (Configuration.getConfiguration("cluster.load_path") != null) {
+		if (config.getConfiguration("cluster.load_path") != null) {
 			try {
-				clustering.loadClustersFromFile(new File(Configuration.getConfiguration("cluster.load_path")));
+				clustering.loadClustersFromFile(new File(config.getConfiguration("cluster.load_path")));
 			} catch (IOException e) {
 				e.printStackTrace();
 				return;
@@ -184,10 +194,10 @@ public class SurfExtractor {
 		}
 
 		// Export clusters
-		if (Configuration.getConfiguration("cluster.save_path") != null) {
+		if (config.getConfiguration("cluster.save_path") != null) {
 			LOGGER.info("Saving clusters to file");
 			try {
-				clustering.saveClustersToFile(new File(Configuration.getConfiguration("clusters.save_path")));
+				clustering.saveClustersToFile(new File(config.getConfiguration("clusters.save_path")));
 			} catch (FileNotFoundException | UnsupportedEncodingException e) {
 				e.printStackTrace();
 				return;
@@ -205,23 +215,51 @@ public class SurfExtractor {
 
 		// Write experimental arff
 		InstanceGenerator instanceGenerator = new InstanceGenerator(is, bow);
-		if(Configuration.getConfiguration("normalization.type") != null) {
-			instanceGenerator.setNormalizationType(Integer.valueOf(Configuration.getConfiguration("normalization.type")));
+		if(config.getConfiguration("normalization.type") != null) {
+			instanceGenerator.setNormalizationType(Integer.valueOf(config.getConfiguration("normalization.type")));
 		}
 		instanceGenerator.export();
 		
 		WekaExporter wekaExporter = new WekaExporter(instanceGenerator.getInstances());
 		//Exporter exporter = new WekaExporter(is, bow);
 		
-		if (Configuration.isCommandSet("auto.file.name")) {
+		if (config.isCommandSet("auto.file.name")) {
 			LOGGER.info("Automatically setting file name");
-			wekaExporter.setPath(Configuration.getConfiguration("arff.path") + Configuration.getConfiguration("imageset.relation") + "-" + Configuration.getConfiguration("surf.radius") + "-" + Configuration.getConfiguration("surf.threshold") + "-" + Configuration.getConfiguration("surf.maxfeaturesperscale") + "-" + Configuration.getConfiguration("surf.initialsamplerate") + "-" + Configuration.getConfiguration("surf.initialsize") + "-" + Configuration.getConfiguration("surf.numberscalesperoctave") + "-" + Configuration.getConfiguration("surf.numberofoctaves") + ".arff");
+			wekaExporter.setPath(config.getConfiguration("arff.path") + config.getConfiguration("imageset.relation") + "-" + config.getConfiguration("surf.radius") + "-" + config.getConfiguration("surf.threshold") + "-" + config.getConfiguration("surf.maxfeaturesperscale") + "-" + config.getConfiguration("surf.initialsamplerate") + "-" + config.getConfiguration("surf.initialsize") + "-" + config.getConfiguration("surf.numberscalesperoctave") + "-" + config.getConfiguration("surf.numberofoctaves") + ".arff");
 			wekaExporter.export();
 		} else {
 			LOGGER.info("Using manual file name");
-			wekaExporter.setPath(Configuration.getConfiguration("arff.path"));
+			wekaExporter.setPath(config.getConfiguration("arff.path"));
 			wekaExporter.export();
 		}
+	}
+
+	/**
+	 * Run
+	 * 
+	 * @return A configuration generated from the GUI
+	 */
+	private Configuration getConfigFromGUI() {
+		UserInterface.start();
+		UserInterface.hold();
+		
+		Configuration config = new Configuration();
+		
+		config.setConfiguration("imageset.path", UserInterface.imagesetPath.getAbsolutePath());
+		config.setConfiguration("kmeans.kvalue", String.valueOf((Integer)UserInterface.kmeanskSpinner.getValue()));
+		config.setConfiguration("kmeans.iteration", String.valueOf((Integer)UserInterface.kmeansIterSpinner.getValue()));
+		config.setConfiguration("arff.path", UserInterface.arffDestinationPath.getAbsolutePath());
+		config.setConfiguration("random.seed", String.valueOf((Integer) UserInterface.randSeedSpinner.getValue()));
+		config.setConfiguration("imageset.relation", "DEBUGGING");
+		
+		try {
+			config.verifyArgs();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		config.debugParameters();
+		return config;
 	}
 
 	/**
@@ -233,22 +271,24 @@ public class SurfExtractor {
 	 * @param arffRelation
 	 * @param arffPath
 	 */
-	public void generateArff(String imagesetPath, int kmeansK, int kmeansIterations, String arffRelation, String arffPath) throws FileNotFoundException, UnsupportedEncodingException {
+	public void generateArff(Configuration config) throws FileNotFoundException, UnsupportedEncodingException {
 
 		// Load images from ImageSet
 		ImageSet is = null;
 		try {
-			is = new ImageSet(imagesetPath);
+			//is = new ImageSet(imagesetPath);
+			is = new ImageSet(config.getConfiguration("imageset.path"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
 		}
 
 		// Create clustering object
-		Clustering clustering = new Clustering(is, kmeansK, kmeansIterations);
+		//Clustering clustering = new Clustering(is, kmeansK, kmeansIterations);
+		Clustering clustering = new Clustering(is, Integer.valueOf(config.getConfiguration("kmeans.kvalue")), Integer.valueOf(config.getConfiguration("kmeans.iteration")));
 
 		// Set Dataset 'name'
-		is.setRelation(arffRelation);
+		is.setRelation(config.getConfiguration("arff.relation"));
 
 		// Create SURF Feature extractor objects
 		SurfDescriptor surfExtractor = new SurfDescriptor();
@@ -293,13 +333,14 @@ public class SurfExtractor {
 		
 		
 		WekaExporter exporter = new WekaExporter(instanceGenerator.getInstances());
-		if (Configuration.isCommandSet("auto.file.name")) {
+		if (config.isCommandSet("auto.file.name")) {
 			LOGGER.info("Automatically setting file name");
-			exporter.setPath(arffPath + Configuration.getConfiguration("imageset.relation") + "-" + Configuration.getConfiguration("surf.radius") + "-" + Configuration.getConfiguration("surf.threshold") + "-" + Configuration.getConfiguration("surf.maxfeaturesperscale") + "-" + Configuration.getConfiguration("surf.initialsamplerate") + "-" + Configuration.getConfiguration("surf.initialsize") + "-" + Configuration.getConfiguration("surf.numberscalesperoctave") + "-" + Configuration.getConfiguration("surf.numberofoctaves"));
+			//exporter.setPath(arffPath + config.getConfiguration("imageset.relation") + "-" + config.getConfiguration("surf.radius") + "-" + config.getConfiguration("surf.threshold") + "-" + config.getConfiguration("surf.maxfeaturesperscale") + "-" + config.getConfiguration("surf.initialsamplerate") + "-" + config.getConfiguration("surf.initialsize") + "-" + config.getConfiguration("surf.numberscalesperoctave") + "-" + config.getConfiguration("surf.numberofoctaves"));
+			exporter.setPath(config.getConfiguration("arff.path") + config.getConfiguration("imageset.relation") + "-" + config.getConfiguration("surf.radius") + "-" + config.getConfiguration("surf.threshold") + "-" + config.getConfiguration("surf.maxfeaturesperscale") + "-" + config.getConfiguration("surf.initialsamplerate") + "-" + config.getConfiguration("surf.initialsize") + "-" + config.getConfiguration("surf.numberscalesperoctave") + "-" + config.getConfiguration("surf.numberofoctaves"));
 			exporter.export();
 		} else {
 			LOGGER.info("Using manual file name");
-			exporter.setPath(arffPath);
+			exporter.setPath(config.getConfiguration("arff.path"));
 			exporter.export();
 		}
 	}
