@@ -345,22 +345,25 @@ public class SurfExtractor {
 		}
 	}
 	
-	public Instances generateInstances(String imagesetPath, int kmeansK, int kmeansIterations, String arffRelation) {
+	public Instances generateInstances(Configuration config) {
 
 		// Load images from ImageSet
 		ImageSet is = null;
 		try {
-			is = new ImageSet(imagesetPath);
+			//is = new ImageSet(imagesetPath);
+			is = new ImageSet(config.getConfiguration("imageset.path"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return null;
 		}
 
 		// Create clustering object
-		Clustering clustering = new Clustering(is, kmeansK, kmeansIterations);
+		//Clustering clustering = new Clustering(is, kmeansK, kmeansIterations);
+		Clustering clustering = new Clustering(is, Integer.valueOf(config.getConfiguration("kmeans.kvalue")), Integer.valueOf(config.getConfiguration("kmeans.iteration")));
 
 		// Set Dataset 'name'
-		is.setRelation(arffRelation);
+		//is.setRelation(arffRelation);
+		is.setRelation(config.getConfiguration("arff.relation"));
 
 		// Create SURF Feature extractor objects
 		SurfDescriptor surfExtractor = new SurfDescriptor();
