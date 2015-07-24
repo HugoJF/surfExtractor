@@ -67,6 +67,7 @@ public class InstanceGenerator extends Exporter {
 		// Declare Instances passing ImageSet name, all attributes and the
 		// weight
 		instances = new Instances(imageSet.getRelation(), attributes, 1);
+		LOGGER.info("Using ImageSet relation: " + imageSet.getRelation());
 
 		// Iterate over histograms
 		for (int i = 0; i < bow.getHistograms().size(); i++) {
@@ -84,13 +85,13 @@ public class InstanceGenerator extends Exporter {
 				hh.normalizeFromMaxFeatureVal(bow.getMaxValues());
 				break;
 			}
-			hh.normalizeToSum1();
+			//hh.normalizeToSum1();
 
 			// Create an array to hold the attribute values
 			double[] attributeValues = new double[attributes.size()];
 
 			// For every histogram value add to the attribute
-			for (int j = 0; j < hh.getSize(); j++) {
+			for (int j = 0; j < bow.getClusterNum(); j++) {
 				attributeValues[j] = hh.getValue(j);
 			}
 			// Reset last value of the array (class)

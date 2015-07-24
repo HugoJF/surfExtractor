@@ -20,7 +20,7 @@ public class ImageSet {
 	/**
 	 * The ImageSet's relation
 	 */
-	private String relation;
+	private String relation = "unamed_imageset";
 
 	/**
 	 * Array containing ImageClasses(folders) inside ImageSet

@@ -7,6 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import surfExtractor.image_set.ImageSet;
+import boofcv.alg.segmentation.SegmentConfigPanel;
 import configuration.Configuration;
 
 import org.apache.log4j.Logger;
@@ -32,10 +33,8 @@ public class SurfExtractor {
 	 * @throws FileNotFoundException
 	 * @throws UnsupportedEncodingException
 	 */
-	public static void main(String[] args) {
-		//Manually prepare the Configuration
-		Configuration config = new Configuration();
-		
+	
+	public static void setConfigParameters(Configuration config) {
 		config.addNewValidParameter("imageset.path", true);
 		config.addNewValidParameter("imageset.relation", true);
 		config.addNewValidParameter("random.seed", false);
@@ -63,7 +62,13 @@ public class SurfExtractor {
 		config.addNewValidCommand("use.gui");
 
 		config.setConfiguration("random.seed", "1");
-
+	}
+	public static void main(String[] args) {
+		//Manually prepare the Configuration
+		Configuration config = new Configuration();
+		
+		setConfigParameters(config);
+		
 		config.readFromRunArgs(args);
 
 		try {
@@ -98,11 +103,6 @@ public class SurfExtractor {
 
 		LOGGER.info("Duration of the process: " + (duration / 1000) + " seconds.");
 	}
-
-	public SurfExtractor() {
-
-	}
-
 	/**
 	 * Main class object
 	 * 
@@ -145,16 +145,6 @@ public class SurfExtractor {
 
 		// Create SURF Feature extractor objects
 		SurfDescriptor surfExtractor = new SurfDescriptor();
-
-		config.addNewValidParameter("surf.radius", false);
-		config.addNewValidParameter("surf.threshold", false);
-		config.addNewValidParameter("surf.ignoreborder", false);
-		config.addNewValidParameter("surf.strictrule", false);
-		config.addNewValidParameter("surf.maxfeaturesperscale", false);
-		config.addNewValidParameter("surf.initialsamplerate", false);
-		config.addNewValidParameter("surf.initialsize", false);
-		config.addNewValidParameter("surf.numberscalesperoctave", false);
-		config.addNewValidParameter("surf.numberofoctaves", false);
 
 		if (config.isCommandSet("surf.radius")) surfExtractor.setRadius(Integer.valueOf(config.getConfiguration("surf.radius")));
 
@@ -288,7 +278,7 @@ public class SurfExtractor {
 		Clustering clustering = new Clustering(is, Integer.valueOf(config.getConfiguration("kmeans.kvalue")), Integer.valueOf(config.getConfiguration("kmeans.iteration")));
 
 		// Set Dataset 'name'
-		is.setRelation(config.getConfiguration("arff.relation"));
+		is.setRelation(config.getConfiguration("imageset.relation"));
 
 		// Create SURF Feature extractor objects
 		SurfDescriptor surfExtractor = new SurfDescriptor();
@@ -363,7 +353,7 @@ public class SurfExtractor {
 
 		// Set Dataset 'name'
 		//is.setRelation(arffRelation);
-		is.setRelation(config.getConfiguration("arff.relation"));
+		is.setRelation(config.getConfiguration("imageset.relation"));
 
 		// Create SURF Feature extractor objects
 		SurfDescriptor surfExtractor = new SurfDescriptor();
