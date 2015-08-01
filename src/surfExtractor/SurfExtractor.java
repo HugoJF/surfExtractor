@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import surfExtractor.image_set.ImageSet;
 import boofcv.alg.segmentation.SegmentConfigPanel;
 import configuration.Configuration;
+import micro.Benchmarking.MicroBench;
 
 import org.apache.log4j.Logger;
 
@@ -62,8 +63,11 @@ public class SurfExtractor {
 		config.addNewValidCommand("use.gui");
 
 		config.setConfiguration("random.seed", "1");
+		
 	}
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
+		MicroBench.tick("Setting up parameters");
+		
 		//Manually prepare the Configuration
 		Configuration config = new Configuration();
 		
@@ -71,14 +75,10 @@ public class SurfExtractor {
 		
 		config.readFromRunArgs(args);
 
-		try {
 			// Check if we have enought parameters to start
-			config.verifyArgs();
-		} catch (Exception e1) {
-			e1.printStackTrace();
-			return;
-		}
+		config.verifyArgs();
 
+		LOGGER.debug(MicroBench.tock());
 
 		// Print loaded configuration
 		if(!config.isCommandSet("use.gui")) {
@@ -88,20 +88,17 @@ public class SurfExtractor {
 		// Time extraction process started
 		long start = System.currentTimeMillis();
 
-		try {
-			SurfExtractor m = new SurfExtractor();
-			if(config.isCommandSet("use.gui")) {
-				m.run(null);
-			} else  {
-				m.run(config);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return;
+		SurfExtractor m = new SurfExtractor();
+		if(config.isCommandSet("use.gui")) {
+			m.run(null);
+		} else  {
+			m.run(config);
 		}
 		long duration = System.currentTimeMillis() - start;
 
 		LOGGER.info("Duration of the process: " + (duration / 1000) + " seconds.");
+		
+		MicroBench.printSummary();
 	}
 	/**
 	 * Main class object
@@ -116,6 +113,7 @@ public class SurfExtractor {
 			config = getConfigFromGUI();
 		}
 		// Load images from ImageSet
+		MicroBench.tick("Starting the ImageSet");
 		ImageSet is;
 		try {
 			is = new ImageSet(config.getConfiguration("imageset.path"));
@@ -130,7 +128,8 @@ public class SurfExtractor {
 			LOGGER.info("Setting image.relation manually");
 			is.setRelation(config.getConfiguration("imageset.relation"));
 		}
-
+		LOGGER.debug(MicroBench.tock());
+		
 		// Create clustering object
 		Clustering clustering = new Clustering(is, Integer.valueOf(config.getConfiguration("kmeans.kvalue")), Integer.valueOf(config.getConfiguration("kmeans.iteration")));
 		clustering.setSeed(Integer.parseInt(config.getConfiguration("random.seed")));
@@ -179,8 +178,10 @@ public class SurfExtractor {
 				return;
 			}
 		} else {
+			MicroBench.tick("Clustering and statistics");
 			clustering.cluster();
 			clustering.getWk();
+			LOGGER.debug(MicroBench.tock());
 		}
 
 		// Export clusters
@@ -198,18 +199,23 @@ public class SurfExtractor {
 		ArrayList<Cluster> featureCluster = clustering.getClusters();
 
 		// Load Bag Of Words classifier
+		MicroBench.tick("Starting BagOfWords class");
 		Bow bow = new Bow(is, featureCluster);
 
 		// Compute frequency histograms
 		bow.computeHistograms();
+		LOGGER.debug(MicroBench.tock());
 
 		// Write experimental arff
+		MicroBench.tick("Instances generation");
 		InstanceGenerator instanceGenerator = new InstanceGenerator(is, bow);
 		if(config.getConfiguration("normalization.type") != null) {
 			instanceGenerator.setNormalizationType(Integer.valueOf(config.getConfiguration("normalization.type")));
 		}
 		instanceGenerator.export();
+		LOGGER.debug(MicroBench.tock());
 		
+		MicroBench.tick("File exportation");
 		WekaExporter wekaExporter = new WekaExporter(instanceGenerator.getInstances());
 		//Exporter exporter = new WekaExporter(is, bow);
 		
@@ -222,6 +228,8 @@ public class SurfExtractor {
 			wekaExporter.setPath(config.getConfiguration("arff.path"));
 			wekaExporter.export();
 		}
+		
+		LOGGER.debug(MicroBench.tock());
 	}
 
 	/**
