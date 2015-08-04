@@ -22,8 +22,8 @@
 	</natures>
 	<variableList>
 		<variable>
-			<name>resource</name>
-			<value>file:/C:/Users/Hugo/workspace/surfExtractor/resource/log4j.properties</value>
+			<name>resources</name>
+			<value>file:/C:/Users/Hugo/workspace/surfExtractor/resources</value>
 		</variable>
 	</variableList>
 </projectDescription>
