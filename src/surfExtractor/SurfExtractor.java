@@ -143,23 +143,32 @@ public class SurfExtractor {
 		// Create SURF Feature extractor objects
 		SurfDescriptor surfExtractor = new SurfDescriptor();
 
-		if (config.isCommandSet("surf.radius")) surfExtractor.setRadius(config.getConfigurationAsInt("surf.radius"));
+		if (config.isCommandSet("surf.radius")) 
+			surfExtractor.setRadius(config.getConfigurationAsInt("surf.radius"));
 
-		if (config.isCommandSet("surf.threshold")) surfExtractor.setThreshold(config.getConfigurationAsFloat("surf.threshold"));
+		if (config.isCommandSet("surf.threshold")) 
+			surfExtractor.setThreshold(config.getConfigurationAsFloat("surf.threshold"));
 
-		if (config.isCommandSet("surf.ignoreborder")) surfExtractor.setIgnoreBorder(config.getConfigurationAsInt("surf.ignoreborder"));
+		if (config.isCommandSet("surf.ignoreborder")) 
+			surfExtractor.setIgnoreBorder(config.getConfigurationAsInt("surf.ignoreborder"));
 
-		if (config.isCommandSet("surf.strictrule")) surfExtractor.setStrictRule(config.getConfigurationAsBoolean("surf.strictrule"));
+		if (config.isCommandSet("surf.strictrule")) 
+			surfExtractor.setStrictRule(config.getConfigurationAsBoolean("surf.strictrule"));
 
-		if (config.isCommandSet("surf.maxfeaturesperscale")) surfExtractor.setMaxFeaturesPerScale(config.getConfigurationAsInt("surf.maxfeaturesperscale"));
+		if (config.isCommandSet("surf.maxfeaturesperscale")) 
+			surfExtractor.setMaxFeaturesPerScale(config.getConfigurationAsInt("surf.maxfeaturesperscale"));
 
-		if (config.isCommandSet("surf.initialsamplerate")) surfExtractor.setInitialSampleRate(config.getConfigurationAsInt("surf.initialsamplerate"));
+		if (config.isCommandSet("surf.initialsamplerate")) 
+			surfExtractor.setInitialSampleRate(config.getConfigurationAsInt("surf.initialsamplerate"));
 
-		if (config.isCommandSet("surf.initialsize")) surfExtractor.setInitialSize(config.getConfigurationAsInt("surf.initialsize"));
+		if (config.isCommandSet("surf.initialsize")) 
+			surfExtractor.setInitialSize(config.getConfigurationAsInt("surf.initialsize"));
 
-		if (config.isCommandSet("surf.numberscalesperoctave")) surfExtractor.setNumberScalesPerOctave(config.getConfigurationAsInt("surf.numberscalesperoctave"));
+		if (config.isCommandSet("surf.numberscalesperoctave")) 
+			surfExtractor.setNumberScalesPerOctave(config.getConfigurationAsInt("surf.numberscalesperoctave"));
 
-		if (config.isCommandSet("surf.numberofoctaves")) surfExtractor.setNumberOfOctaves(config.getConfigurationAsInt("surf.numberofoctaves"));
+		if (config.isCommandSet("surf.numberofoctaves")) 
+			surfExtractor.setNumberOfOctaves(config.getConfigurationAsInt("surf.numberofoctaves"));
 
 		// Load images from ImageSet
 		is.getImageClasses();
