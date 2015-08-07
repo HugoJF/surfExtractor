@@ -417,6 +417,8 @@ public class SurfExtractor {
 
 	public Instances generateInstances(Configuration config) {
 
+		setConfigParameters(config);
+		
 		// Load images from ImageSet
 		ImageSet is = null;
 		try {
